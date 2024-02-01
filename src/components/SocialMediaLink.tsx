@@ -1,27 +1,23 @@
-import type { NavItem } from "../types/interfaces.ts";
+import type { NavItem } from '@/types/interfaces.ts';
 const socialMediaLinks: NavItem[] = [
     {
-        title: "Home",
-        url: "/",
+        label: "GitHub",
+        link: "https://github.com/malmorox",
     },
     {
-        title: "Orders",
-        url: "/orders",
+        label: "LinkedIn",
+        link: "https://www.linkedin.com/in/marcosalmorox/",
     },
     {
-        title: "About Us",
-        url: "/about-us",
-    },
-    {
-        title: "Contact",
-        url: "/contact",
-    },
+        label: "Instagram",
+        link: "",
+    }
 ];
 
-export function SocialMediaLink() {
+/*export function SocialMediaLink() {
     return (
         <a href={}>
 
         </a>
     );
-}
+}*/
