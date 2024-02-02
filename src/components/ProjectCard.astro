@@ -1,9 +1,18 @@
 ---
-interface Props {
+type Technology = {
+	name: string;
+	route: string;
+};
+
+type Props = {
 	title: string;
-	body: string;
-	href: string;
-}
+	description: string;
+	slug: string;
+	img_logo: string;
+	imgAlt: string;
+	technologies: Technology[];
+	image: string;
+};
 
 const { href, title, body } = Astro.props;
 ---
