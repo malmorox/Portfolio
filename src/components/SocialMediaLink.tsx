@@ -1,5 +1,5 @@
-import type { NavItem } from '@/types/interfaces.ts';
-const socialMediaLinks: NavItem[] = [
+import type {  } from '@/utils/types/presentation';
+const socialMediaLinks[] = [
     {
         label: "GitHub",
         link: "https://github.com/malmorox",
