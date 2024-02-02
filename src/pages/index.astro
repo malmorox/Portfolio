@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Main.astro';
-import Card from '../components/ProjectCard.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
 ---
 
 <Layout title="Marcos A. - Portfolio">
@@ -38,28 +38,23 @@ import Card from '../components/ProjectCard.astro';
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+		<section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+			{
+				projects
+					.slice(0, 4)
+					.map((project) => (
+						<ProjectCard
+							title={project.data.title}
+							description={project.data.description}
+							img_logo={project.data.img_logo.src}
+							imgAlt={project.data.img_logo.alt}
+							image={project.data.image.src}
+							slug={project.slug}
+							technologies={project.data.technologies}
+						/>
+					))
+			}
+		</section>
 	</main>
 </Layout>
 
