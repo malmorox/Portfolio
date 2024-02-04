@@ -15,6 +15,10 @@ const presentation: Presentation = {
             label: 'LinkedIn',
             link: 'https://www.linkedin.com/in/marcosalmorox/',
         },
+        {
+            label: 'Instagram',
+            link: '',
+        }
     ],
 };
 
