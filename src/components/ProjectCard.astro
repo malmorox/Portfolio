@@ -8,13 +8,13 @@ type Props = {
 	title: string;
 	description: string;
 	slug: string;
-	img_logo: string;
+	imgLogo: string;
 	imgAlt: string;
 	technologies: Technology[];
-	image: string;
+	preview: string;
 };
 
-const { href, title, body } = Astro.props;
+const { title, description, slug, imgLogo, imgAlt, preview, technologies } = Astro.props;
 ---
 
 <li class="link-card">
