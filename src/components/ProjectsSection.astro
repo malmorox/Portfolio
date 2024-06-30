@@ -1,0 +1,39 @@
+---
+import ProjectCard from '@components/ProjectCard.astro';
+import projectsData from '@data/projects.json';
+
+const projects = projectsData.projects;
+---
+<section id="projects">
+    <div class="projects-container">
+        <h2 class="projects-title"> Proyectos destacados </h2>
+        <div class="works"></div>
+        {
+            projects.map((project) => (
+                <ProjectCard
+                    name={project.name}
+                    description={project.description}
+                    imgLogo=""
+                    imgPreview=""
+                    technologies={[]}
+                    link=""
+                />
+            ))
+        }
+        </div>
+    </div>
+</section>
+
+<style>
+    .projects-container {
+        
+    }
+
+    .projects-title {
+        @apply text-3xl font-bold text-left text-blue-500;
+    }
+
+    .works {
+        
+    }
+</style>

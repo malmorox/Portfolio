@@ -1,0 +1,31 @@
+{
+    "projects": [
+        {
+            "name": "",
+            "cabecera": "",
+            "description": "",
+            "img_logo": "",
+            "img_preview": "",
+            "technologies": ["", "", ""],
+            "link": ""
+        },
+        {
+            "name": "",
+            "cabecera": "",
+            "description": "",
+            "img_logo": "",
+            "img_preview": "",
+            "technologies": ["", "", ""],
+            "link": ""
+        },
+        {
+            "name": "",
+            "cabecera": "",
+            "description": "",
+            "img_logo": "",
+            "img_preview": "",
+            "technologies": ["", "", ""],
+            "link": ""
+        }
+    ]
+}

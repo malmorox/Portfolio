@@ -1,25 +1,39 @@
 ---
+import Nav from "@components/Footer.astro";
+import Footer from "@components/Footer.astro";
+
 interface Props {
 	title: string;
+	description: string;
+	lang?: string;
 }
 
-const { title } = Astro.props;
+const { 
+	title,
+	description,
+	lang = "es"
+} = Astro.props as Props;
 ---
 
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title> {title} </title>
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
 	<body>
-		<slot />
+		<Nav />	
+		<div class="main-container">
+			<slot />
+		</div>
+		<Footer />
 	</body>
 </html>
+
 <style is:global>
 	:root {
 		--accent: 136, 58, 234;
