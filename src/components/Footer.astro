@@ -1,17 +1,67 @@
 ---
-const currentYear = new Date().getFullYear();
----
+import SocialMedia from "@components/ui/SocialMedia.astro"
 
+const currentYear = new Date().getFullYear()
+---
 <footer>
-    <div class="sitemap">
-        <p class="sitemap-title"> Contenido </p>
-        <nav aria-label="sitemap navigation">
-            <a href="/#about"> About </a>
-            <a href="/#skills"> Skills </a>
-            <a href="/#proyectos"> Proyectos </a>
-            <a href="/#posts"> Posts </a>
-            <a href="/#contacto"> Contacto </a>
-        </nav>
+    <div class="footer-container">
+        <h2 id="footer-title"> ¡Conectémonos! </h2>
+        <address>
+            <SocialMedia />
+        </address>
+        <div class="footer-bar">
+            <div class="sitemap">
+                <p class="sitemap-title"> Contenido </p>
+                <nav aria-label="sitemap navigation">
+                    <a href="/#sobremi"> Sobre mí </a>
+                    <a href="/#skills"> Habilidades </a>
+                    <a href="/#proyectos"> Proyectos </a>
+                    <a href="/#contacto"> Contacto </a>
+                </nav>
+            </div>
+
+            <a
+                href=""
+                class=""
+                target="_blank"
+            >
+                Descarga mi curriculum vitae
+            </a>
+        </div>
+        
+        <small> Diseñado y desarrollado por Marcos Almorox — &copy;{currentYear} </small>
     </div>
-    <small> Diseñado y desarrollado por Marcos Almorox — &copy;{currentYear} </small>
 </footer>
+
+<style>
+    footer {
+        @apply bg-gray-800 text-white
+    }
+
+    .footer-container {
+        @apply container mx-auto py-8 px-4
+    }
+
+    #footer-title {
+        @apply text-3xl font-bold text-center
+    }
+
+    .footer-bar {
+        @apply flex flex-col
+    }
+
+    .sitemap {
+        @apply mb-4;
+    }
+
+    .sitemap-title {
+        @apply text-lg font-bold
+    }
+
+    nav {
+        @apply flex flex-col
+    }
+
+    a {
+        @apply text-white
+    }

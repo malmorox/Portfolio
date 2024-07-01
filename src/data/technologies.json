@@ -1,0 +1,64 @@
+{
+    "technologies": [
+        { 
+            "name": "HTML", 
+            "logo": "path/to/html-logo.png" 
+        },
+        { 
+            "name": "CSS", 
+            "logo": "path/to/css-logo.png" 
+        },
+        { 
+            "name": "Tailwind", 
+            "logo": "path/to/tailwind-logo.png" 
+        },
+        { 
+            "name": "Astro", 
+            "logo": "path/to/astro-logo.png" 
+        },
+        { 
+            "name": "Javascript", 
+            "logo": "path/to/js-logo.png" 
+        },
+        { 
+            "name": "Typescript", 
+            "logo": "path/to/ts-logo.png" 
+        },
+        { 
+            "name": "Node.js", 
+            "logo": "path/to/nodejs-logo.png" 
+        },
+        { 
+            "name": "Express", 
+            "logo": "path/to/express-logo.png" 
+        },
+        { 
+            "name": "PHP", 
+            "logo": "path/to/php-logo.png" 
+        },
+        {
+            "name": "Java", 
+            "logo": "path/to/java-logo.png"
+        },
+        {
+            "name": "Python", 
+            "logo": "path/to/python-logo.png"
+        },
+        { 
+            "name": "React", 
+            "logo": "path/to/react-logo.png" 
+        },
+        { 
+            "name": "Vue", 
+            "logo": "path/to/vue-logo.png" 
+        },
+        { 
+            "name": "Express", 
+            "logo": "path/to/express-logo.png" 
+        },
+        {
+            "name": "MySQL", 
+            "logo": "path/to/mysql-logo.png"
+        }
+    ]
+}

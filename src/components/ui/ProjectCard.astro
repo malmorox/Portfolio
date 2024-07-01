@@ -1,0 +1,68 @@
+---
+import Technology from '@components/ui/Technology.astro'
+import technologiesData from '@data/technologies.json'
+
+interface Props {
+	name: string
+	//cabecera: string
+	description: string
+	imgLogo: string
+	imgPreview: string
+	technologies: string[]
+	link: string
+}
+
+const { 
+	name,
+	//cabecera,
+	description,
+	imgLogo,
+	imgPreview, 
+	technologies,
+	link 
+} = Astro.props as Props
+
+const allTechnologies = technologiesData.technologies
+
+const getTechnologyDetails = (techName: string) => {
+	const techDetail = allTechnologies.find(tech => tech.name === techName)
+	return { 
+		name: techName, 
+		logo: techDetail ? techDetail.logo : ""
+	}
+}
+---
+<a	
+	href={link}
+	class="project-link"
+	target="_blank"
+	rel="noopener"
+>
+	<article class="project">
+		<div class="project-preview-zone">
+			<img src={imgPreview} alt={name} class="project-image" />
+		</div>
+		<div class="project-info-zone">
+			<h3 class="project-title"> {name} </h3>
+			<p class="project-text"> {description} </p>
+			<div class="project-technologies">
+				{
+					technologies.map(technologyName => {
+						const { name, logo } = getTechnologyDetails(technologyName)
+						return <Technology name={name} logo={logo} />
+					})
+				}
+			</div>
+		</div>
+	</article>
+</a>
+
+<style>
+	.project-link {
+		@apply block
+	}
+	
+	.project {
+		@apply bg-white shadow-lg rounded-lg overflow-hidden text-cyan-500
+	}
+</style>

@@ -1,5 +1,5 @@
 ---
-import Nav from "@components/Footer.astro";
+import Nav from "@components/Nav.astro";
 import Footer from "@components/Footer.astro";
 
 interface Props {
@@ -23,6 +23,7 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<title> {title} </title>
 		<meta name="description" content={description} />
+		<meta name="author" content="Marcos Almorox">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
 	<body>
@@ -34,7 +35,7 @@ const {
 	</body>
 </html>
 
-<style is:global>
+<style>
 	:root {
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;

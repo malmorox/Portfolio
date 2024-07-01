@@ -1,30 +1,30 @@
 {
     "projects": [
         {
-            "name": "",
-            "cabecera": "",
-            "description": "",
-            "img_logo": "",
-            "img_preview": "",
-            "technologies": ["", "", ""],
+            "name": "hola",
+            "cabecera": "hola",
+            "description": "hola",
+            "img_logo": "hola",
+            "img_preview": "hola",
+            "technologies": ["React", "MySQL", "Express"],
             "link": ""
         },
         {
-            "name": "",
-            "cabecera": "",
-            "description": "",
-            "img_logo": "",
-            "img_preview": "",
-            "technologies": ["", "", ""],
+            "name": "adios",
+            "cabecera": "adios",
+            "description": "adios",
+            "img_logo": "adios",
+            "img_preview": "adios",
+            "technologies": ["PHP"],
             "link": ""
         },
         {
-            "name": "",
-            "cabecera": "",
-            "description": "",
-            "img_logo": "",
-            "img_preview": "",
-            "technologies": ["", "", ""],
+            "name": "chao",
+            "cabecera": "chao",
+            "description": "chao",
+            "img_logo": "chao",
+            "img_preview": "chao",
+            "technologies": ["chao"],
             "link": ""
         }
     ]

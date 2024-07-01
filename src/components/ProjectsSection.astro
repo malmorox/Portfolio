@@ -1,8 +1,8 @@
 ---
-import ProjectCard from '@components/ProjectCard.astro';
-import projectsData from '@data/projects.json';
+import ProjectCard from '@components/ui/ProjectCard.astro'
+import projectsData from '@data/projects.json'
 
-const projects = projectsData.projects;
+const projects = projectsData.projects
 ---
 <section id="projects">
     <div class="projects-container">
@@ -13,10 +13,10 @@ const projects = projectsData.projects;
                 <ProjectCard
                     name={project.name}
                     description={project.description}
-                    imgLogo=""
-                    imgPreview=""
-                    technologies={[]}
-                    link=""
+                    imgLogo={project.img_logo}
+                    imgPreview={project.img_preview}
+                    technologies={project.technologies}
+                    link={project.link}
                 />
             ))
         }
@@ -30,7 +30,7 @@ const projects = projectsData.projects;
     }
 
     .projects-title {
-        @apply text-3xl font-bold text-left text-blue-500;
+        @apply text-3xl font-bold text-left text-blue-500
     }
 
     .works {
