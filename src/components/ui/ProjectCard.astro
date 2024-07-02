@@ -40,11 +40,12 @@ const getTechnologyDetails = (techName: string) => {
 >
 	<article class="project">
 		<div class="project-preview-zone">
-			<img src={imgPreview} alt={name} class="project-image" />
+			<img src={imgLogo} alt={`${name} logo`} class="proyect-image-logo">
+			<img src={imgPreview} alt={`${name} preview`} class="project-image-preview" />
 		</div>
 		<div class="project-info-zone">
 			<h3 class="project-title"> {name} </h3>
-			<p class="project-text"> {description} </p>
+			<p class="project-description"> {description} </p>
 			<div class="project-technologies">
 				{
 					technologies.map(technologyName => {
@@ -63,6 +64,34 @@ const getTechnologyDetails = (techName: string) => {
 	}
 	
 	.project {
-		@apply bg-white shadow-lg rounded-lg overflow-hidden text-cyan-500
+		@apply max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 
+	}
+
+	.project-preview-zone {
+		@apply relative
+	}
+
+	.project-image-logo {
+		@apply absolute top-0 left-0 w-16 h-16 m-4
+	}
+
+	.project-image-preview {
+		@apply w-full h-48 object-cover rounded-t-lg
+	}
+
+	.project-info-zone {
+		@apply p-4
+	}
+
+	.project-title {
+		@apply text-xl font-bold
+	}
+
+	.project-description {
+		@apply text-gray-600
+	}
+
+	.project-technologies {
+		@apply flex flex-wrap gap-2 mt-2
 	}
 </style>

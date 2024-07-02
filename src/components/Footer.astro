@@ -13,7 +13,7 @@ const currentYear = new Date().getFullYear()
             <div class="sitemap">
                 <p class="sitemap-title"> Contenido </p>
                 <nav aria-label="sitemap navigation">
-                    <a href="/#sobremi"> Sobre mí </a>
+                    <a href="/#intro"> Sobre mí </a>
                     <a href="/#skills"> Habilidades </a>
                     <a href="/#proyectos"> Proyectos </a>
                     <a href="/#contacto"> Contacto </a>
@@ -21,8 +21,8 @@ const currentYear = new Date().getFullYear()
             </div>
 
             <a
-                href=""
-                class=""
+                href="/cv/marcos-almorox_cv-resume.pdf"
+                class="cv-link"
                 target="_blank"
             >
                 Descarga mi curriculum vitae
@@ -65,3 +65,8 @@ const currentYear = new Date().getFullYear()
     a {
         @apply text-white
     }
+
+    .cv-link {
+        @apply text-white text-center py-2 bg-blue-500 rounded-lg
+    }
+</style>
