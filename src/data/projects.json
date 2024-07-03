@@ -13,8 +13,8 @@
             "name": "adios",
             "cabecera": "adios",
             "description": "adios",
-            "img_logo": "adios",
-            "img_preview": "adios",
+            "img_logo": "logo.png",
+            "img_preview": "imagen.webp",
             "technologies": ["PHP"],
             "link": ""
         },
