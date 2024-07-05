@@ -10,7 +10,41 @@
             name="contact-form"
             class="contact-form"
         >
-            
+            <div>
+                <label for="contact-form-identifier"> Tu nombre (o compañia)</label>
+                <input
+                    type="text"
+                    id="contact-form-identifier"
+                    name="form_identifier"
+                    minlength="2"
+                />
+            </div>
+            <div>
+                <label for="contact-form-email"> Tu correo electrónico: </label>
+                <input
+                    type="email"
+                    id="contact-form-email"
+                    name="form_email"
+                    autocomplete="off"
+                    required
+                />
+            </div>
+            <div>
+                <label for="contact-form-msg"> Mensaje: </label>
+                <textarea
+                    id="contact-form-msg"
+                    name="form_msg"
+                    placeholder=""
+                    autocomplete="off"
+                    minlength="6"
+                    maxlength="10000"
+                    required></textarea>
+            </div>
+            <div>
+                <button class="">
+                    Enviar mensaje
+                </button>
+            </div>
         </form>
     </div>
 </section>

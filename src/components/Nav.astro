@@ -1,12 +1,11 @@
 ---
 ---
-
 <header>
-    <nav class="container nav-container">
-        <a href="/" class="logo-link" aria-label="Go to homepage">
+    <nav class=" nav-container">
+        <a href="/" class="nav-logo" aria-label="">
             <svg
-                width=""
-                height=""
+                width="80"
+                height="80"
                 fill=""
                 xmlns=""
                 class=""
@@ -32,7 +31,7 @@
                 <a
                     role="menuitem"
                     href="/#about"
-                    class="nav-link navbtn custom-underline"
+                    class="nav-link"
                 >
                     Sobre mí
                 </a>
@@ -41,7 +40,7 @@
                 <a
                     role="menuitem"
                     href="/#projects"
-                    class="nav-link navbtn custom-underline"
+                    class="nav-link"
                 >
                     Trabajo
                 </a>
@@ -50,7 +49,7 @@
                 <a
                     role="menuitem"
                     href="/#contact"
-                    class="nav-link navbtn custom-underline"
+                    class="nav-link"
                 > 
                     Contacto
                 </a>
@@ -59,7 +58,7 @@
                 <a
                     role="menuitem"
                     href="/cv/marcos-almorox_cv-resume.pdf"
-                    class="nav-link navbtn navbtn--accent"
+                    class="nav-link nav-button"
                 >
                     CV / Resume
                 </a>
@@ -69,5 +68,28 @@
 </header>
 
 <style>
+    header {
+        @apply bg-white shadow-md
+    }
+
+    .nav-container {
+        @apply container mx-auto flex justify-between items-center py-2 px-4
+    }
+
+    .nav-logo {
+        @apply flex items-center
+    }
+
+    .nav-links {
+        @apply flex gap-4
+    }
+
+    .nav-link {
+        @apply text-lg font-bold text-gray-800
+    }
+
+    .nav-button {
+        @apply bg-blue-500 text-white px-4 py-2 rounded-lg
+    }
     
 </style>
