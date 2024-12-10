@@ -52,10 +52,6 @@
             "name": "Vue", 
             "logo": "path/to/vue-logo.png" 
         },
-        { 
-            "name": "Express", 
-            "logo": "path/to/express-logo.png" 
-        },
         {
             "name": "MySQL", 
             "logo": "path/to/mysql-logo.png"
