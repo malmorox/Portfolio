@@ -1,54 +1,24 @@
 ---
+
 ---
-<section id="contact">
-    <div class="contact-container">
-        <div class="contact-text-wrapper">
-            
-        </div>
-        <form
-            method="POST"
-            name="contact-form"
-            class="contact-form"
-        >
-            <div>
-                <label for="contact-form-identifier"> Tu nombre (o compañia)</label>
-                <input
-                    type="text"
-                    id="contact-form-identifier"
-                    name="form_identifier"
-                    minlength="2"
-                />
-            </div>
-            <div>
-                <label for="contact-form-email"> Tu correo electrónico: </label>
-                <input
-                    type="email"
-                    id="contact-form-email"
-                    name="form_email"
-                    autocomplete="off"
-                    required
-                />
-            </div>
-            <div>
-                <label for="contact-form-msg"> Mensaje: </label>
-                <textarea
-                    id="contact-form-msg"
-                    name="form_msg"
-                    placeholder=""
-                    autocomplete="off"
-                    minlength="6"
-                    maxlength="10000"
-                    required></textarea>
-            </div>
-            <div>
-                <button class="">
-                    Enviar mensaje
-                </button>
-            </div>
-        </form>
-    </div>
-</section>
+<div class="contact-section">
+    <h2 class="contact-title"> Contacto </h2>
+    <p class="contact-text">
+        Si deseas ponerte en contacto conmigo, no dudes en escribirme a través de mis redes sociales o enviarme un correo electrónico.
+    </p>
+    
+</div>
 
 <style>
-    
+    .contact-section {
+        @apply flex flex-col
+    }
+
+    .contact-title {
+        @apply text-3xl font-bold text-left text-blue-500
+    }
+
+    .contact-text {
+        @apply text-lg text-left text-gray-700 mb-4
+    }
 </style>

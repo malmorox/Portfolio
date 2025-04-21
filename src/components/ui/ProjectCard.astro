@@ -2,9 +2,8 @@
 import Technology from '@components/ui/Technology.astro'
 import technologiesData from '@data/technologies.json'
 
-interface Props {
+interface ProjectProps {
 	name: string
-	//cabecera: string
 	description: string
 	imgLogo: string
 	imgPreview: string
@@ -14,13 +13,12 @@ interface Props {
 
 const { 
 	name,
-	//cabecera,
 	description,
 	imgLogo,
 	imgPreview, 
 	technologies,
 	link 
-} = Astro.props as Props
+} = Astro.props as ProjectProps
 
 const allTechnologies = technologiesData.technologies
 

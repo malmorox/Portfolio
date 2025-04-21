@@ -1,18 +1,12 @@
 ---
-import Nav from "@components/Nav.astro";
-import Footer from "@components/Footer.astro";
-
-interface Props {
-	title: string;
-	description: string;
-	lang?: string;
-}
+import Nav from "@components/Nav.astro"
+import Footer from "@components/Footer.astro"
 
 const { 
 	title,
 	description,
 	lang = "es"
-} = Astro.props as Props;
+} = Astro.props
 ---
 
 <!DOCTYPE html>

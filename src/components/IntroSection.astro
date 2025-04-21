@@ -4,21 +4,15 @@
     <div class="intro-container">
         <header class="intro-header">
             <div class="intro-header-text">
-                <div class="intro-header-title">
-                    <h3 class=""> Marcos Almorox </h3>
-                    <h1 class=""> Desarrollador front-end creativo, </h1>
-                </div>
+                <h1 class="intro-header-title">
+                    <span class=""> Marcos Almorox </span>
+                    <span class=""> Desarrollador front-end creativo, </span>
+                </h1>
                 <p class="intro-text">
                     
                 </p>
                 <div class="buttons-wrapper">
-                    <a href="#contact" class=""> </a>
-                    <a href="#about" class="">
-                        
-                        <svg class="icon icon-down">
-                            <use xlink:href="sprite.svg#arrow-down"></use>
-                        </svg>
-                    </a>
+                    
                 </div>
             </div>
             <div class="intro-header-img">
@@ -29,5 +23,27 @@
 </section>
 
 <style>
+    .intro-container {
+        @apply flex flex-col
+    }
 
+    .intro-header {
+        @apply flex flex-col items-center justify-center gap-8
+    }
+
+    .intro-header-text {
+        @apply text-center
+    }
+
+    .intro-header-title {
+        @apply text-5xl font-bold text-blue-500
+    }
+
+    .intro-text {
+        @apply text-lg text-gray-700 mb-4
+    }
+
+    .buttons-wrapper {
+        @apply flex gap-4
+    }
 </style>

@@ -1,4 +1,7 @@
 ---
+import { Link, Button, Switch } from '@nextui-org/react'
+import SunIcon from '@assets/icons/SunIcon'
+import MoonIcon from '@assets/icons/MoonIcon'
 ---
 <header>
     <nav class=" nav-container">
@@ -27,6 +30,15 @@
                 <div class="nav-hamburger__icon"></div>
         </div>-->
         <ul role="menubar" class="nav-links">
+            <!-- <li>
+                <Switch
+                    defaultSelected
+                    size=""
+                    color="success"
+                    startContent={<SunIcon />}
+                    endContent={<MoonIcon />}
+                />
+            </li>-->
             <li role="none">
                 <a
                     role="menuitem"
@@ -48,10 +60,14 @@
             <li role="none">
                 <a
                     role="menuitem"
-                    href="/#contact"
                     class="nav-link"
                 > 
-                    Contacto
+                    <button
+                        onclick=""
+                        class=""    
+                    >
+                        Contacto
+                    </button>
                 </a>
             </li>
             <li role="none">

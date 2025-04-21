@@ -1,13 +1,9 @@
 ---
-interface Props {
-	name: string
-	logo: string
-}
 
 const { 
     name, 
     logo 
-} = Astro.props as Props
+} = Astro.props
 ---
 {logo && (
     <div class="tech-item">

@@ -6,10 +6,24 @@ const techSkills = []
 <section id="skills">
     <div class="skills-container">
         <h2 class="skills-title"> Mis habilidades </h2>
-        
+        <div>
+            <p class="skills-text">
+                Aquí hay una lista de las tecnologías que utilizo en mi trabajo diario.
+            </p>
+        </div>
     </div>
 </section>
 
 <style>
+    .skills-container {
+        @apply flex flex-col
+    }
 
+    .skills-title {
+        @apply text-3xl font-bold text-left text-blue-500
+    }
+
+    .skills-text {
+        @apply text-lg text-left text-gray-700 mb-4
+    }
 </style>

@@ -1,0 +1,16 @@
+{
+    "socials": [
+        {
+        "link": "mailto:marcos.almorox@gmail.com",
+        "text": "Email"
+    },
+    {
+        "link": "https://www.linkedin.com/in/marcosalmorox/",
+        "text": "LinkedIn"
+    },
+    {
+        "link": "https://github.com/malmorox",
+        "text": "GitHub"
+    }
+    ]
+}
