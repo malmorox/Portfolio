@@ -1,17 +1,71 @@
 ---
 
 ---
-<div class="contact-section">
-    <h2 class="contact-title"> Contacto </h2>
-    <p class="contact-text">
-        Si deseas ponerte en contacto conmigo, no dudes en escribirme a través de mis redes sociales o enviarme un correo electrónico.
-    </p>
-    
-</div>
+<section id="contact">
+    <div class="contact-container">
+        <div class="contact-text-wrapper">
+            <h2 class="contact-title"> Ponte en contacto conmigo </h2>
+            <p class="contact-text">
+                Si deseas ponerte en contacto conmigo, no dudes en escribirme 
+                a través de mis redes sociales o enviarme un correo electrónico.
+            </p>
+            <p class="contact-text">
+                Si lo prefieres, también puedes enviarme un email a <br />
+                <a
+                    href="mailto:marcos.almorox@gmail.com?subject=Contact from aaronharinck.be"
+                    class="contact-text-link"
+                >
+                    marcos.almorox@gmail.com
+                </a>
+            </p>
+        </div>
+        <form
+            name="contact"
+            method="POST"
+            class="contact-form"
+        >
+            <div>
+                <label for="contact-identifier">Tu nombre (or company)</label>
+                <input
+                    type="text"
+                    id="contact-identifier"
+                    name="identifier"
+                    minlength="2"
+                />
+            </div>
+            <div>
+                <label for="contact-email">Your email address</label>
+                <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    autocomplete="off"
+                    required
+                />
+            </div>
+            <div>
+                <label for="contact-message">Message:</label>
+                <textarea
+                    id="contact-message"
+                    name="message"
+                    placeholder="Tell me about open positions in your company or about your project(s)."
+                    autocomplete="off"
+                    minlength="6"
+                    maxlength="10000"
+                    required></textarea>
+            </div>
+            <div>
+                <button class="btn btn-primary form-button" type="submit">
+                    Send message
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
 
 <style>
-    .contact-section {
-        @apply flex flex-col
+    .contact-container {
+        @apply max-w-screen-xl mx-auto flex flex-row px-4 gap-10;
     }
 
     .contact-title {
@@ -21,4 +75,10 @@
     .contact-text {
         @apply text-lg text-left text-gray-700 mb-4
     }
+
+    .contact-text-wrapper,
+    .contact-form  {
+        @apply flex-1
+    }
+    
 </style>

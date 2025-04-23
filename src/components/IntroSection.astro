@@ -1,4 +1,5 @@
 ---
+import PersonalImage from "@components/PersonalImage.astro";
 ---
 <section id="intro">
     <div class="intro-container">
@@ -6,17 +7,17 @@
             <div class="intro-header-text">
                 <h1 class="intro-header-title">
                     <span class=""> Marcos Almorox </span>
-                    <span class=""> Desarrollador front-end creativo, </span>
+                    <span class=""> Desarrollador web creativo, </span>
                 </h1>
                 <p class="intro-text">
-                    
+                    I create kick-ass websites & apps, from design to code
                 </p>
                 <div class="buttons-wrapper">
                     
                 </div>
             </div>
             <div class="intro-header-img">
-
+                <PersonalImage />
             </div>
         </header>
     </div>
@@ -24,11 +25,11 @@
 
 <style>
     .intro-container {
-        @apply flex flex-col
+        @apply max-w-screen-xl mx-auto flex flex-col px-4;
     }
 
     .intro-header {
-        @apply flex flex-col items-center justify-center gap-8
+        @apply flex items-center justify-center gap-8
     }
 
     .intro-header-text {

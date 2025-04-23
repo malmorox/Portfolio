@@ -2,7 +2,7 @@
 import ProjectCard from '@components/ui/ProjectCard.astro'
 import projectsData from '@data/projects.json'
 
-const projects = projectsData.projects
+const projects = projectsData.projects.slice(0, 4);
 ---
 <section id="projects">
     <div class="projects-container">
@@ -26,7 +26,7 @@ const projects = projectsData.projects
 
 <style>
     .projects-container {
-        @apply flex flex-col
+        @apply max-w-screen-xl mx-auto flex flex-col px-4;
     }
 
     .projects-title {
@@ -34,6 +34,6 @@ const projects = projectsData.projects
     }
 
     .works {
-        @apply grid grid-cols-2 gap-10
+        @apply grid grid-cols-2 gap-7
     }
 </style>

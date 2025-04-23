@@ -23,7 +23,15 @@ const isExternal = link.startsWith('http');
         flex-grow: 2
     }
 
+    .connect-element:first-child .connect-link {
+        @apply rounded-tl-3xl
+    }
+
+    .connect-element:last-child .connect-link {
+        @apply rounded-br-3xl
+    }
+
     .connect-link {
-        @apply block text-center text-xl font-bold text-gray-400 border-4 border-gray-400 py-8 px-4 rounded-lg sm:rounded-t-lg hover:bg-blue-500 hover:text-gray-800 transition duration-300
+        @apply block text-center text-xl font-bold text-gray-400 border border-gray-400 py-8 px-4 rounded-lg sm:rounded-t-lg hover:bg-blue-500 hover:text-gray-800 transition duration-300
     }
 </style>

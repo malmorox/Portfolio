@@ -10,7 +10,6 @@ const currentYear = new Date().getFullYear()
             <SocialMedia />
         </address>
         <div class="footer-bar">
-            
             <div class="sitemap">
                 <p class="sitemap-title"> Contenido </p>
                 <nav aria-label="sitemap navigation">
@@ -20,6 +19,7 @@ const currentYear = new Date().getFullYear()
                     <a href="#contact"> Contacto </a>
                 </nav>
             </div>
+
             <a
                 href="/cv/marcos-almorox_cv-resume.pdf"
                 class="cv-link"
@@ -39,34 +39,47 @@ const currentYear = new Date().getFullYear()
     }
 
     .footer-container {
-        @apply container mx-auto py-8 px-4
+        @apply max-w-screen-xl mx-auto flex flex-col px-4;
     }
 
     #footer-title {
-        @apply text-3xl font-bold text-center
+        @apply text-3xl font-bold text-left
     }
 
     .footer-bar {
-        @apply flex flex-col
+        @apply flex justify-between
     }
 
     .sitemap {
-        @apply mb-4;
+        @apply flex flex-col gap-2
     }
 
     .sitemap-title {
         @apply text-lg font-bold
     }
 
-    nav {
-        @apply flex flex-col
+    .sitemap nav {
+        @apply flex justify-between;
+        gap: 1rem;
     }
 
-    a {
-        @apply text-white
+    .sitemap nav a {
+        @apply underline underline-offset-4 text-gray-300;
+    }
+
+    .sitemap nav a:hover {
+        @apply text-blue-500;
+    }
+
+    .sitemap nav a:focus-visible {
+        @apply outline-none ring-2 ring-blue-500;
     }
 
     .cv-link {
-        @apply text-white text-center py-2 bg-blue-500 rounded-lg
+        @apply flex justify-center border-gray-400 px-4 pr-5 rounded-lg rounded-br-2xl font-semibold transition-colors duration-300
+    }
+
+    small {
+        @apply text-center text-gray-400 
     }
 </style>
