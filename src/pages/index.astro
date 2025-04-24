@@ -12,7 +12,7 @@ import ContactSection from '@components/ContactSection.astro'
 	description=""
 	lang="es"
 >
-	<div id="main-content">
+	<main id="main-content">
 		<IntroSection />
 
 		<AboutSection />
@@ -26,5 +26,7 @@ import ContactSection from '@components/ContactSection.astro'
 </Layout>
 
 <style>
-	
+	main {
+		@apply p-7
+	}
 </style>
