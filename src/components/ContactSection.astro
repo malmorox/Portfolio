@@ -24,8 +24,8 @@
             method="POST"
             class="contact-form"
         >
-            <div>
-                <label for="contact-identifier">Tu nombre (or company)</label>
+            <div class="form-field">
+                <label for="contact-identifier">Tu nombre (o empresa)</label>
                 <input
                     type="text"
                     id="contact-identifier"
@@ -33,8 +33,8 @@
                     minlength="2"
                 />
             </div>
-            <div>
-                <label for="contact-email">Your email address</label>
+            <div class="form-field">
+                <label for="contact-email">Tu correo electrónico</label>
                 <input
                     type="email"
                     id="contact-email"
@@ -43,8 +43,7 @@
                     required
                 />
             </div>
-            <div>
-                <label for="contact-message">Message:</label>
+            <div class="form-field" id="form-textarea">Mensaje:</label>
                 <textarea
                     id="contact-message"
                     name="message"
@@ -54,9 +53,9 @@
                     maxlength="10000"
                     required></textarea>
             </div>
-            <div>
+            <div class="form-field form-button">
                 <button class="btn btn-primary form-button" type="submit">
-                    Send message
+                    Enviar mensaje
                 </button>
             </div>
         </form>
@@ -80,5 +79,18 @@
     .contact-form  {
         @apply flex-1
     }
+
+    .contact-form label {
+        @apply flex
+    }
+
+    #contact-identifier,
+    #contact-email,
+    #contact-message {
+        @apply w-full border border-gray-300 rounded-md p-2 mb-4
+    }
     
+    .form-button {
+        @apply text-xl
+    }
 </style>

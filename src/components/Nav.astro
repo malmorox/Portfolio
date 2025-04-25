@@ -4,41 +4,11 @@ import MoonIcon from '@assets/icons/MoonIcon'
 import LenguageSwitcher from '@components/ui/LenguageSwitcher.astro'
 ---
 <header>
-    <nav class=" nav-container">
+    <nav class="nav-container">
         <a href="/" class="nav-logo" aria-label="">
-            <svg
-                width="80"
-                height="80"
-                fill=""
-                xmlns=""
-                class=""
-            >
-                <path
-                    d=""
-                    style=""> </path>
-            </svg>
+            <img src="../../assets/images/imagen.webp" alt="Logo de Marcos Almorox" class="logo" />
         </a>
-        <!--<div class="nav-wrapper">
-            <div
-                class="nav-hamburger navbtn navbtn--menu"
-                id="menu-navbtn"
-                aria-expanded="false"
-                aria-controls="menu"
-                aria-label="mobile nav toggle"
-                role="button"
-            >
-                <div class="nav-hamburger__icon"></div>
-        </div>-->
         <ul role="menubar" class="nav-links">
-            <!-- <li>
-                <Switch
-                    defaultSelected
-                    size=""
-                    color="success"
-                    startContent={<SunIcon />}
-                    endContent={<MoonIcon />}
-                />
-            </li>-->
             <li role="none">
                 <a
                     role="menuitem"
@@ -80,23 +50,27 @@ import LenguageSwitcher from '@components/ui/LenguageSwitcher.astro'
                 </a>
             </li>
         </ul>
-        <div class="nav-lenguage-switcher">
+        <!-- <div class="nav-lenguage-switcher">
             <LenguageSwitcher />
-        </div>
+        </div> -->
     </nav>
 </header>
 
 <style>
     header {
-        @apply bg-white shadow-md
+        
     }
 
     .nav-container {
-        @apply max-w-screen-xl mx-auto flex flex-row justify-between items-center py-2 px-4
+        @apply max-w-screen-xl mx-auto flex flex-row justify-between items-center py-5 px-4
     }
 
     .nav-logo {
-        @apply flex items-center
+        
+    }
+
+    .nav-logo .logo {
+        @apply w-16 h-16
     }
 
     .nav-links {

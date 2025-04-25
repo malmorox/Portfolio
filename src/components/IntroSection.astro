@@ -5,8 +5,8 @@ import PersonalImage from "@components/PersonalImage.astro";
     <div class="intro-container">
         <header class="intro-header">
             <div class="intro-header-text">
-                <h1 class="intro-header-title">
-                    <span class=""> Marcos Almorox </span>
+                <h1 class="intro-title">
+                    <span class="title-small"> Marcos Almorox. </span>
                     <span class=""> Desarrollador web creativo, </span>
                 </h1>
                 <p class="intro-text">
@@ -29,15 +29,19 @@ import PersonalImage from "@components/PersonalImage.astro";
     }
 
     .intro-header {
-        @apply flex items-center justify-center gap-8
+        @apply flex items-center justify-between gap-8
     }
 
     .intro-header-text {
-        @apply text-center
+        @apply text-left
     }
 
-    .intro-header-title {
-        @apply text-5xl font-bold text-blue-500
+    .intro-title {
+        @apply text-6xl font-bold text-blue-500
+    }
+
+    .title-small {
+        @apply block text-xl
     }
 
     .intro-text {
