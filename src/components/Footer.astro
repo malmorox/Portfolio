@@ -35,11 +35,12 @@ const currentYear = new Date().getFullYear()
 
 <style>
     footer {
-        @apply bg-gray-800 text-white pt-12 pb-6
+        @apply text-gray-800 pt-12 pb-6;
+        background-color: hsl(240, 20%, 99%);
     }
 
     .footer-container {
-        @apply max-w-screen-xl mx-auto flex flex-col px-4;
+        @apply max-w-screen-xl mx-auto flex flex-col px-6
     }
 
     #footer-title {
@@ -64,7 +65,7 @@ const currentYear = new Date().getFullYear()
     }
 
     .sitemap nav a {
-        @apply underline underline-offset-4 text-gray-300;
+        @apply underline underline-offset-4 text-gray-800;
     }
 
     .sitemap nav a:hover {
@@ -76,10 +77,10 @@ const currentYear = new Date().getFullYear()
     }
 
     .cv-link {
-        @apply flex justify-center border-gray-400 px-4 pr-5 rounded-lg rounded-br-2xl font-semibold transition-colors duration-300
+        @apply flex justify-center border-gray-800 px-4 pr-5 rounded-lg rounded-br-2xl font-semibold transition-colors duration-300
     }
 
     small {
-        @apply text-gray-400 
+        @apply text-gray-500 
     }
 </style>
