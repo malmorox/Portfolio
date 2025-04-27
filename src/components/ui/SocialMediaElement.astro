@@ -9,7 +9,9 @@ const isExternal = link.startsWith('http');
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener" : undefined}
     >
-        {text}
+        <div class="connect-link-content">
+            <span> {text} </span>
+        </div>
     </a>
 </li>
 
@@ -32,11 +34,15 @@ const isExternal = link.startsWith('http');
     }
 
     .connect-link {
-        @apply block text-center text-3xl font-bold text-gray-800 border-4 border-gray-800 py-8 px-4 rounded-lg sm:rounded-t-lg hover:bg-orange-500 transition duration-300
+        @apply block text-3xl font-bold text-gray-800 border-4 border-gray-800 h-32 px-4 rounded-lg sm:rounded-t-lg hover:bg-orange-500 transition duration-300
     }
 
     .connect-link:hover {
         @apply border-orange-500;
         color: hsl(240, 20%, 99%);
+    }
+
+    .connect-link-content {
+        @apply flex items-center justify-center h-full
     }
 </style>
