@@ -1,0 +1,30 @@
+---
+import imageBaseUrl from '@assets/images/780_0008_6279612_af117140fea3959a9c9e1f6a7047d850.jpg';
+---
+
+<img
+    src={imageBaseUrl.src}
+    alt="Aaron looking up and pondering inside a cave"
+    class="clip-image"
+    width="400"
+    height="494"
+    title="Bits and bytes"
+    sizes="(max-width: 48em) 80vw, (min-width: 71.25em) 23.75em, 50vw"
+/>
+
+<style>
+    .clip-image {
+        margin-inline: auto;
+        margin-block: var(--size-8);
+        width: 80%;
+        height: auto;
+    
+        /* animation */
+        animation-name: imgClipAnim;
+        animation-duration: 10s;
+        animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+        animation-iteration-count: infinite;
+        border-radius: var(--radius-3) var(--radius-4) var(--radius-3)
+        var(--radius-3);
+    }
+</style>

@@ -1,12 +1,13 @@
 ---
-import SunIcon from '@assets/icons/SunIcon'
-import MoonIcon from '@assets/icons/MoonIcon'
+//import SunIcon from '@assets/icons/SunIcon'
+//import MoonIcon from '@assets/icons/MoonIcon'
 import LenguageSwitcher from '@components/ui/LenguageSwitcher.astro'
+import logo from '@assets/images/imagen.webp'
 ---
 <header>
     <nav class="nav-container">
         <a href="/" class="nav-logo" aria-label="">
-            <img src="../../assets/images/imagen.webp" alt="Logo de Marcos Almorox" class="logo" />
+            <img src={logo.src} alt="Logo de Marcos Almorox" class="logo" />
         </a>
         <ul role="menubar" class="nav-links">
             <li role="none">
@@ -78,11 +79,13 @@ import LenguageSwitcher from '@components/ui/LenguageSwitcher.astro'
     }
 
     .nav-link {
-        @apply text-lg font-bold text-gray-800
+        @apply text-lg font-bold;
+        color: hsl(240, 20%, 99%);
     }
 
     .nav-button {
-        @apply bg-blue-500 text-white px-4 py-2 rounded-lg
+        @apply bg-orange-500 px-4 py-2 rounded-lg;
+        color: hsl(240, 20%, 99%);
     }
     
 </style>

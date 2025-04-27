@@ -2,8 +2,8 @@
 import Technology from '@components/ui/Technology.astro'
 
 const techSkills = {
-    'frontend': ['HTML', 'CSS', 'Javascript', 'Typescript', 'React'],
-    'backend': ['Node.js', 'PHP', 'Java', 'Python'],
+    'frontend': ['HTML y CSS', 'Javascript', 'Typescript', 'React', 'Astro', 'Tailwind CSS'],
+    'backend': ['Node.js', 'PHP', 'C#', 'Java', 'Python'],
     'databases': ['MySQL', 'MongoDB'],
     'devops': ['Docker', 'Apache', 'Nginx', 'Git']
 }
@@ -46,15 +46,19 @@ const techSkills = {
     }
 
     .skill-row {
-        @apply grid grid-cols-4 gap-4 items-start;
+        @apply grid grid-cols-4 items-center border-b border-gray-300;
+    }
+
+    .skill-row:last-child {
+        border-bottom: none;
     }
 
     .skill-category {
-        @apply col-span-1 font-bold text-gray-700 text-lg;
+        @apply col-span-1 font-bold text-gray-700 text-lg p-4 border-r border-gray-300
     }
 
     .skill-technologies {
-        @apply col-span-3 flex flex-wrap gap-2;
+        @apply col-span-3 flex flex-wrap gap-2 ml-4
     }
 
     .tech-badge {
