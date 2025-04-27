@@ -43,7 +43,8 @@
                     required
                 />
             </div>
-            <div class="form-field" id="form-textarea">Mensaje:</label>
+            <div class="form-field" id="form-textarea">
+                <label for="contact-email">Mensaje:</label>
                 <textarea
                     id="contact-message"
                     name="message"
@@ -75,13 +76,16 @@
         @apply text-lg text-left text-gray-700 mb-4
     }
 
-    .contact-text-wrapper,
-    .contact-form  {
+    .contact-text-wrapper {
         @apply flex-1
+    }
+    
+    .contact-form  {
+        @apply flex flex-col w-5/12
     }
 
     .contact-form label {
-        @apply flex
+        @apply flex pt-1 pb-2
     }
 
     #contact-identifier,
@@ -90,6 +94,14 @@
         @apply w-full border border-gray-300 rounded-md p-2 mb-4
     }
     
+    .form-field {
+        @apply m-0
+    }
+
+    .form-field input {
+        margin: 0;
+    }
+
     .form-button {
         @apply text-xl
     }

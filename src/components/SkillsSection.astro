@@ -15,7 +15,11 @@ const techSkills = {
             <div class="skills-table">
                 {Object.entries(techSkills).map(([category, technologies]) => (
                     <div class="skill-row">
-                        <div class="skill-category">{category}</div>
+                        <div class="skill-category">
+                            <div class="skill-category-text">
+                                <h3> {category} </h3>
+                            </div>
+                        </div>
                         <div class="skill-technologies">
                             {technologies.map((tech) => (
                                 <span class="tech-badge">{tech}</span>
@@ -46,7 +50,7 @@ const techSkills = {
     }
 
     .skill-row {
-        @apply grid grid-cols-4 items-center border-b border-gray-300;
+        @apply grid grid-cols-[auto,1fr] items-center border-b-4 border-gray-300;
     }
 
     .skill-row:last-child {
@@ -54,11 +58,19 @@ const techSkills = {
     }
 
     .skill-category {
-        @apply col-span-1 font-bold text-gray-700 text-lg p-4 border-r border-gray-300
+        @apply flex items-center justify-center text-gray-300 text-lg px-16 border-r-4 border-gray-300 h-32
+    }
+
+    .skill-category-text {
+        @apply text-center w-32
+    }
+
+    .skill-category-text h3 {
+        @apply font-bold text-2xl text-gray-300
     }
 
     .skill-technologies {
-        @apply col-span-3 flex flex-wrap gap-2 ml-4
+        @apply flex w-full p-4 gap-2
     }
 
     .tech-badge {
