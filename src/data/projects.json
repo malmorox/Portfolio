@@ -6,7 +6,7 @@
             "description": "hola",
             "img_logo": "hola",
             "img_preview": "hola",
-            "technologies": ["React", "MySQL", "Express"],
+            "technologies": ["react", "mysql", "javascript"],
             "link": ""
         },
         {
@@ -15,7 +15,7 @@
             "description": "adios",
             "img_logo": "logo.png",
             "img_preview": "imagen.webp",
-            "technologies": ["PHP"],
+            "technologies": ["php"],
             "link": ""
         },
         {

@@ -1,6 +1,6 @@
 ---
 import TechnologyLabel from '@components/ui/TechnologyLabel.astro'
-import technologiesData from '@data/technologies.json'
+import techData from '@data/technologies.json'
 
 interface ProjectProps {
 	name: string
@@ -20,14 +20,10 @@ const {
 	link 
 } = Astro.props as ProjectProps
 
-const allTechnologies = technologiesData.technologies
+const allTechnologies = techData.technologies
 
-const getTechnologyDetails = (techName: string) => {
-	const techDetail = allTechnologies.find(tech => tech.name === techName)
-	return { 
-		name: techName, 
-		logo: techDetail ? techDetail.logo : ""
-	}
+function getTechnologyData(techId: string) {
+    return allTechnologies.find(t => t.technology === techId)
 }
 ---
 <a	
@@ -45,11 +41,10 @@ const getTechnologyDetails = (techName: string) => {
 			<h3 class="project-title"> {name} </h3>
 			<p class="project-description"> {description} </p>
 			<div class="project-technologies">
-				{
-					technologies.map(technologyName => {
-						const { name, logo } = getTechnologyDetails(technologyName)
-						return <TechnologyLabel name={name} logo={logo} />
-					})
+				{technologies.map((t: string) => {
+					const tech = getTechnologyData(t)
+					return tech ? <TechnologyLabel name={tech.name} logo={tech.logo} /> : null
+				})
 				}
 			</div>
 		</div>
