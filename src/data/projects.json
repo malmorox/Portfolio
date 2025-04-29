@@ -26,6 +26,15 @@
             "img_preview": "chao",
             "technologies": ["chao"],
             "link": ""
+        },
+        {
+            "name": "chao",
+            "cabecera": "chao",
+            "description": "chao",
+            "img_logo": "chao",
+            "img_preview": "chao",
+            "technologies": ["chao"],
+            "link": ""
         }
     ]
 }

@@ -1,11 +1,16 @@
 ---
 import Technology from '@components/ui/Technology.astro'
+import techData from '@data/technologies.json'
 
 const techSkills = {
-    'frontend': ['HTML y CSS', 'Javascript', 'Typescript', 'React', 'Astro', 'Tailwind CSS'],
-    'backend': ['Node.js', 'PHP', 'C#', 'Java', 'Python'],
-    'databases': ['MySQL', 'MongoDB'],
-    'devops': ['Docker', 'Apache', 'Nginx', 'Git']
+    'frontend': ['htmlcss', 'javascript', 'typescript', 'react', 'astro', 'tailwind'],
+    'backend': ['node', 'php', 'csharp', 'java', 'Python'],
+    'databases': ['mysql', 'mongodb'],
+    'devops': ['docker', 'apache', 'nginx', 'git']
+}
+
+function getTechnologyData(techId: string) {
+    return techData.technologies.find(t => t.technology === techId)
 }
 ---
 <section id="skills">
@@ -21,9 +26,10 @@ const techSkills = {
                             </div>
                         </div>
                         <div class="skill-technologies">
-                            {technologies.map((tech) => (
-                                <span class="tech-badge">{tech}</span>
-                            ))}
+                            {technologies.map(t => {
+                                const tech = getTechnologyData(t)
+                                return tech ? <Technology name={tech.name} logo={tech.logo} /> : null
+                            })}
                         </div>
                     </div>
                 ))}
@@ -33,6 +39,10 @@ const techSkills = {
 </section>
 
 <style>
+    #skills {
+        @apply py-20
+    }
+
     .skills-container {
         @apply max-w-screen-xl mx-auto flex flex-col px-6
     }
@@ -58,7 +68,7 @@ const techSkills = {
     }
 
     .skill-category {
-        @apply flex items-center justify-center text-gray-300 text-lg px-16 border-r-4 border-gray-300 h-32
+        @apply flex items-center justify-center text-gray-300 text-lg px-16 border-r-4 border-gray-300 h-full
     }
 
     .skill-category-text {
@@ -70,7 +80,7 @@ const techSkills = {
     }
 
     .skill-technologies {
-        @apply flex w-full p-4 gap-2
+        @apply flex flex-wrap gap-14 w-[95%] mx-8 py-5 justify-start
     }
 
     .tech-badge {

@@ -5,19 +5,25 @@ const {
     logo 
 } = Astro.props
 ---
-{logo && (
-    <div class="tech-item">
+<div class="tech-item">
+    <div class="tech-logo-container">
         <img src={logo} alt={`${name} logo`} class="tech-logo" />
+    </div>
+    <div class="tech-name-container">
         <span class="tech-name"> {name} </span>
     </div>
-)}
+</div>
 
 <style>
     .tech-item {
-        @apply flex items-center gap-2
+        @apply flex flex-col items-center justify-center gap-2 text-center;
     }
 
     .tech-logo {
-        @apply w-6 h-6
+        @apply w-24 h-24;
+    }
+
+    .tech-name {
+        @apply text-sm font-medium text-gray-700;
     }
 </style>

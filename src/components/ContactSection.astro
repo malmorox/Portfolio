@@ -48,7 +48,7 @@
                 <textarea
                     id="contact-message"
                     name="message"
-                    placeholder="Tell me about open positions in your company or about your project(s)."
+                    placeholder="Cuéntame sobre las vacantes en tu empresa o sobre tu(s) proyecto(s)"
                     autocomplete="off"
                     minlength="6"
                     maxlength="10000"
@@ -64,6 +64,10 @@
 </section>
 
 <style>
+    #contact {
+        @apply pt-20 pb-28
+    }
+
     .contact-container {
         @apply max-w-screen-xl mx-auto flex flex-row px-6 gap-10;
     }
@@ -85,13 +89,15 @@
     }
 
     .contact-form label {
-        @apply flex pt-1 pb-2
+        @apply flex pt-1 pb-2;
+        color: #a19cb0;
     }
 
     #contact-identifier,
     #contact-email,
     #contact-message {
-        @apply w-full border border-gray-300 rounded-md p-2 mb-4
+        @apply w-full border border-gray-300 rounded-md p-2 mb-4;
+        background-color: hsl(0, 0%, 16%);
     }
     
     .form-field {

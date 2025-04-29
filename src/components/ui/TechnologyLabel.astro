@@ -1,0 +1,23 @@
+---
+
+const { 
+    name, 
+    logo 
+} = Astro.props
+---
+{logo && (
+    <div class="tech-item">
+        <img src={logo} alt={`${name} logo`} class="tech-logo" />
+        <span class="tech-name"> {name} </span>
+    </div>
+)}
+
+<style>
+    .tech-item {
+        @apply flex items-center gap-2
+    }
+
+    .tech-logo {
+        @apply w-6 h-6
+    }
+</style>

@@ -1,5 +1,5 @@
 ---
-import Technology from '@components/ui/Technology.astro'
+import TechnologyLabel from '@components/ui/TechnologyLabel.astro'
 import technologiesData from '@data/technologies.json'
 
 interface ProjectProps {
@@ -48,7 +48,7 @@ const getTechnologyDetails = (techName: string) => {
 				{
 					technologies.map(technologyName => {
 						const { name, logo } = getTechnologyDetails(technologyName)
-						return <Technology name={name} logo={logo} />
+						return <TechnologyLabel name={name} logo={logo} />
 					})
 				}
 			</div>
