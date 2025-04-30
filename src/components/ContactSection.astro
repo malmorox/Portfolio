@@ -28,8 +28,10 @@
                 <label for="contact-identifier">Tu nombre (o empresa)</label>
                 <input
                     type="text"
+                    class="form-field-input"
                     id="contact-identifier"
                     name="identifier"
+                    autocomplete="off"
                     minlength="2"
                 />
             </div>
@@ -37,6 +39,7 @@
                 <label for="contact-email">Tu correo electrónico</label>
                 <input
                     type="email"
+                    class="form-field-input"
                     id="contact-email"
                     name="email"
                     autocomplete="off"
@@ -46,6 +49,7 @@
             <div class="form-field" id="form-textarea">
                 <label for="contact-email">Mensaje:</label>
                 <textarea
+                    class="form-field-input"
                     id="contact-message"
                     name="message"
                     placeholder="Cuéntame sobre las vacantes en tu empresa o sobre tu(s) proyecto(s)"
@@ -54,8 +58,8 @@
                     maxlength="10000"
                     required></textarea>
             </div>
-            <div class="form-field form-button">
-                <button class="btn btn-primary form-button" type="submit">
+            <div class="form-field">
+                <button class="form-button" type="submit">
                     Enviar mensaje
                 </button>
             </div>
@@ -76,14 +80,26 @@
         @apply text-5xl font-bold text-left text-blue-500
     }
 
+    .contact-text-wrapper {
+        @apply flex-1
+    }
+
     .contact-text {
         @apply text-lg text-left text-gray-700 mb-4
     }
 
-    .contact-text-wrapper {
-        @apply flex-1
+    .contact-text-link {
+        @apply text-2xl;
+        color: hsl(240, 20%, 99%);
+        text-decoration: underline;
+        text-decoration-thickness: 5px;
+        text-underline-offset: 0.4rem;
     }
-    
+
+    .contact-text-link:hover {
+        @apply text-blue-500;
+    }
+
     .contact-form  {
         @apply flex flex-col w-5/12
     }
@@ -96,8 +112,25 @@
     #contact-identifier,
     #contact-email,
     #contact-message {
-        @apply w-full border border-gray-300 rounded-md p-2 mb-4;
+        @apply w-full border border-gray-300 rounded-lg p-2 mb-4;
         background-color: hsl(0, 0%, 16%);
+        border: solid 2px hsl(240, 20%, 99%);
+    }
+
+    #contact-identifier:focus,
+    #contact-email:focus,
+    #contact-message:focus {
+        border-color: #3b82f6;
+        border-width: 3px;
+        outline: none;
+    }
+
+    #contact-message {
+        @apply rounded-br-3xl;
+        min-height: 140px;
+        max-height: 400px;  
+        resize: vertical;
+        overflow-y: auto;
     }
     
     .form-field {
@@ -109,6 +142,14 @@
     }
 
     .form-button {
-        @apply text-xl
+        @apply text-xl bg-amber-500 px-6 py-4 rounded-lg rounded-tr-3xl;
+        color: hsl(240, 20%, 99%);
+    }
+    
+    .form-button:hover {
+        @apply bg-amber-600;
+        outline: 4px solid #f59e0b;
+        outline-offset: -4px;
+        color: hsl(240, 20%, 99%);
     }
 </style>

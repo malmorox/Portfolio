@@ -75,7 +75,7 @@ import logo from '@assets/images/logo-MarcosAlmorox.png'
     }
 
     .nav-links {
-        @apply flex gap-4
+        @apply flex gap-7
     }
 
     .nav-link {
@@ -84,8 +84,14 @@ import logo from '@assets/images/logo-MarcosAlmorox.png'
     }
 
     .nav-button {
-        @apply bg-amber-500 px-4 py-2 rounded-lg;
+        @apply bg-amber-500 px-6 py-4 rounded-lg rounded-tr-3xl;
         color: hsl(240, 20%, 99%);
     }
     
+    .nav-button:hover {
+        @apply bg-amber-600;
+        outline: 4px solid #f59e0b;
+        outline-offset: -4px;
+        color: hsl(240, 20%, 99%);
+    }
 </style>
