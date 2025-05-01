@@ -6,8 +6,8 @@
         <div class="contact-text-wrapper">
             <h2 class="contact-title"> Ponte en contacto conmigo </h2>
             <p class="contact-text">
-                Si deseas ponerte en contacto conmigo, no dudes en escribirme 
-                a través de mis redes sociales o enviarme un correo electrónico.
+                ¿Quieres contratarme, contarme sobre tus 
+                (futuros) proyectos o tienes alguna pregunta para mí?
             </p>
             <p class="contact-text">
                 Si lo prefieres, también puedes enviarme un email a <br />
@@ -77,7 +77,8 @@
     }
 
     .contact-title {
-        @apply text-5xl font-bold text-left text-blue-500
+        @apply text-5xl font-bold text-left;
+        color: hsl(240, 20%, 99%)
     }
 
     .contact-text-wrapper {
@@ -85,7 +86,7 @@
     }
 
     .contact-text {
-        @apply text-lg text-left text-gray-700 mb-4
+        @apply text-lg text-left text-gray-400 mb-4
     }
 
     .contact-text-link {
@@ -142,13 +143,14 @@
     }
 
     .form-button {
-        @apply text-xl bg-amber-500 px-6 py-4 rounded-lg rounded-tr-3xl;
+        @apply text-xl px-6 py-4 rounded-lg rounded-tr-3xl;
+        background-color: #f47226;
         color: hsl(240, 20%, 99%);
     }
     
     .form-button:hover {
         @apply bg-amber-600;
-        outline: 4px solid #f59e0b;
+        outline: 4px solid #f47226;
         outline-offset: -4px;
         color: hsl(240, 20%, 99%);
     }
