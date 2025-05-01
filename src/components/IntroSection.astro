@@ -33,7 +33,7 @@ import PersonalImage from "@components/PersonalImage.astro";
     }
 
     .intro-header-text {
-        @apply text-left
+        @apply text-left flex-1 min-w-[300px];
     }
 
     .intro-title {
@@ -55,5 +55,9 @@ import PersonalImage from "@components/PersonalImage.astro";
 
     .buttons-wrapper {
         @apply flex gap-4
+    }
+
+    .intro-header-img {
+        @apply flex justify-end flex-1 min-w-[300px];
     }
 </style>
