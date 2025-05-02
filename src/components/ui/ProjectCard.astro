@@ -34,8 +34,17 @@ function getTechnologyData(techId: string) {
 >
 	<article class="project">
 		<div class="project-images-zone">
-			<img src={imgLogo} alt={`${name} logo`} class="proyect-image-logo">
-			<img src={imgPreview} alt={`${name} preview`} class="project-image-preview" />
+			<img 
+				src={imgLogo} 
+				alt={`${name} logo`} 
+				class="project-image-logo"
+			/>
+			<div class="project-preview-overlay"></div>
+			<img 
+				src={imgPreview} 
+				alt={`${name} preview`} 
+				class="project-image-preview" 
+			/>
 		</div>
 		<div class="project-info-zone">
 			<h3 class="project-title"> {name} </h3>
@@ -60,16 +69,20 @@ function getTechnologyData(techId: string) {
 		@apply w-full h-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700;
 	}
 
-	.project-preview-zone {
-		@apply relative
+	.project-images-zone {
+		@apply relative w-full h-64 overflow-hidden;
 	}
 
 	.project-image-logo {
-		@apply absolute top-0 left-0 w-16 h-16 m-4
+		@apply absolute top-1/2 left-1/2 w-20 h-20 z-10 transform -translate-x-1/2 -translate-y-1/2 drop-shadow-xl;
 	}
 
 	.project-image-preview {
-		@apply w-full h-48 object-cover rounded-t-lg
+		@apply w-full h-64 object-cover rounded-t-lg
+	}
+
+	.project-preview-overlay {
+		@apply absolute inset-0 bg-black bg-opacity-20 z-0 rounded-t-lg;
 	}
 
 	.project-info-zone {

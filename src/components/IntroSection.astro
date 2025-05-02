@@ -7,7 +7,7 @@ import PersonalImage from "@components/PersonalImage.astro";
             <div class="intro-header-text">
                 <h1 class="intro-title">
                     <span class="title-small"> Marcos Almorox. </span>
-                    <span class="title-big"> Desarrollador web full-stack español </span>
+                    <span class="title-big"> Desarrollador web <span class="text-gradient">full-stack</span> español </span>
                 </h1>
                 <p class="intro-text">
                     I create kick-ass websites & apps, from design to code
@@ -47,6 +47,28 @@ import PersonalImage from "@components/PersonalImage.astro";
 
     .title-big {
         @apply text-7xl font-bold
+    }
+
+    .text-gradient {
+        background-image: linear-gradient(20deg, #e76a23, #fac937);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 100% 200%;
+        background-position-y: 100%;
+        animation-name: pulse;
+        animation-duration: 3.3s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            background-position-y: 0%;
+        }
+        50% {
+            background-position-y: 80%;
+        }
     }
 
     .intro-text {

@@ -1,17 +1,15 @@
 {
     "projects": [
         {
-            "name": "hola",
-            "cabecera": "hola",
-            "description": "hola",
-            "img_logo": "hola",
-            "img_preview": "hola",
+            "name": "MeteorDG",
+            "description": "Proyecto de gestión de facturas y clientes para empresas (de DAW)",
+            "img_logo": "/src/assets/project-logos/meteordg-logo.png",
+            "img_preview": "/src/assets/project-logos/mejorgame.PNG",
             "technologies": ["react", "mysql", "javascript"],
             "link": ""
         },
         {
             "name": "adios",
-            "cabecera": "adios",
             "description": "adios",
             "img_logo": "logo.png",
             "img_preview": "imagen.webp",
@@ -20,7 +18,6 @@
         },
         {
             "name": "chao",
-            "cabecera": "chao",
             "description": "chao",
             "img_logo": "chao",
             "img_preview": "chao",
@@ -29,7 +26,6 @@
         },
         {
             "name": "chao",
-            "cabecera": "chao",
             "description": "chao",
             "img_logo": "chao",
             "img_preview": "chao",

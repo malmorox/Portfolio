@@ -34,11 +34,12 @@ const isExternal = link.startsWith('http');
     }
 
     .connect-link {
-        @apply block text-3xl font-bold text-gray-800 border-4 border-gray-800 h-32 px-4 rounded-lg sm:rounded-t-lg hover:bg-amber-500 transition duration-300
+        @apply block text-3xl font-bold text-gray-800 border-4 border-gray-800 h-32 px-4 rounded-lg sm:rounded-t-lg transition duration-300
     }
 
     .connect-link:hover {
-        @apply border-amber-500;
+        background-color: #f47226;
+        border-color: #f47226;
         color: hsl(240, 20%, 99%);
     }
 
