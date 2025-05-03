@@ -77,16 +77,21 @@
     }
 
     .contact-title {
-        @apply text-5xl font-bold text-left;
+        @apply text-5xl font-bold text-left mt-5 mb-8;
         color: hsl(240, 20%, 99%)
     }
 
     .contact-text-wrapper {
-        @apply flex-1
+        @apply flex flex-col flex-1;
+        gap: .25rem;
     }
 
     .contact-text {
-        @apply text-lg text-left text-gray-400 mb-4
+        @apply text-lg text-left text-gray-400 my-4
+    }
+
+    .contact-text:last-child {
+        @apply mt-8;
     }
 
     .contact-text-link {

@@ -61,9 +61,9 @@
             "logo": "/src/assets/tech-logos/mysql-logo.png"
         },
         {
-            "technology": "mongodb", 
-            "name": "MongoDB",
-            "logo": "/src/assets/tech-logos/mongodb-logo.png"
+            "technology": "postgresql", 
+            "name": "PostgreSQL",
+            "logo": "/src/assets/tech-logos/postgresql-logo.png"
         },
         {
             "technology": "git", 
