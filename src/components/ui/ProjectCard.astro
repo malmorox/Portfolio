@@ -1,6 +1,5 @@
 ---
 import TechnologyLabel from '@components/ui/TechnologyLabel.astro'
-import techData from '@data/technologies.json'
 
 interface ProjectProps {
 	name: string
@@ -19,12 +18,6 @@ const {
 	technologies,
 	link 
 } = Astro.props as ProjectProps
-
-const allTechnologies = techData.technologies
-
-function getTechnologyData(techId: string) {
-    return allTechnologies.find(t => t.technology === techId)
-}
 ---
 <a	
 	href={link}
@@ -50,9 +43,8 @@ function getTechnologyData(techId: string) {
 			<h3 class="project-title"> {name} </h3>
 			<p class="project-description"> {description} </p>
 			<div class="project-technologies">
-				{technologies.map((t: string) => {
-					const tech = getTechnologyData(t)
-					return tech ? <TechnologyLabel name={tech.name} logo={tech.logo} /> : null
+				{technologies.map((tech: string) => {
+					return <TechnologyLabel technology={tech} />
 				})
 				}
 			</div>
@@ -66,7 +58,12 @@ function getTechnologyData(techId: string) {
 	}
 	
 	.project {
-		@apply w-full h-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700;
+		@apply w-full h-auto border rounded-lg shadow bg-neutral-600 border-neutral-400;
+		transition: transform 0.3s ease;
+	}
+
+	.project:hover {
+		transform: translate3d(0, -0.5rem, 0);
 	}
 
 	.project-images-zone {
@@ -74,7 +71,8 @@ function getTechnologyData(techId: string) {
 	}
 
 	.project-image-logo {
-		@apply absolute top-1/2 left-1/2 w-20 h-20 z-10 transform -translate-x-1/2 -translate-y-1/2 drop-shadow-xl;
+		@apply absolute top-1/2 left-1/2 w-auto h-20 z-10 transform -translate-x-1/2 -translate-y-1/2 drop-shadow-xl;
+		filter: drop-shadow(0 0 55px rgba(0, 0, 0, 0.5));
 	}
 
 	.project-image-preview {
@@ -82,7 +80,7 @@ function getTechnologyData(techId: string) {
 	}
 
 	.project-preview-overlay {
-		@apply absolute inset-0 bg-black bg-opacity-20 z-0 rounded-t-lg;
+		@apply absolute inset-0 bg-black bg-opacity-40 z-0 rounded-t-lg;
 	}
 
 	.project-info-zone {
@@ -90,11 +88,12 @@ function getTechnologyData(techId: string) {
 	}
 
 	.project-title {
-		@apply text-xl font-bold
+		@apply text-3xl font-semibold text-zinc-950
 	}
 
 	.project-description {
-		@apply text-gray-600
+		@apply text-zinc-900;
+		font-size: 16px;
 	}
 
 	.project-technologies {

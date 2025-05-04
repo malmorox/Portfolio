@@ -5,7 +5,7 @@
             "description": "Proyecto de gestión de facturas y clientes para empresas (de DAW)",
             "img_logo": "/src/assets/project-logos/meteordg-logo.png",
             "img_preview": "/src/assets/project-logos/mejorgame.PNG",
-            "technologies": ["react", "mysql", "javascript"],
+            "technologies": ["html", "css", "javascript", "php", "mysql"],
             "link": ""
         },
         {
@@ -13,7 +13,7 @@
             "description": "adios",
             "img_logo": "logo.png",
             "img_preview": "imagen.webp",
-            "technologies": ["php"],
+            "technologies": ["html", "css", "javascript", "typescript", "nodejs", "php", "csharp", "java", "python", "mysql"],
             "link": ""
         },
         {

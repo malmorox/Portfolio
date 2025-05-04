@@ -13,8 +13,8 @@ import PersonalImage from "@components/PersonalImage.astro";
                     I create kick-ass websites & apps, from design to code
                 </p>
                 <div class="buttons-wrapper">
-                    <a href="#contact" class="">Ponte en contacto</a>
-                    <a href="#about" class="">
+                    <a href="#contact" class="btn">Ponte en contacto</a>
+                    <a href="#about" class="btn-muted">
                         Scrollea para ver más
                     </a>
                 </div>
@@ -44,7 +44,7 @@ import PersonalImage from "@components/PersonalImage.astro";
     }
 
     .title-small {
-        @apply block text-xl;
+        @apply block text-2xl font-semibold;
         color: hsl(0, 0%, 60%);;
     }
 
@@ -75,11 +75,32 @@ import PersonalImage from "@components/PersonalImage.astro";
     }
 
     .intro-text {
-        @apply text-lg text-gray-700 py-5
+        @apply text-xl py-5;
+        max-width: 300px;
+        color: hsl(240, 20%, 99%);
     }
 
     .buttons-wrapper {
-        @apply flex gap-4 my-7
+        @apply flex items-center my-7 text-xl;
+        gap: 3rem;
+    }
+
+    .buttons-wrapper .btn {
+        @apply text-xl px-6 py-4 rounded-lg rounded-tr-3xl;
+        background-color: #f47226;
+        color: hsl(240, 20%, 99%);
+        transition: 0.3s transform ease, 0.3s background-color ease;
+    }
+
+    .buttons-wrapper .btn:hover {
+        background-color: #8f451a;
+        outline: 4px solid #f47226;
+        outline-offset: -4px;
+        transform: scale3d(1.1, 1.1, 1);
+    }
+
+    .buttons-wrapper .btn-muted {
+        color: hsl(0, 0%, 60%);
     }
 
     .intro-header-img {

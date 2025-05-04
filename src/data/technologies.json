@@ -85,5 +85,11 @@
             "name": "Docker",
             "logo": "/src/assets/tech-logos/docker-logo.png"
         }
-    ]
+    ],
+    "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "database": "Database",
+        "tools": "Tools"
+    }
 }

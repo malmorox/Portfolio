@@ -1,22 +1,25 @@
 ---
+import { iconMap } from '@utils/iconMap'
 
 const { 
-    name, 
-    logo 
+    technology
 } = Astro.props
+const Icon = iconMap[technology]
 ---
-{logo && (
+{Icon && 
     <div class="tech-item">
-        <img src={logo} alt={`${name} logo`} class="tech-logo" />
+        <Icon className="tech-icon" />
     </div>
-)}
+}
 
 <style>
     .tech-item {
-        @apply flex items-center justify-center
+        @apply flex items-center justify-center bg-zinc-800;
+        padding: 5px;
+        border-radius: 4px;
     }
 
-    .tech-logo {
-        @apply w-6 h-6
+    .tech-icon {
+        @apply w-6 h-6 text-zinc-200
     }
 </style>

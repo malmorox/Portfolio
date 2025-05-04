@@ -1,6 +1,4 @@
 ---
-//import SunIcon from '@assets/icons/SunIcon'
-//import MoonIcon from '@assets/icons/MoonIcon'
 import LenguageSwitcher from '@components/ui/LenguageSwitcher.astro'
 import logo from '@assets/images/logo-MarcosAlmorox.png'
 ---
@@ -31,6 +29,7 @@ import logo from '@assets/images/logo-MarcosAlmorox.png'
             <li role="none">
                 <a
                     role="menuitem"
+                    href="/#contact"
                     class="nav-link"
                 > 
                     <button
@@ -86,13 +85,15 @@ import logo from '@assets/images/logo-MarcosAlmorox.png'
     .nav-button {
         @apply px-6 py-4 rounded-lg rounded-tr-3xl;
         background-color: #f47226;
+        background-image: linear-gradient(to bottom, #e76a23, #fac937);
+        background-size: 100% 200%;
+        background-position: top;
         color: hsl(240, 20%, 99%);
+        transition: background-position 0.4s ease, background-color 0.4s ease;
     }
     
     .nav-button:hover {
-        background-color: #e1651d;
-        outline: 4px solid #f47226;
-        outline-offset: -4px;
-        color: hsl(240, 20%, 99%);
+        background-position: bottom;
+        background-color: transparent;
     }
 </style>

@@ -1,5 +1,6 @@
 ---
 import SocialMedia from '@components/ui/SocialMedia.astro'
+import logo from '@assets/images/logo-MarcosAlmorox.png'
 
 const currentYear = new Date().getFullYear()
 ---
@@ -19,6 +20,8 @@ const currentYear = new Date().getFullYear()
                     <a href="#contact"> Contacto </a>
                 </nav>
             </div>
+
+            <img src={logo.src} alt="Logo de Marcos Almorox" class="footer-logo" />
 
             <a
                 href="/cv/marcos-almorox_cv-resume.pdf"
@@ -76,8 +79,18 @@ const currentYear = new Date().getFullYear()
         @apply outline-none ring-2 ring-blue-500;
     }
 
+    .footer-logo {
+        @apply w-16 h-16;
+    }
+
     .cv-link {
-        @apply flex justify-center border-gray-800 px-4 pr-5 rounded-lg rounded-br-2xl font-semibold transition-colors duration-300
+        @apply text-xl font-semibold px-6 py-4 rounded-lg rounded-tr-3xl text-zinc-800 border-4 border-zinc-800;
+        transition: 0.3s transform ease, 0.3s background-color ease, 0.3s color ease;
+    }
+
+    .cv-link:hover {
+        @apply bg-zinc-800;
+        color: hsl(240, 20%, 99%);
     }
 
     small {

@@ -5,11 +5,12 @@ import techData from '@data/technologies.json'
 const techSkills = {
     'frontend': ['htmlcss', 'javascript', 'typescript', 'react', 'astro', 'tailwind'],
     'backend': ['node', 'php', 'csharp', 'java', 'python'],
-    'databases': ['mysql', 'postgresql'],
-    'devops': ['docker', 'apache', 'nginx', 'git']
+    'database': ['mysql', 'postgresql'],
+    'tools': ['docker', 'apache', 'nginx', 'git']
 }
 
 const allTechnologies = techData.technologies
+const allCategories = techData.categories
 
 function getTechnologyData(techId: string) {
     return allTechnologies.find(t => t.technology === techId)
@@ -24,7 +25,7 @@ function getTechnologyData(techId: string) {
                     <div class="skill-row">
                         <div class="skill-category">
                             <div class="skill-category-text">
-                                <h3> {category} </h3>
+                                <h3> {allCategories[category]} </h3>
                             </div>
                         </div>
                         <div class="skill-technologies">
@@ -59,7 +60,7 @@ function getTechnologyData(techId: string) {
     }
 
     .skill-row {
-        @apply grid grid-cols-[auto,1fr] items-center border-b-2 border-gray-400;
+        @apply grid grid-cols-[auto,1fr] items-center border-b-2 border-zinc-400;
     }
 
     .skill-row:last-child {
@@ -67,15 +68,15 @@ function getTechnologyData(techId: string) {
     }
 
     .skill-category {
-        @apply flex items-center justify-center text-gray-400 text-lg px-16 border-r-2 border-gray-400 h-full
+        @apply flex items-center justify-center text-lg px-16 border-r-2 border-zinc-400 h-full
     }
 
     .skill-category-text {
-        @apply text-center w-32
+        @apply text-right w-32
     }
 
     .skill-category-text h3 {
-        @apply font-bold text-2xl text-gray-300
+        @apply font-bold text-2xl text-zinc-400
     }
 
     .skill-technologies {

@@ -87,7 +87,7 @@
     }
 
     .contact-text {
-        @apply text-lg text-left text-gray-400 my-4
+        @apply text-lg text-left text-zinc-400 my-4
     }
 
     .contact-text:last-child {
@@ -111,8 +111,7 @@
     }
 
     .contact-form label {
-        @apply flex pt-1 pb-2;
-        color: #a19cb0;
+        @apply flex pt-1 pb-2 text-zinc-500
     }
 
     #contact-identifier,
@@ -151,12 +150,13 @@
         @apply text-xl px-6 py-4 rounded-lg rounded-tr-3xl;
         background-color: #f47226;
         color: hsl(240, 20%, 99%);
+        transition: 0.3s transform ease, 0.3s background-color ease;
     }
     
     .form-button:hover {
-        @apply bg-amber-600;
+        background-color: #8f451a;
         outline: 4px solid #f47226;
         outline-offset: -4px;
-        color: hsl(240, 20%, 99%);
+        transform: scale3d(1.1, 1.1, 1);
     }
 </style>
