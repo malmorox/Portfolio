@@ -43,7 +43,8 @@ const {
 			<h3 class="project-title"> {name} </h3>
 			<p class="project-description"> {description} </p>
 			<div class="project-technologies">
-				{technologies.map((tech: string) => {
+				{
+				technologies.map((tech: string) => {
 					return <TechnologyLabel technology={tech} />
 				})
 				}

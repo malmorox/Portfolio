@@ -1,6 +1,7 @@
 ---
 import SocialMedia from '@components/ui/SocialMedia.astro'
 import logo from '@assets/images/logo-MarcosAlmorox.png'
+import { HiDownload } from "react-icons/hi";
 
 const currentYear = new Date().getFullYear()
 ---
@@ -29,6 +30,7 @@ const currentYear = new Date().getFullYear()
                 target="_blank"
             >
                 Descarga mi curriculum vitae
+                <HiDownload className="cv-link-icon" />
             </a>
         </div>
         
@@ -84,13 +86,23 @@ const currentYear = new Date().getFullYear()
     }
 
     .cv-link {
-        @apply text-xl font-semibold px-6 py-4 rounded-lg rounded-tr-3xl text-zinc-800 border-4 border-zinc-800;
+        @apply flex items-center gap-1.5 text-xl font-semibold px-6 py-4 rounded-lg rounded-tr-3xl text-zinc-800 border-4 border-zinc-800;
         transition: 0.3s transform ease, 0.3s background-color ease, 0.3s color ease;
     }
 
     .cv-link:hover {
         @apply bg-zinc-800;
         color: hsl(240, 20%, 99%);
+    }
+
+    .cv-link-icon {
+        @apply w-7 h-7 text-zinc-800;
+        transition: 0.3s transform ease
+    }
+
+    .cv-link:hover .cv-link-icon {
+        color: hsl(240, 20%, 99%);
+        transform: translateY(0.25rem);
     }
 
     small {
