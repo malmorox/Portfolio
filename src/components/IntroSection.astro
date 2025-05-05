@@ -1,5 +1,6 @@
 ---
 import PersonalImage from "@components/PersonalImage.astro";
+import { HiArrowNarrowDown } from "react-icons/hi";
 ---
 <section id="intro">
     <div class="intro-container">
@@ -15,7 +16,8 @@ import PersonalImage from "@components/PersonalImage.astro";
                 <div class="buttons-wrapper">
                     <a href="#contact" class="btn">Ponte en contacto</a>
                     <a href="#about" class="btn-muted">
-                        Scrollea para ver más
+                        <span>Scrollea para ver más</span>
+                        <HiArrowNarrowDown className="btn-muted-icon" />
                     </a>
                 </div>
             </div>
@@ -100,7 +102,16 @@ import PersonalImage from "@components/PersonalImage.astro";
     }
 
     .buttons-wrapper .btn-muted {
+        @apply flex items-center gap-1.5;
         color: hsl(0, 0%, 60%);
+    }
+
+    .btn-muted-icon {
+        transition: 0.3s transform ease;
+    }
+
+    .buttons-wrapper .btn-muted:hover .btn-muted-icon {
+        transform: translateY(0.25rem);
     }
 
     .intro-header-img {

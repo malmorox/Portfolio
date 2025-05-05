@@ -1,6 +1,6 @@
 ---
 import SocialMedia from '@components/ui/SocialMedia.astro'
-import logo from '@assets/images/logo-MarcosAlmorox.png'
+import logo from '@assets/images/logo-MarcosAlmorox-black.png'
 import { HiDownload } from "react-icons/hi";
 
 const currentYear = new Date().getFullYear()
@@ -70,11 +70,12 @@ const currentYear = new Date().getFullYear()
     }
 
     .sitemap nav a {
-        @apply underline underline-offset-4 text-gray-800;
+        @apply underline underline-offset-4 text-zinc-800;
+        transition: 0.3s color ease;
     }
 
     .sitemap nav a:hover {
-        color: hsl(0, 0%, 60%);
+        @apply text-zinc-400
     }
 
     .sitemap nav a:focus-visible {
@@ -82,7 +83,7 @@ const currentYear = new Date().getFullYear()
     }
 
     .footer-logo {
-        @apply w-16 h-16;
+        @apply w-24 h-24;
     }
 
     .cv-link {

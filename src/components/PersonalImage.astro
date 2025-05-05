@@ -1,21 +1,27 @@
 ---
-//import imageBaseUrl from '@assets/images/780_0008_6279612_af117140fea3959a9c9e1f6a7047d850.jpg';
 import imageBaseUrl from '@assets/images/profile-photo.jpg';
 ---
 
-<img
-    src={imageBaseUrl.src}
-    alt="Aaron looking up and pondering inside a cave"
-    class="personal-image"
-    width="400"
-    height="494"
-    title="Bits and bytes"
-    sizes="(max-width: 48em) 80vw, (min-width: 71.25em) 23.75em, 50vw"
-/>
+<div class="personal-image-wrapper">
+    <img
+        src={imageBaseUrl.src}
+        alt="Marcos Almorox"
+        class="personal-image"
+    />
+</div>
 
 <style>
+    .personal-image-wrapper {
+        @apply my-12 ml-24 flex items-center justify-center overflow-hidden rounded-3xl;
+        height: 510px;
+        width: 420px; 
+    }
+
     .personal-image {
-        @apply my-12 ml-24 w-auto rounded-3xl ;
-        max-height: 500px;
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+        object-position: 70% 20%;
+        transform: scale(1.2);
     }
 </style>
