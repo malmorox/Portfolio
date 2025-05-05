@@ -59,45 +59,47 @@ const {
 	}
 	
 	.project {
-		@apply w-full h-auto border rounded-lg shadow bg-neutral-600 border-neutral-400;
-		transition: transform 0.3s ease;
+		@apply w-full h-auto border rounded-3xl shadow overflow-hidden bg-neutral-600 border-neutral-400;
+		backdrop-filter: blur(10px);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
 	}
 
 	.project:hover {
 		transform: translate3d(0, -0.5rem, 0);
+		box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
 	}
 
 	.project-images-zone {
-		@apply relative w-full h-64 overflow-hidden;
+		@apply relative w-full aspect-[16/9] overflow-hidden;
 	}
 
 	.project-image-logo {
-		@apply absolute top-1/2 left-1/2 w-auto h-20 z-10 transform -translate-x-1/2 -translate-y-1/2 drop-shadow-xl;
+		@apply absolute top-1/2 left-1/2 w-auto h-24 z-10 transform -translate-x-1/2 -translate-y-1/2 drop-shadow-xl;
 		filter: drop-shadow(0 0 55px rgba(0, 0, 0, 0.5));
 	}
 
 	.project-image-preview {
-		@apply w-full h-64 object-cover rounded-t-lg
+		@apply w-full h-full object-cover rounded-t-3xl;
 	}
 
 	.project-preview-overlay {
-		@apply absolute inset-0 bg-black bg-opacity-40 z-0 rounded-t-lg;
+		@apply absolute inset-0 bg-black bg-opacity-40 z-0 rounded-t-3xl;
 	}
 
 	.project-info-zone {
-		@apply p-4
+		@apply p-6
 	}
 
 	.project-title {
-		@apply text-3xl font-semibold text-zinc-950
+		@apply text-4xl font-bold text-zinc-950 mb-3
 	}
 
 	.project-description {
-		@apply text-zinc-900;
-		font-size: 16px;
+		@apply font-medium text-zinc-900 mt-2 mb-3;
+		font-size: 20px;
 	}
 
 	.project-technologies {
-		@apply flex flex-wrap gap-2 mt-2
+		@apply flex flex-wrap gap-2 mt-5
 	}
 </style>
