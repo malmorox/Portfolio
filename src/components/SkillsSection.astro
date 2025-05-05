@@ -25,7 +25,7 @@ function getTechnologyData(techId: string) {
                     <div class="skill-row">
                         <div class="skill-category">
                             <div class="skill-category-text">
-                                <h3> {allCategories[category]} </h3>
+                                <h3> {allCategories[category as keyof typeof allCategories]} </h3>
                             </div>
                         </div>
                         <div class="skill-technologies">
