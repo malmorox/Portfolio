@@ -59,7 +59,7 @@ const {
 	}
 	
 	.project {
-		@apply w-full h-auto border rounded-3xl shadow overflow-hidden bg-neutral-600 border-neutral-400;
+		@apply w-full h-auto border rounded-3xl shadow overflow-hidden bg-neutral-600 border-zinc-400;
 		backdrop-filter: blur(10px);
 		transition: transform 0.3s ease, box-shadow 0.3s ease;
 	}
@@ -83,19 +83,20 @@ const {
 	}
 
 	.project-preview-overlay {
-		@apply absolute inset-0 bg-black bg-opacity-40 z-0 rounded-t-3xl;
+		@apply absolute inset-0 bg-black/50 bg-opacity-60 z-0 rounded-t-3xl;
+		backdrop-filter: blur(2px);
 	}
 
 	.project-info-zone {
-		@apply p-6
+		@apply p-6 border-t border-zinc-400
 	}
 
 	.project-title {
-		@apply text-4xl font-bold text-zinc-950 mb-3
+		@apply text-4xl font-bold text-zinc-100 mb-3
 	}
 
 	.project-description {
-		@apply font-medium text-zinc-900 mt-2 mb-3;
+		@apply font-medium text-zinc-300 mt-2 mb-3;
 		font-size: 20px;
 	}
 
