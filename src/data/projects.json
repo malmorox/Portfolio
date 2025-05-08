@@ -3,13 +3,13 @@
         {
             "name": "MeteorDG",
             "description": "Proyecto de gestión de facturas y clientes para empresas (de DAW)",
-            "img_logo": "/images/project-logos/meteordg-logo.png",
-            "img_preview": "/images/project-logos/mejorgame.PNG",
+            "img_logo": "/images/projects/logo/meteordg-logo.png",
+            "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["html", "css", "javascript", "php", "mysql"],
             "link": ""
         },
         {
-            "name": "adios",
+            "name": "Expenzzo",
             "description": "adios",
             "img_logo": "logo.png",
             "img_preview": "imagen.webp",
@@ -17,19 +17,19 @@
             "link": ""
         },
         {
-            "name": "chao",
-            "description": "chao",
-            "img_logo": "chao",
-            "img_preview": "chao",
-            "technologies": ["chao"],
+            "name": "Nightin'",
+            "description": "Plataforma diseñada para conectar a entusiastas de la vida nocturna con los mejores bares y discotecas de la ciudad.",
+            "img_logo": "/images/projects/logo/nightin-logo.png",
+            "img_preview": "/images/projects/preview/nightin-preview.png",
+            "technologies": ["react", "typescript", "nodejs", "tailwind", "mysql"],
             "link": ""
         },
         {
-            "name": "chao",
-            "description": "chao",
+            "name": "Copia de Twitter",
+            "description": "Clon funcional desarrollado como ejercicio práctico. Reproduce las principales características de la red social.",
             "img_logo": "chao",
             "img_preview": "chao",
-            "technologies": ["chao"],
+            "technologies": ["html", "css", "javascript", "php", "mysql"],
             "link": ""
         }
     ]
