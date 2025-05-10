@@ -12,7 +12,7 @@ import logo from '@assets/images/logo-MarcosAlmorox.png'
                 <a
                     role="menuitem"
                     href="/#about"
-                    class="nav-link"
+                    class="nav-link custom-underline"
                 >
                     Sobre mí
                 </a>
@@ -21,7 +21,7 @@ import logo from '@assets/images/logo-MarcosAlmorox.png'
                 <a
                     role="menuitem"
                     href="/#projects"
-                    class="nav-link"
+                    class="nav-link custom-underline"
                 >
                     Trabajo
                 </a>
@@ -30,7 +30,7 @@ import logo from '@assets/images/logo-MarcosAlmorox.png'
                 <a
                     role="menuitem"
                     href="/#contact"
-                    class="nav-link"
+                    class="nav-link custom-underline"
                 > 
                     Contacto
                 </a>
@@ -72,6 +72,27 @@ import logo from '@assets/images/logo-MarcosAlmorox.png'
     .nav-link {
         @apply text-xl font-bold;
         color: hsl(240, 20%, 99%);
+        position: relative;
+    }
+
+    .custom-underline::after {
+        content: "";
+        position: absolute;
+    }
+
+    li[role="none"] .custom-underline::after {
+        top: 120%;
+        height: .25rem;
+        left: 0;
+        right: 0;
+        background-color: hsl(240, 20%, 99%);
+        transform-origin: center left;
+        transform: scaleX(0);
+        transition: 0.5s cubic-bezier(0, 0, .3, 1) transform;
+    }
+    li[role="none"]:hover .custom-underline::after {
+        transform: scaleX(1);
+        transition: 0.3s cubic-bezier(0.61, 0.48, 0.15, 1) transform;
     }
 
     .nav-button {

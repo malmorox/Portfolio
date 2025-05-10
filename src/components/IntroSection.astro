@@ -104,6 +104,11 @@ import { HiArrowNarrowDown } from "react-icons/hi";
     .buttons-wrapper .btn-muted {
         @apply flex items-center gap-1.5;
         color: hsl(0, 0%, 60%);
+        transition: 0.3s color ease;
+    }
+
+    .buttons-wrapper .btn-muted:hover {
+        @apply text-zinc-400
     }
 
     .btn-muted-icon {
