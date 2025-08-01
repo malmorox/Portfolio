@@ -1,34 +1,34 @@
 {
     "projects": [
         {
-            "name": "MeteorDG",
-            "description": "Proyecto de gestión de facturas y clientes para empresas (de DAW)",
+            "name": "Ejemplo 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit sodales lacus, sem risus integer aenean quam sagittis urna quis facilisi, tempus aptent inceptos ridiculus magnis himenaeos fringilla per.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["html", "css", "javascript", "php", "mysql"],
             "link": ""
         },
         {
-            "name": "Expenzzo",
-            "description": "adios",
-            "img_logo": "logo.png",
-            "img_preview": "imagen.webp",
+            "name": "Ejemplo 2",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit sodales lacus, sem risus integer aenean quam sagittis urna quis facilisi, tempus aptent inceptos ridiculus magnis himenaeos fringilla per.",
+            "img_logo": "/images/projects/logo/meteordg-logo.png",
+            "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["html", "css", "javascript", "typescript", "nodejs", "php", "csharp", "java", "python", "mysql"],
             "link": ""
         },
         {
-            "name": "Nightin'",
-            "description": "Plataforma diseñada para conectar a entusiastas de la vida nocturna con los mejores bares y discotecas de la ciudad.",
-            "img_logo": "/images/projects/logo/nightin-logo.png",
-            "img_preview": "/images/projects/preview/nightin-preview.png",
+            "name": "Ejemplo 3",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit sodales lacus, sem risus integer aenean quam sagittis urna quis facilisi, tempus aptent inceptos ridiculus magnis himenaeos fringilla per.",
+            "img_logo": "/images/projects/logo/meteordg-logo.png",
+            "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["react", "typescript", "nodejs", "tailwind", "mysql"],
             "link": ""
         },
         {
-            "name": "Copia de Twitter",
-            "description": "Clon funcional desarrollado como ejercicio práctico. Reproduce las principales características de la red social.",
-            "img_logo": "chao",
-            "img_preview": "chao",
+            "name": "Ejemplo 4",
+            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit sodales lacus, sem risus integer aenean quam sagittis urna quis facilisi, tempus aptent inceptos ridiculus magnis himenaeos fringilla per.",
+            "img_logo": "/images/projects/logo/meteordg-logo.png",
+            "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["html", "css", "javascript", "php", "mysql"],
             "link": ""
         }
