@@ -1,6 +1,26 @@
-import { SiAstro, SiReact, SiTailwindcss, SiPhp, SiTypescript, SiJavascript, SiMysql, SiNodedotjs } from "react-icons/si"
-import { FaHtml5, FaCss3Alt, FaJava, FaPython } from "react-icons/fa";
-import { BiLogoJavascript, BiLogoTypescript } from "react-icons/bi";
+import { 
+    SiAstro, 
+    SiReact, 
+    SiTailwindcss, 
+    SiPhp, 
+    SiMysql, 
+    SiNodedotjs, 
+    SiKotlin, 
+    SiJetpackcompose,
+    SiMarkdown,
+    SiMapbox,
+    SiJupyter
+} from "react-icons/si"
+import { 
+    FaHtml5, 
+    FaCss3Alt, 
+    FaJava, 
+    FaPython 
+} from "react-icons/fa";
+import { 
+    BiLogoJavascript, 
+    BiLogoTypescript 
+} from "react-icons/bi";
 import { TbBrandCSharp } from "react-icons/tb";
 
 export const iconMap: Record<string, any> = {
@@ -15,10 +35,15 @@ export const iconMap: Record<string, any> = {
     php: SiPhp,
     csharp: TbBrandCSharp,
     java: FaJava,
+    kotlin: SiKotlin,
+    compose: SiJetpackcompose,
     python: FaPython,
     mysql: SiMysql,
     postgresql: SiNodedotjs,
     docker: SiNodedotjs,
     apache: SiNodedotjs,
     nginx: SiNodedotjs,
+    markdown: SiMarkdown,
+    mapbox: SiMapbox,
+    jupyter: SiJupyter 
 }

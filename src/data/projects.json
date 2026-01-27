@@ -1,35 +1,35 @@
 {
     "projects": [
         {
-            "name": "Ejemplo 1",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit sodales lacus, sem risus integer aenean quam sagittis urna quis facilisi, tempus aptent inceptos ridiculus magnis himenaeos fringilla per.",
+            "name": "Truekeo",
+            "description": "Plataforma de intercambio local con mapa interactivo en tiempo real. Facilita el trueque de objetos entre vecinos impulsando una economía circular responsable.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
-            "technologies": ["html", "css", "javascript", "php", "mysql"],
+            "technologies": ["kotlin", "compose", "mapbox"],
             "link": ""
         },
         {
-            "name": "Ejemplo 2",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit sodales lacus, sem risus integer aenean quam sagittis urna quis facilisi, tempus aptent inceptos ridiculus magnis himenaeos fringilla per.",
+            "name": "Markdown Editor",
+            "description": "Editor de Markdown amigable y potente con vista previa en tiempo real. Diseñado para escribir y visualizar contenido de forma rápida y eficiente.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
-            "technologies": ["html", "css", "javascript", "typescript", "nodejs", "php", "csharp", "java", "python", "mysql"],
+            "technologies": ["react", "typescript", "tailwind", "markdown"],
             "link": ""
         },
         {
-            "name": "Ejemplo 3",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit sodales lacus, sem risus integer aenean quam sagittis urna quis facilisi, tempus aptent inceptos ridiculus magnis himenaeos fringilla per.",
+            "name": "NBA Portal",
+            "description": "Programa sobre NBA desarrollado en Python con nba_api, Pandas y Matplotlib. Es un proyecto académico enfocado en el análisis y visualización de datos de la liga.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
-            "technologies": ["react", "typescript", "nodejs", "tailwind", "mysql"],
+            "technologies": ["python", "jupyter"],
             "link": ""
         },
         {
-            "name": "Ejemplo 4",
-            "description": "Lorem ipsum dolor sit amet consectetur adipiscing elit sodales lacus, sem risus integer aenean quam sagittis urna quis facilisi, tempus aptent inceptos ridiculus magnis himenaeos fringilla per.",
+            "name": "TipsLab",
+            "description": "Aplicación para crear y compartir life hacks mediante videos. Organiza y consulta consejos prácticos de forma clara, accesible y visual para el día a día.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
-            "technologies": ["html", "css", "javascript", "php", "mysql"],
+            "technologies": ["kotlin", "compose"],
             "link": ""
         }
     ]
