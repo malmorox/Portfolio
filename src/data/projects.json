@@ -2,27 +2,27 @@
     "projects": [
         {
             "name": "Truekeo",
-            "description": "Plataforma de intercambio local con mapa interactivo en tiempo real. Facilita el trueque de objetos entre vecinos impulsando una economía circular responsable.",
+            "description": "Plataforma de intercambio local con un mapa interactivo en tiempo real. Facilita el trueque de objetos entre vecinos impulsando una economía circular responsable.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["kotlin", "compose", "mapbox"],
-            "link": ""
+            "link": "https://github.com/CodeByChriss/Truekeo"
         },
         {
             "name": "Markdown Editor",
-            "description": "Editor de Markdown amigable y potente con vista previa en tiempo real. Diseñado para escribir y visualizar contenido de forma rápida y eficiente.",
+            "description": "Editor de texto Markdown amigable y potente con vista previa en tiempo real. Diseñado para escribir y visualizar contenido de forma rápida y eficiente.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["react", "typescript", "tailwind", "markdown"],
-            "link": ""
+            "link": "https://github.com/malmorox/markdown-editor"
         },
         {
             "name": "NBA Portal",
-            "description": "Programa sobre NBA desarrollado en Python con nba_api, Pandas y Matplotlib. Es un proyecto académico enfocado en el análisis y visualización de datos de la liga.",
+            "description": "Proyecto académico enfocado en el análisis y visualización de datos de la NBA. Desarrollado en Python con nba_api, Pandas y Matplotlib.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["python", "jupyter"],
-            "link": ""
+            "link": "https://github.com/malmorox/nba-portal"
         },
         {
             "name": "TipsLab",
@@ -30,7 +30,7 @@
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
             "technologies": ["kotlin", "compose"],
-            "link": ""
+            "link": "https://github.com/malmorox/TipsLab"
         }
     ]
 }

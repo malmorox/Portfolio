@@ -48,7 +48,7 @@
         {
             "technology": "kotlin", 
             "name": "Kotlin",
-            "logo": "/images/tech-logos/java-logo.png"
+            "logo": "/images/tech-logos/kotlin-logo.png"
         },
         {
             "technology": "python", 
@@ -93,7 +93,7 @@
         {
             "technology": "markdown", 
             "name": "Markdown",
-            "logo": "/images/tech-logos/docker-logo.png"
+            "logo": "/images/tech-logos/markdown-logo.png"
         }
     ],
     "categories": {
