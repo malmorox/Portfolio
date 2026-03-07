@@ -5,7 +5,7 @@
             "description": "Plataforma de intercambio local con un mapa interactivo en tiempo real. Facilita el trueque de objetos entre vecinos impulsando una economía circular responsable.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
-            "technologies": ["kotlin", "compose", "mapbox"],
+            "technologies": ["kotlin", "compose", "mapbox", "firebase", "supabase"],
             "link": "https://github.com/CodeByChriss/Truekeo"
         },
         {
@@ -29,7 +29,7 @@
             "description": "Aplicación para crear y compartir life hacks mediante videos. Organiza y consulta consejos prácticos de forma clara, accesible y visual para el día a día.",
             "img_logo": "/images/projects/logo/meteordg-logo.png",
             "img_preview": "/images/projects/preview/mejorgame.PNG",
-            "technologies": ["kotlin", "compose"],
+            "technologies": ["kotlin", "compose", "firebase", "supabase"],
             "link": "https://github.com/malmorox/TipsLab"
         }
     ]

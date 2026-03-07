@@ -9,7 +9,8 @@ import {
     SiJetpackcompose,
     SiMarkdown,
     SiMapbox,
-    SiJupyter
+    SiJupyter,
+    SiFirebase,
 } from "react-icons/si"
 import { 
     FaHtml5, 
@@ -22,6 +23,7 @@ import {
     BiLogoTypescript 
 } from "react-icons/bi";
 import { TbBrandCSharp } from "react-icons/tb";
+import { RiSupabaseLine } from "react-icons/ri";
 
 export const iconMap: Record<string, any> = {
     html: FaHtml5,
@@ -40,6 +42,8 @@ export const iconMap: Record<string, any> = {
     python: FaPython,
     mysql: SiMysql,
     postgresql: SiNodedotjs,
+    firebase: SiFirebase,
+    supabase: RiSupabaseLine,
     docker: SiNodedotjs,
     apache: SiNodedotjs,
     nginx: SiNodedotjs,

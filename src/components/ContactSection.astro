@@ -23,6 +23,7 @@
             name="contact"
             method="POST"
             class="contact-form"
+            id="contact-form"
         >
             <div class="form-field">
                 <label for="contact-identifier">Tu nombre (o empresa)</label>
@@ -66,6 +67,31 @@
         </form>
     </div>
 </section>
+
+<script>
+    import { sendEmail } from "@utils/sendEmail";
+
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = (document.getElementById("contact-identifier") as HTMLInputElement).value.trim();
+        const email = (document.getElementById("contact-email") as HTMLInputElement).value.trim();
+        const message = (document.getElementById("contact-message") as HTMLTextAreaElement).value.trim();
+
+        if (!email || !message) return;
+
+        const result = await sendEmail({ name, email, message });
+
+        if (result.success) {
+            console.log("✅ Mensaje enviado correctamente:", { name, email, message });
+            form.reset();
+        } else {
+            console.error("❌ Error al enviar el mensaje:", result.message);
+        }
+    });
+</script>
 
 <style>
     #contact {

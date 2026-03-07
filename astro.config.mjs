@@ -12,5 +12,18 @@ export default defineConfig({
       loadLocaleFrom: './src/locales'
 
     })*/
-  ]
+  ],
+  vite: {
+    resolve: {
+      alias: {
+        '@assets': '/src/assets',
+        '@components': '/src/components',
+        '@data': '/src/data',
+        '@layouts': '/src/layouts',
+        '@styles': '/src/styles',
+        '@types': '/src/types',
+        '@utils': '/src/utils',
+      }
+    }
+  }
 });
