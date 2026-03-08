@@ -1,38 +1,95 @@
 ---
+import workExperienceData from '@data/work-experience.json';
+const companies = workExperienceData.companies;
 ---
 <section id="about">
     <div class="about-container">
+        <div class="work-experience">
+            <p class="work-label">Experiencia laboral</p>
+            <div class="companies-row">
+                {companies.map((company) => (
+                    <a href={company.url} target="_blank" rel="noopener" class="company-link">
+                        <img 
+                            src={company.logo} 
+                            alt={company.name} 
+                            class="company-logo" 
+                            style={`height: ${company.logo_height}px;`}
+                        />
+                        {/* {company.current && <span class="current-badge">Actual</span>} */}
+                    </a>
+                ))}
+            </div>
+        </div>
+
         <p class="about-text-main">
-            Ejemplo
+            Hola! Soy Marcos, <span class="highlight">técnico en Desarrollo de Aplicaciones Web</span> y 
+            <span class="highlight">técnico en Desarrollo de Aplicaciones Multiplataforma</span>.
+            Creo aplicaciones <span class="highlight-italic">modernas, escalables</span> y con una
+            excelente <span class="highlight-italic">experiencia de usuario</span>.
         </p>
         <p class="about-text-sub">
-            Ejemplo
+            Me preocupo por escribir código limpio y bien estructurado, construyendo soluciones 
+            que sean robustas por dentro y agradables por fuera.
         </p>
-        <a 
-            href=""  
-            target="_blank"
-            rel="noopener"
-            class=""
-        >
-            Ejemplo
-        </a>
     </div>
 </section>
 
 <style>
     #about {
-        @apply pt-20 pb-32 flex justify-center;
+        @apply pt-20 pb-20 flex justify-center;
     }
 
     .about-container {
-        @apply max-w-screen-xl mx-auto flex flex-col pt-20 pb-7
+        @apply max-w-3xl mx-auto flex flex-col gap-16 px-6 pt-10 pb-7;
     }
 
-    .about-title {
-        @apply text-3xl font-bold text-left text-blue-500
+    .work-experience {
+        @apply flex flex-col gap-5 items-center;
+    }
+
+    .work-label {
+        @apply text-sm tracking-widest text-zinc-300 text-left;
+    }
+
+    .companies-row {
+        @apply flex flex-row gap-10 items-center flex-wrap;
+    }
+
+    .company-link {
+        @apply flex flex-col w-36 items-center gap-2 no-underline transition-opacity duration-300 relative;
+        opacity: 0.5;
+    }
+
+    .company-link:hover {
+        opacity: 1;
+    }
+
+    .company-logo {
+        @apply w-auto object-contain;
+        filter: brightness(0) invert(1);
+    }
+
+    .current-badge {
+        @apply text-xs uppercase tracking-widest rounded px-1.5 py-0.5;
+        color: #fac937;
+        border: 1px solid #fac937;
     }
 
     .about-text-main {
-        @apply text-lg text-left text-gray-700 mb-4
+        @apply text-3xl font-bold text-left leading-snug;
+        color: hsl(240, 20%, 99%);
+    }
+
+    .about-text-sub {
+        @apply text-sm text-left text-zinc-400 leading-relaxed max-w-lg;
+    }
+
+    .highlight {
+        color: rgba(244, 114, 38, 0.75);
+    }
+
+    .highlight-italic {
+        color: rgba(244, 114, 38, 0.75);
+        font-style: italic;
     }
 </style>

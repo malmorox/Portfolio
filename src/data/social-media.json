@@ -1,16 +1,16 @@
 {
     "socials": [
         {
-        "link": "mailto:contacto@marcosalmorox.es",
-        "text": "Email"
-    },
-    {
-        "link": "https://www.linkedin.com/in/marcosalmorox/",
-        "text": "LinkedIn"
-    },
-    {
-        "link": "https://github.com/malmorox",
-        "text": "GitHub"
-    }
+            "link": "mailto:contacto@marcosalmorox.es",
+            "text": "Email"
+        },
+        {
+            "link": "https://www.linkedin.com/in/marcosalmorox/",
+            "text": "LinkedIn"
+        },
+        {
+            "link": "https://github.com/malmorox",
+            "text": "GitHub"
+        }
     ]
 }
