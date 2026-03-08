@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import projectsData from "@data/projects.json";
+
+export function getStaticPaths() {
+  return projectsData.projects.map((project) => ({
+    params: {
+      slug: project.name.toLowerCase().replace(/\s+/g, "-"),
+    },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={`${project.name} — Marcos Almorox`}>
+  <main>
+    <h1>{project.name}</h1>
+    <p>{project.description}</p>
+    <a href={project.link} target="_blank">Ver en GitHub</a>
+  </main>
+</BaseLayout>
