@@ -15,7 +15,7 @@ export async function sendEmail(data: EmailData): Promise<EmailResult> {
     const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
     if (!accessKey) {
-        return { success: false, message: "Error en el servidor" };
+        return { success: false, message: "Error en el servidor. Inténtalo de nuevo" };
     }
 
     try {
@@ -35,7 +35,7 @@ export async function sendEmail(data: EmailData): Promise<EmailResult> {
         if (result.success) {
             return { success: true, message: "¡Mensaje enviado!" };
         } else {
-            return { success: false, message: "Error al enviar" };
+            return { success: false, message: "Error al enviar. Inténtalo de nuevo" };
         }
     } catch (err) {
         return { success: false, message: "Error de red. Inténtalo de nuevo" };

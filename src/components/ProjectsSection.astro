@@ -1,6 +1,7 @@
 ---
 import ProjectCard from '@components/ui/ProjectCard.astro'
 import projectsData from '@data/projects.json'
+import { HiArrowNarrowRight } from "react-icons/hi";
 
 const projects = projectsData.projects.slice(0, 4);
 ---
@@ -21,6 +22,12 @@ const projects = projectsData.projects.slice(0, 4);
             ))
         }
         </div>
+        <div class="btn-wrapper">
+            <a href="/projects" class="btn-all-projects">
+                Ver todos los proyectos
+                <HiArrowNarrowRight className="btn-arrow" />
+            </a>
+        </div>
     </div>
 </section>
 
@@ -40,5 +47,32 @@ const projects = projectsData.projects.slice(0, 4);
 
     .works {
         @apply grid grid-cols-2 gap-7
+    }
+
+    .btn-wrapper {
+        @apply flex justify-center mt-12;
+    }
+
+    .btn-all-projects {
+        @apply flex items-center gap-2 px-8 py-3 font-semibold text-lg rounded-full transition-all duration-300;
+        color: rgba(244, 114, 38, 0.8);
+        border: 3px solid rgba(244, 114, 38, 0.7);
+        background: transparent;
+    }
+
+    .btn-all-projects:hover {
+        background: rgba(244, 114, 38, 0.1);
+        border-color: rgba(244, 114, 38);
+        color: rgba(244, 114, 38);
+        transform: translateY(-2px);
+    }
+
+    .btn-arrow {
+        @apply transition-transform duration-300 size-5;
+        display: inline-block;
+    }
+
+    .btn-all-projects:hover .btn-arrow {
+        transform: translateX(4px);
     }
 </style>
