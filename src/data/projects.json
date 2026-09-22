@@ -23,14 +23,6 @@
             "img_preview": "tipslab-preview.png",
             "technologies": ["kotlin", "compose", "firebase", "supabase"],
             "link": "https://github.com/malmorox/TipsLab"
-        },
-        {
-            "name": "NBA Portal",
-            "description": "Proyecto académico enfocado en el análisis y visualización de datos de la NBA. Desarrollado en Python con nba_api, Pandas y Matplotlib.",
-            "img_logo": "nba-portal-logo.png",
-            "img_preview": "nba-portal-preview.png",
-            "technologies": ["python", "jupyter"],
-            "link": "https://github.com/malmorox/nba-portal"
         }
     ]
 }
