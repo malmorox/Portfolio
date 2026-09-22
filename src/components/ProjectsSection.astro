@@ -3,6 +3,10 @@ import ProjectCard from '@components/ui/ProjectCard.astro'
 import projectsData from '@data/projects.json'
 
 const projects = projectsData.projects.slice(0, 4);
+
+const projectsImagesPath = "/images/projects/"
+const logoPath = `${projectsImagesPath}logo/`
+const previewPath = `${projectsImagesPath}preview/`
 ---
 <section id="projects">
     <div class="projects-container">
@@ -13,8 +17,8 @@ const projects = projectsData.projects.slice(0, 4);
                 <ProjectCard
                     name={project.name}
                     description={project.description}
-                    imgLogo={project.img_logo}
-                    imgPreview={project.img_preview}
+                    imgLogo={`${logoPath}${project.img_logo}`}
+                    imgPreview={`${previewPath}${project.img_preview}`}
                     technologies={project.technologies}
                     link={project.link}
                 />

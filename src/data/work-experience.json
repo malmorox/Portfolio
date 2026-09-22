@@ -2,21 +2,21 @@
     "companies": [
         {
         "name": "BeChiara",
-        "logo": "/images/work-experience/bechiara-logo.png",
+        "logo": "bechiara-logo.png",
         "url": "https://bechiara.com/",
         "current": false,
         "logo_height": 28
     },
     {
         "name": "AllCloud Consulting",
-        "logo": "/images/work-experience/allcloud-logo.png",
+        "logo": "allcloud-logo.png",
         "url": "https://www.allcloud.es/",
         "current": false,
         "logo_height": 40
     },
     {
         "name": "Radmas Technologies",
-        "logo": "/images/work-experience/radmas-logo.png",
+        "logo": "radmas-logo.png",
         "url": "https://radmas.com",
         "current": true,
         "logo_height": 40

@@ -12,6 +12,8 @@ const techSkills = {
 const allTechnologies = techData.technologies
 const allCategories = techData.categories
 
+const techLogosPath = "/images/tech-logos/"
+
 function getTechnologyData(techId: string) {
     return allTechnologies.find(t => t.technology === techId)
 }
@@ -31,7 +33,7 @@ function getTechnologyData(techId: string) {
                         <div class="skill-technologies">
                             {technologies.map(t => {
                                 const tech = getTechnologyData(t)
-                                return tech ? <Technology name={tech.name} logo={tech.logo} /> : null
+                                return tech ? <Technology name={tech.name} logo={`${techLogosPath}${tech.logo}`} /> : null
                             })}
                         </div>
                     </div>

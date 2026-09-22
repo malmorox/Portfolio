@@ -1,36 +1,36 @@
 {
     "projects": [
         {
+            "name": "RuneQi",
+            "description": "Editor de texto Markdown amigable y potente con vista previa en tiempo real. Diseñado para escribir y visualizar contenido de forma rápida y eficiente.",
+            "img_logo": "runeqi-logo.png",
+            "img_preview": "runeqi-preview.png",
+            "technologies": ["react", "typescript", "tailwind", "markdown"],
+            "link": "https://github.com/malmorox/runeqi-md"
+        },
+        {
             "name": "Truekeo",
             "description": "Plataforma de intercambio local con un mapa interactivo en tiempo real. Facilita el trueque de objetos entre vecinos impulsando una economía circular responsable.",
-            "img_logo": "/images/projects/logo/meteordg-logo.png",
-            "img_preview": "/images/projects/preview/mejorgame.PNG",
+            "img_logo": "truekeo-logo.png",
+            "img_preview": "truekeo-preview.png",
             "technologies": ["kotlin", "compose", "mapbox", "firebase", "supabase"],
-            "link": "https://github.com/CodeByChriss/Truekeo"
-        },
-        {
-            "name": "Markdown Editor",
-            "description": "Editor de texto Markdown amigable y potente con vista previa en tiempo real. Diseñado para escribir y visualizar contenido de forma rápida y eficiente.",
-            "img_logo": "/images/projects/logo/meteordg-logo.png",
-            "img_preview": "/images/projects/preview/mejorgame.PNG",
-            "technologies": ["react", "typescript", "tailwind", "markdown"],
-            "link": "https://github.com/malmorox/markdown-editor"
-        },
-        {
-            "name": "NBA Portal",
-            "description": "Proyecto académico enfocado en el análisis y visualización de datos de la NBA. Desarrollado en Python con nba_api, Pandas y Matplotlib.",
-            "img_logo": "/images/projects/logo/meteordg-logo.png",
-            "img_preview": "/images/projects/preview/mejorgame.PNG",
-            "technologies": ["python", "jupyter"],
-            "link": "https://github.com/malmorox/nba-portal"
+            "link": "https://play.google.com/store/apps/details?id=com.chaima.truekeo&hl=es_419"
         },
         {
             "name": "TipsLab",
             "description": "Aplicación para crear y compartir life hacks mediante videos. Organiza y consulta consejos prácticos de forma clara, accesible y visual para el día a día.",
-            "img_logo": "/images/projects/logo/meteordg-logo.png",
-            "img_preview": "/images/projects/preview/mejorgame.PNG",
+            "img_logo": "tipslab-logo.png",
+            "img_preview": "tipslab-preview.png",
             "technologies": ["kotlin", "compose", "firebase", "supabase"],
             "link": "https://github.com/malmorox/TipsLab"
+        },
+        {
+            "name": "NBA Portal",
+            "description": "Proyecto académico enfocado en el análisis y visualización de datos de la NBA. Desarrollado en Python con nba_api, Pandas y Matplotlib.",
+            "img_logo": "nba-portal-logo.png",
+            "img_preview": "nba-portal-preview.png",
+            "technologies": ["python", "jupyter"],
+            "link": "https://github.com/malmorox/nba-portal"
         }
     ]
 }

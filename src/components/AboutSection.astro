@@ -1,6 +1,8 @@
 ---
 import workExperienceData from '@data/work-experience.json';
 const companies = workExperienceData.companies;
+
+const companyLogosPath = "/images/work-experience/"
 ---
 <section id="about">
     <div class="about-container">
@@ -10,7 +12,7 @@ const companies = workExperienceData.companies;
                 {companies.map((company) => (
                     <a href={company.url} target="_blank" rel="noopener" class="company-link">
                         <img 
-                            src={company.logo} 
+                            src={`${companyLogosPath}${company.logo}`} 
                             alt={company.name} 
                             class="company-logo" 
                             style={`height: ${company.logo_height}px;`}

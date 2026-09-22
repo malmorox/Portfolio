@@ -3,97 +3,97 @@
         { 
             "technology": "htmlcss", 
             "name": "HTML & CSS",
-            "logo": "/images/tech-logos/htmlcss-logo.png" 
+            "logo": "htmlcss-logo.png" 
         },
         { 
             "technology": "javascript", 
             "name": "JavaScript",
-            "logo": "/images/tech-logos/js-logo.png" 
+            "logo": "js-logo.png" 
         },
         { 
             "technology": "typescript", 
             "name": "TypeScript",
-            "logo": "/images/tech-logos/ts-logo.png" 
+            "logo": "ts-logo.png" 
         },
         { 
             "technology": "tailwind", 
             "name": "Tailwind CSS",
-            "logo": "/images/tech-logos/tailwind-logo.png" 
+            "logo": "tailwind-logo.png" 
         },
         { 
             "technology": "astro", 
             "name": "Astro",
-            "logo": "/images/tech-logos/astro-logo.png" 
+            "logo": "astro-logo.png" 
         },
         { 
             "technology": "react", 
             "name": "React",
-            "logo": "/images/tech-logos/react-logo.png" 
+            "logo": "react-logo.png" 
         },
         { 
             "technology": "node", 
             "name": "Node.js",
-            "logo": "/images/tech-logos/nodejs-logo.png" 
+            "logo": "nodejs-logo.png" 
         },
         { 
             "technology": "php", 
             "name": "PHP",
-            "logo": "/images/tech-logos/php-logo.png" 
+            "logo": "php-logo.png" 
         },
         {
             "technology": "java", 
             "name": "Java",
-            "logo": "/images/tech-logos/java-logo.png"
+            "logo": "java-logo.png"
         },
         {
             "technology": "kotlin", 
             "name": "Kotlin",
-            "logo": "/images/tech-logos/kotlin-logo.png"
+            "logo": "kotlin-logo.png"
         },
         {
             "technology": "python", 
             "name": "Python",
-            "logo": "/images/tech-logos/python-logo.png"
+            "logo": "python-logo.png"
         },
         {
             "technology": "csharp", 
             "name": "C#",
-            "logo": "/images/tech-logos/csharp-logo.png"
+            "logo": "csharp-logo.png"
         },
         {
             "technology": "mysql", 
             "name": "MySQL",
-            "logo": "/images/tech-logos/mysql-logo.png"
+            "logo": "mysql-logo.png"
         },
         {
             "technology": "postgresql", 
             "name": "PostgreSQL",
-            "logo": "/images/tech-logos/postgresql-logo.png"
+            "logo": "postgresql-logo.png"
         },
         {
             "technology": "git", 
             "name": "Git",
-            "logo": "/images/tech-logos/git-logo.png"
+            "logo": "git-logo.png"
         },
         {
             "technology": "apache", 
             "name": "Apache",
-            "logo": "/images/tech-logos/apache-logo.png"
+            "logo": "apache-logo.png"
         },
         {
             "technology": "nginx", 
             "name": "Nginx",
-            "logo": "/images/tech-logos/nginx-logo.png"
+            "logo": "nginx-logo.png"
         },
         {
             "technology": "docker", 
             "name": "Docker",
-            "logo": "/images/tech-logos/docker-logo.png"
+            "logo": "docker-logo.png"
         },
         {
             "technology": "markdown", 
             "name": "Markdown",
-            "logo": "/images/tech-logos/markdown-logo.png"
+            "logo": "markdown-logo.png"
         }
     ],
     "categories": {
