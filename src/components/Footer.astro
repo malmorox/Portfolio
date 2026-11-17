@@ -39,6 +39,8 @@ const currentYear = new Date().getFullYear()
 </footer>
 
 <style>
+    @reference "@styles/tailwind.css";
+
     footer {
         @apply text-gray-800 pt-16 pb-7;
         background-color: hsl(240, 20%, 99%);
@@ -79,7 +81,7 @@ const currentYear = new Date().getFullYear()
     }
 
     .sitemap nav a:focus-visible {
-        @apply outline-none ring-2 ring-blue-500;
+        @apply outline-hidden ring-2 ring-blue-500;
     }
 
     .footer-logo {

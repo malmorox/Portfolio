@@ -1,3 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/*
+  Compatibilidad con Tailwind v3: Preflight v4 cambió estos valores por defecto.
+  https://tailwindcss.com/docs/upgrade-guide#changes-from-v3
+*/
+@layer base {
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-400);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}

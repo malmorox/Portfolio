@@ -1,28 +1,24 @@
 import { defineConfig } from 'astro/config';
-import tailwind from "@astrojs/tailwind";
+import { fileURLToPath } from 'node:url';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
-//import i18next from 'astro-i18next';
+
+const src = (path) => fileURLToPath(new URL(`./src/${path}`, import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()/*,
-    i18next({
-      defaultLocale: 'es',
-      locales: ['es', 'en'],
-      loadLocaleFrom: './src/locales'
-
-    })*/
-  ],
+  integrations: [react()],
   vite: {
+    plugins: [tailwindcss()],
     resolve: {
       alias: {
-        '@assets': '/src/assets',
-        '@components': '/src/components',
-        '@data': '/src/data',
-        '@layouts': '/src/layouts',
-        '@styles': '/src/styles',
-        '@types': '/src/types',
-        '@utils': '/src/utils',
+        '@assets': src('assets'),
+        '@components': src('components'),
+        '@data': src('data'),
+        '@layouts': src('layouts'),
+        '@styles': src('styles'),
+        '@types': src('types'),
+        '@utils': src('utils'),
       }
     }
   }

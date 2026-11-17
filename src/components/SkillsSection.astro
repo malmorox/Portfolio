@@ -44,6 +44,8 @@ function getTechnologyData(techId: string) {
 </section>
 
 <style>
+    @reference "@styles/tailwind.css";
+
     #skills {
         @apply py-20
     }
@@ -62,7 +64,7 @@ function getTechnologyData(techId: string) {
     }
 
     .skill-row {
-        @apply grid grid-cols-[auto,1fr] items-center border-b-2 border-zinc-300;
+        @apply grid grid-cols-[auto_1fr] items-center border-b-2 border-zinc-300;
     }
 
     .skill-row:last-child {

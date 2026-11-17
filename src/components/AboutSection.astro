@@ -37,6 +37,8 @@ const companyLogosPath = "/images/work-experience/"
 </section>
 
 <style>
+    @reference "@styles/tailwind.css";
+
     #about {
         @apply pt-20 pb-20 flex justify-center;
     }
@@ -72,7 +74,7 @@ const companyLogosPath = "/images/work-experience/"
     }
 
     .current-badge {
-        @apply text-xs uppercase tracking-widest rounded px-1.5 py-0.5;
+        @apply text-xs uppercase tracking-widest rounded-sm px-1.5 py-0.5;
         color: #fac937;
         border: 1px solid #fac937;
     }
