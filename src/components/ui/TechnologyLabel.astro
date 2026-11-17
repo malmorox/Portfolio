@@ -1,27 +1,39 @@
 ---
-import { iconMap } from '@utils/iconMap'
+import { techMap } from '@utils/iconMap'
 
-const { 
-    technology
-} = Astro.props
-const Icon = iconMap[technology]
+interface Props {
+    technology: string
+}
+
+const { technology } = Astro.props
+const tech = techMap[technology]
+const Icon = tech?.icon
 ---
-{Icon && 
-    <div class="tech-item">
-        <Icon className="tech-icon" />
-    </div>
+{tech && Icon &&
+    <li class="tech-tag">
+        <Icon className="tech-icon" aria-hidden="true" />
+        <span>{tech.label}</span>
+    </li>
 }
 
 <style>
-    @reference "@styles/tailwind.css";
-
-    .tech-item {
-        @apply flex items-center justify-center bg-zinc-800;
-        padding: 5px;
-        border-radius: 6px;
+    .tech-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.25rem 0.625rem;
+        border: 1px solid var(--color-border);
+        border-radius: 999px;
+        background-color: rgb(255 255 255 / 0.04);
+        color: var(--color-fg-muted);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        line-height: 1.4;
     }
 
-    .tech-icon {
-        @apply w-7 h-7 text-zinc-200
+    .tech-tag :global(.tech-icon) {
+        flex-shrink: 0;
+        inline-size: 0.9375rem;
+        block-size: 0.9375rem;
     }
 </style>

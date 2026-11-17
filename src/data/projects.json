@@ -3,10 +3,10 @@
         {
             "name": "RuneQi",
             "description": "Editor de texto Markdown amigable y potente con vista previa en tiempo real. Diseñado para escribir y visualizar contenido de forma rápida y eficiente.",
-            "img_logo": "runeqi-logo.png",
+            "img_logo": "runeqi-logo.svg",
             "img_preview": "runeqi-preview.png",
             "technologies": ["react", "typescript", "tailwind", "markdown"],
-            "link": "https://github.com/malmorox/runeqi-md"
+            "link": "https://www.runeqimd.dev/"
         },
         {
             "name": "Truekeo",

@@ -1,114 +1,175 @@
 ---
+import { Image } from 'astro:assets'
 import SocialMedia from '@components/ui/SocialMedia.astro'
+import Button from '@components/ui/Button.astro'
 import logo from '@assets/images/logo-MarcosAlmorox-black.png'
 import { HiDownload } from "react-icons/hi";
 
 const currentYear = new Date().getFullYear()
+
+const sitemap = [
+    { href: '#about', label: 'Sobre mí' },
+    { href: '#skills', label: 'Habilidades' },
+    { href: '#projects', label: 'Proyectos' },
+    { href: '#contact', label: 'Contacto' },
+]
 ---
-<footer>
-    <div class="footer-container">
-        <h2 id="footer-title"> ¡Conectemos! </h2>
-        <address>
-            <SocialMedia />
-        </address>
-        <div class="footer-bar">
-            <div class="sitemap">
-                <p class="sitemap-title"> Contenido </p>
-                <nav aria-label="sitemap navigation">
-                    <a href="#about"> Sobre mí </a>
-                    <a href="#skills"> Habilidades </a>
-                    <a href="#projects"> Proyectos </a>
-                    <a href="#contact"> Contacto </a>
-                </nav>
+<footer class="site-footer" aria-labelledby="footer-title">
+    <div class="footer-container page-container">
+        <div class="footer-cta">
+            <h2 id="footer-title" class="footer-title reveal">¡Conectemos!</h2>
+            <address class="reveal">
+                <SocialMedia />
+            </address>
+        </div>
+
+        <div class="footer-meta">
+            <div class="footer-bar">
+                <div class="sitemap">
+                    <p class="sitemap-title" id="sitemap-title">Contenido</p>
+                    <nav aria-labelledby="sitemap-title">
+                        <ul>
+                            {sitemap.map(({ href, label }) => (
+                                <li><a href={href}>{label}</a></li>
+                            ))}
+                        </ul>
+                    </nav>
+                </div>
+
+                <Image
+                    src={logo}
+                    alt="Logo de Marcos Almorox"
+                    height={96}
+                    densities={[1, 2]}
+                    class="footer-logo"
+                />
+
+                <Button
+                    href="/cv/marcos-almorox_cv-resume.pdf"
+                    variant="secondary"
+                    size="lg"
+                    target="_blank"
+                    rel="noopener"
+                    class="cv-link"
+                >
+                    Descarga mi currículum vitae
+                    <HiDownload aria-hidden="true" data-icon="down" />
+                </Button>
             </div>
 
-            <img src={logo.src} alt="Logo de Marcos Almorox" class="footer-logo" />
-
-            <a
-                href="/cv/marcos-almorox_cv-resume.pdf"
-                class="cv-link"
-                target="_blank"
-            >
-                Descarga mi curriculum vitae
-                <HiDownload className="cv-link-icon" />
-            </a>
+            <div class="footer-bottom">
+                <small>Diseñado y desarrollado por Marcos Almorox — &copy;{currentYear}</small>
+            </div>
         </div>
-        
-        <small> Diseñado y desarrollado por Marcos Almorox — &copy;{currentYear} </small>
     </div>
 </footer>
 
 <style>
-    @reference "@styles/tailwind.css";
+    .site-footer {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding-block: var(--section-space) 2rem;
+        border-block-start: 1px solid var(--color-border);
+        background-color: var(--color-bg-deep);
 
-    footer {
-        @apply text-gray-800 pt-16 pb-7;
-        background-color: hsl(240, 20%, 99%);
+        /* Brand glow on the top edge */
+        &::before {
+            content: "";
+            position: absolute;
+            inset-block-start: -12rem;
+            inset-inline: 0;
+            z-index: -1;
+            block-size: 24rem;
+            background: radial-gradient(
+                ellipse 50% 50% at 50% 50%,
+                color-mix(in oklab, var(--color-brand-500) 16%, transparent),
+                transparent 70%
+            );
+        }
     }
 
     .footer-container {
-        @apply max-w-screen-xl mx-auto flex flex-col px-6 pt-8
+        display: grid;
+        gap: clamp(3.5rem, 3rem + 3vw, 6rem);
     }
 
-    #footer-title {
-        @apply text-6xl font-bold text-left
+    .footer-cta {
+        display: grid;
+        gap: 2.5rem;
+    }
+
+    .footer-title {
+        color: var(--color-fg);
+        font-size: var(--text-display);
+        font-weight: 900;
+        letter-spacing: -0.035em;
+    }
+
+    address {
+        font-style: normal;
+    }
+
+    /* ---------- Bottom bar ---------- */
+    .footer-meta {
+        display: grid;
+        gap: 2.5rem;
     }
 
     .footer-bar {
-        @apply flex justify-between mt-14 mb-6 items-center
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        padding-block-start: 2.5rem;
+        border-block-start: 1px solid var(--color-border);
     }
 
     .sitemap {
-        @apply flex flex-col gap-2
+        display: grid;
+        gap: 0.75rem;
+
+        & ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            list-style: none;
+        }
+
+        & a {
+            color: var(--color-fg-muted);
+            text-decoration: underline;
+            text-decoration-color: var(--color-border-strong);
+            text-underline-offset: 0.3em;
+            transition:
+                color 0.2s ease,
+                text-decoration-color 0.2s ease;
+
+            &:hover {
+                color: var(--color-fg);
+                text-decoration-color: var(--color-accent);
+            }
+        }
     }
 
     .sitemap-title {
-        @apply text-lg font-semibold uppercase text-zinc-500
+        color: var(--color-fg-subtle);
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
     }
 
-    .sitemap nav {
-        @apply flex justify-between;
-        gap: 1rem;
+    /* Source logo is black: render it white */
+    .footer-bar :global(.footer-logo) {
+        block-size: 6rem;
+        inline-size: auto;
+        filter: brightness(0) invert(1);
     }
 
-    .sitemap nav a {
-        @apply underline underline-offset-4 text-zinc-700;
-        transition: 0.3s color ease;
-    }
-
-    .sitemap nav a:hover {
-        @apply text-zinc-400
-    }
-
-    .sitemap nav a:focus-visible {
-        @apply outline-hidden ring-2 ring-blue-500;
-    }
-
-    .footer-logo {
-        @apply w-24 h-24;
-    }
-
-    .cv-link {
-        @apply flex items-center gap-1.5 text-xl font-semibold px-6 py-4 rounded-lg rounded-tr-3xl text-zinc-800 border-4 border-zinc-800;
-        transition: 0.3s transform ease, 0.3s background-color ease, 0.3s color ease;
-    }
-
-    .cv-link:hover {
-        @apply bg-zinc-800;
-        color: hsl(240, 20%, 99%);
-    }
-
-    .cv-link-icon {
-        @apply w-7 h-7 text-zinc-800;
-        transition: 0.3s transform ease
-    }
-
-    .cv-link:hover .cv-link-icon {
-        color: hsl(240, 20%, 99%);
-        transform: translateY(0.25rem);
-    }
-
-    small {
-        @apply text-gray-500 
+    .footer-bottom {
+        color: var(--color-fg-subtle);
+        font-size: 0.875rem;
     }
 </style>

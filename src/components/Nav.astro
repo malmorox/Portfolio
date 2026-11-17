@@ -1,114 +1,394 @@
 ---
-import LenguageSwitcher from '@components/ui/LenguageSwitcher.astro'
+import { Image } from 'astro:assets'
+import Button from '@components/ui/Button.astro'
 import logo from '@assets/images/logo-MarcosAlmorox.png'
+import { HiMenuAlt3 } from 'react-icons/hi'
+
+const links = [
+    { href: '#about', label: 'Sobre mí' },
+    { href: '#skills', label: 'Habilidades' },
+    { href: '#projects', label: 'Proyectos' },
+    { href: '#contact', label: 'Contacto' },
+]
 ---
-<header>
-    <nav class="nav-container">
-        <a href="/" class="nav-logo" aria-label="">
-            <img src={logo.src} alt="Logo de Marcos Almorox" class="logo" />
-        </a>
-        <ul role="menubar" class="nav-links">
-            <li role="none">
-                <a
-                    role="menuitem"
-                    href="/#about"
-                    class="nav-link custom-underline"
+<header class="site-header" id="site-header">
+    <div class="header-bar">
+        <div class="header-inner page-container">
+            <a href="/" class="site-logo">
+                <Image
+                    src={logo}
+                    alt="Marcos Almorox, ir al inicio"
+                    height={40}
+                    densities={[1, 2]}
+                    loading="eager"
+                />
+            </a>
+
+            <nav class="site-nav" aria-label="Principal">
+                <button
+                    class="menu-button"
+                    type="button"
+                    popovertarget="site-menu"
+                    popovertargetaction="toggle"
+                    aria-controls="site-menu"
                 >
-                    Sobre mí
-                </a>
-            </li>
-            <li role="none">
-                <a
-                    role="menuitem"
-                    href="/#projects"
-                    class="nav-link custom-underline"
-                >
-                    Trabajo
-                </a>
-            </li>
-            <li role="none">
-                <a
-                    role="menuitem"
-                    href="/#contact"
-                    class="nav-link custom-underline"
-                > 
-                    Contacto
-                </a>
-            </li>
-            <li role="none">
-                <a
-                    role="menuitem"
-                    href="/cv/marcos-almorox_cv-resume.pdf"
-                    class="nav-link nav-button"
-                    target="_blank"
-                >
-                    Currículum
-                </a>
-            </li>
-        </ul>
-        <!-- <div class="nav-lenguage-switcher">
-            <LenguageSwitcher />
-        </div> -->
-    </nav>
+                    <HiMenuAlt3 aria-hidden="true" />
+                    <span>Menú</span>
+                </button>
+
+                <ul id="site-menu" class="site-menu" popover="auto">
+                    {links.map(({ href, label }) => (
+                        <li>
+                            <a class="nav-link" href={href}><span>{label}</span></a>
+                        </li>
+                    ))}
+                    <li class="nav-cta">
+                        <Button href="/cv/marcos-almorox_cv-resume.pdf" variant="gradient" target="_blank" rel="noopener">
+                            Currículum
+                        </Button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </header>
 
+<!-- Inline so it runs before paint: inline links vs. dropdown menu -->
+<script is:inline>
+    (() => {
+        const header = document.getElementById('site-header');
+        const inner = header.querySelector('.header-inner');
+        const menu = document.getElementById('site-menu');
+        let lastWidth = 0;
+
+        const layout = () => {
+            const width = inner.clientWidth;
+            const isWide = header.classList.contains('is-wide');
+            // Collapsed: only re-measure if the header grew
+            if (!isWide && width <= lastWidth) {
+                lastWidth = width;
+                return;
+            }
+            lastWidth = width;
+
+            header.classList.add('is-measuring', 'is-wide');
+            const fits = inner.scrollWidth <= inner.clientWidth;
+            header.classList.toggle('is-wide', fits);
+
+            if (fits) menu.removeAttribute('popover');
+            else if (!menu.hasAttribute('popover')) menu.setAttribute('popover', 'auto');
+
+            requestAnimationFrame(() => header.classList.remove('is-measuring'));
+        };
+
+        layout();
+        const observer = new ResizeObserver(layout);
+        observer.observe(inner);
+        observer.observe(menu);
+    })();
+</script>
+
+<script>
+    const header = document.getElementById('site-header')!
+    const menu = document.getElementById('site-menu')!
+    const menuButton = header.querySelector<HTMLButtonElement>('.menu-button')!
+
+    /* ---------- Fallback without Popover API ---------- */
+    const hasPopover = Object.hasOwn(HTMLElement.prototype, 'popover')
+
+    if (!hasPopover) {
+        menuButton.setAttribute('aria-expanded', 'false')
+        menuButton.addEventListener('click', () => {
+            const open = menu.classList.toggle(':popover-open')
+            menuButton.setAttribute('aria-expanded', String(open))
+        })
+    }
+
+    /* ---------- Close mobile menu on link click ---------- */
+    menu.addEventListener('click', (event) => {
+        if (!(event.target as Element).closest('a') || !menu.hasAttribute('popover')) return
+
+        if (hasPopover) {
+            try { menu.hidePopover() } catch { /* already closed */ }
+        } else {
+            menu.classList.remove(':popover-open')
+            menuButton.setAttribute('aria-expanded', 'false')
+        }
+    })
+
+    /* ---------- Scrollspy ---------- */
+    const links = [...menu.querySelectorAll<HTMLAnchorElement>('a.nav-link')]
+
+    const nativeScrollSpy = CSS.supports('scroll-target-group: auto')
+
+    const setCurrent = (current: Element | null) => {
+        links.forEach((link) => {
+            const active = link === current
+            // Native :target-current handles styling: only sync ARIA
+            if (!nativeScrollSpy) link.classList.toggle('target-current', active)
+            link.setAttribute('aria-current', String(active))
+        })
+    }
+
+    if (nativeScrollSpy) {
+        const sync = () => setCurrent(menu.querySelector('a:target-current'))
+        sync()
+        document.addEventListener('scrollend', sync)
+    } else {
+        const observer = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+                if (!entry.isIntersecting) continue
+                setCurrent(links.find((link) => link.hash === `#${entry.target.id}`) ?? null)
+            }
+        }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 })
+
+        document.querySelectorAll('main > section[id]').forEach((section) => observer.observe(section))
+    }
+</script>
+
 <style>
-    @reference "@styles/tailwind.css";
-
-    .nav-container {
-        @apply max-w-screen-xl mx-auto flex flex-row justify-between items-center py-6 px-6
+    /* ---------- Sticky header ---------- */
+    .site-header {
+        position: sticky;
+        inset-block-start: 0;
+        z-index: 50;
+        container-name: site-header;
+        container-type: scroll-state;
     }
 
-    .nav-logo {
-        @apply flex items-center my-2;
+    .header-bar {
+        border-block-end: 1px solid transparent;
+        background-color: color-mix(in oklab, var(--color-bg) 80%, transparent);
+        backdrop-filter: blur(16px) saturate(140%);
+        transition:
+            border-color 0.3s ease,
+            background-color 0.3s ease,
+            box-shadow 0.3s ease;
     }
 
-    .nav-logo .logo {
-        @apply w-auto h-11;
+    /* More presence once scrolled */
+    @container site-header scroll-state(stuck: top) {
+        .header-bar {
+            border-block-end-color: var(--color-border);
+            background-color: color-mix(in oklab, var(--color-bg) 90%, transparent);
+            box-shadow: 0 12px 32px -24px rgb(0 0 0 / 0.9);
+        }
     }
 
-    .nav-links {
-        @apply flex gap-7
+    .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        min-block-size: var(--header-height);
+
+        /* Row must be measurable at its natural width */
+        & > * {
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
     }
 
+    .is-measuring :global(*) {
+        transition: none !important;
+    }
+
+    .site-logo {
+        display: flex;
+        border-radius: 0.375rem;
+
+        & img {
+            block-size: 2.5rem;
+            inline-size: auto;
+            transition: scale 0.3s var(--ease-out-expo);
+        }
+
+        &:hover img {
+            scale: 1.05;
+        }
+    }
+
+    /* ---------- Menu button (collapsed) ---------- */
+    .menu-button {
+        anchor-name: --menu-button;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-block-size: 2.75rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-brand);
+        background-color: rgb(255 255 255 / 0.03);
+        color: var(--color-fg);
+        font-weight: 700;
+
+        & svg {
+            inline-size: 1.25rem;
+            block-size: 1.25rem;
+        }
+
+        &:hover {
+            border-color: var(--color-accent);
+        }
+    }
+
+    /* ---------- Dropdown (collapsed) ---------- */
+    .site-menu {
+        position: fixed;
+        inset: auto;
+        /* Fallback without anchor positioning */
+        inset-block-start: calc(var(--header-height) - 0.25rem);
+        inset-block-start: anchor(--menu-button bottom);
+        inset-inline-end: var(--gutter);
+        inline-size: min(80dvw, 20rem);
+        max-inline-size: calc(100dvw - 2rem);
+        block-size: fit-content;
+        max-block-size: calc(100dvh - 6rem);
+        margin: 0.5rem 0 0;
+        overflow: auto;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-card);
+        background-color: var(--color-surface);
+        box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.75);
+        color: var(--color-fg);
+        list-style: none;
+    }
+
+    .site-menu:where([popover]:not(:is(:popover-open, .\:popover-open))) {
+        display: none;
+    }
+
+    .site-menu:is(:popover-open, .\:popover-open) {
+        display: grid;
+        gap: 0.25rem;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .site-header:not(.is-wide) .site-menu {
+            opacity: 0;
+            translate: 0 -0.5rem;
+            transition:
+                opacity 0.2s ease,
+                translate 0.3s var(--ease-out-expo),
+                display 0.3s,
+                overlay 0.3s;
+            transition-behavior: allow-discrete;
+
+            &:is(:popover-open, .\:popover-open) {
+                opacity: 1;
+                translate: 0 0;
+
+                @starting-style {
+                    opacity: 0;
+                    translate: 0 -0.5rem;
+                }
+            }
+        }
+    }
+
+    .nav-cta {
+        margin-block-start: 0.25rem;
+        padding-block-start: 0.5rem;
+        border-block-start: 1px solid var(--color-border);
+
+        & :global(.btn) {
+            inline-size: 100%;
+        }
+    }
+
+    /* ---------- Links ---------- */
     .nav-link {
-        @apply text-xl font-bold;
-        color: hsl(240, 20%, 99%);
-        position: relative;
+        display: flex;
+        align-items: center;
+        min-block-size: 2.75rem;
+        padding-inline: 0.875rem;
+        border-radius: 0.5rem;
+        color: var(--color-fg-muted);
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+            color 0.2s ease,
+            background-color 0.2s ease;
+
+        & span {
+            position: relative;
+        }
+
+        /* Active indicator (underline, not just color) */
+        & span::after {
+            content: "";
+            position: absolute;
+            inset-inline: 0;
+            inset-block-end: -0.375rem;
+            block-size: 2px;
+            border-radius: 1px;
+            background-color: var(--color-accent);
+            scale: 0 1;
+            transform-origin: left;
+            transition: scale 0.4s var(--ease-out-expo);
+        }
+
+        &:hover {
+            background-color: rgb(255 255 255 / 0.05);
+            color: var(--color-fg);
+        }
+
+        &:is(:target-current, .target-current) {
+            color: var(--color-fg);
+
+            & span::after {
+                scale: 1 1;
+            }
+        }
     }
 
-    .custom-underline::after {
-        content: "";
-        position: absolute;
+    /* ---------- Inline layout (all links fit) ---------- */
+    .site-header.is-wide {
+        .menu-button {
+            display: none;
+        }
+
+        .site-menu {
+            position: static;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            inline-size: auto;
+            max-inline-size: none;
+            block-size: auto;
+            max-block-size: none;
+            overflow: visible;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .site-menu::backdrop {
+            display: none;
+        }
+
+        .nav-cta {
+            margin: 0 0 0 0.75rem;
+            padding: 0;
+            border: 0;
+
+            & :global(.btn) {
+                inline-size: auto;
+            }
+        }
     }
 
-    li[role="none"] .custom-underline::after {
-        top: 120%;
-        height: .25rem;
-        left: 0;
-        right: 0;
-        background-color: hsl(240, 20%, 99%);
-        transform-origin: center left;
-        transform: scaleX(0);
-        transition: 0.5s cubic-bezier(0, 0, .3, 1) transform;
-    }
-    li[role="none"]:hover .custom-underline::after {
-        transform: scaleX(1);
-        transition: 0.3s cubic-bezier(0.61, 0.48, 0.15, 1) transform;
+    /* Native scrollspy (:target-current) */
+    .site-menu {
+        scroll-target-group: auto;
     }
 
-    .nav-button {
-        @apply px-6 py-4 rounded-lg rounded-tr-3xl;
-        background-color: #f47226;
-        background-image: linear-gradient(to bottom, #e76a23, #fac937);
-        background-size: 100% 200%;
-        background-position: top;
-        color: hsl(240, 20%, 99%);
-        transition: background-position 0.4s ease, background-color 0.4s ease;
-    }
-    
-    .nav-button:hover {
-        background-position: bottom;
-        background-color: transparent;
+    @media (forced-colors: active) {
+        .header-bar {
+            border-block-end-color: CanvasText;
+        }
     }
 </style>

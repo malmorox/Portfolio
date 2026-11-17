@@ -7,12 +7,12 @@ import ProjectsSection from '@components/ProjectsSection.astro'
 import ContactSection from '@components/ContactSection.astro'
 ---
 
-<Layout 
+<Layout
 	title="Marcos Almorox | Web Developer Portfolio"
-	description=""
+	description="Portfolio de Marcos Almorox, desarrollador junior full-stack."
 	lang="es"
 >
-	<main id="main-content">
+	<main id="main-content" tabindex="-1">
 		<IntroSection />
 
 		<AboutSection />
@@ -26,9 +26,7 @@ import ContactSection from '@components/ContactSection.astro'
 </Layout>
 
 <style>
-	@reference "@styles/tailwind.css";
-
-	main {
-		@apply p-7
+	main:focus {
+		outline: none;
 	}
 </style>

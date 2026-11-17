@@ -1,17 +1,143 @@
 @import "tailwindcss";
+@import "./theme.css";
 
-/*
-  Compatibilidad con Tailwind v3: Preflight v4 cambió estos valores por defecto.
-  https://tailwindcss.com/docs/upgrade-guide#changes-from-v3
-*/
+/* ============================================================
+   Global styles
+   ============================================================ */
+
 @layer base {
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--color-gray-400);
-  }
+	html {
+		background-color: var(--color-bg);
+		color: var(--color-fg);
+		font-family: var(--font-sans);
+		line-height: 1.5;
+		-webkit-font-smoothing: antialiased;
+		accent-color: var(--color-accent);
+		scrollbar-color: var(--color-ink-500) var(--color-bg);
+		/* Keep anchors clear of the sticky header */
+		scroll-padding-block-start: calc(var(--header-height) + 1rem);
 
-  button:not(:disabled),
-  [role="button"]:not(:disabled) {
-    cursor: pointer;
-  }
+		@media (prefers-reduced-motion: no-preference) {
+			scroll-behavior: smooth;
+		}
+	}
+
+	body {
+		min-block-size: 100dvh;
+		overflow-x: clip;
+	}
+
+	h1,
+	h2,
+	h3 {
+		text-wrap: balance;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+	}
+
+	p {
+		text-wrap: pretty;
+	}
+
+	::selection {
+		background-color: var(--color-accent);
+		color: var(--color-on-accent);
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 3px;
+	}
+
+	/* Anchored sections take focus without a visible ring */
+	section[tabindex="-1"]:focus {
+		outline: none;
+	}
+
+	input::placeholder,
+	textarea::placeholder {
+		color: var(--color-fg-subtle);
+	}
+
+	button:not(:disabled),
+	[role="button"]:not(:disabled) {
+		cursor: pointer;
+	}
+}
+
+/* ============================================================
+   Custom utilities
+   ============================================================ */
+
+/* Centered container with fluid side gutters */
+@utility page-container {
+	inline-size: 100%;
+	max-inline-size: var(--container-page);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+/* Standard vertical section spacing */
+@utility section-space {
+	padding-block: var(--section-space);
+}
+
+/* Brand gradient text */
+@utility text-gradient {
+	background-image: var(--gradient-brand);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+/* Visually hidden, still accessible */
+@utility visually-hidden {
+	&:where(:not(:focus-within, :active)) {
+		position: absolute !important;
+		clip-path: inset(50%) !important;
+		overflow: hidden !important;
+		width: 1px !important;
+		height: 1px !important;
+		margin: -1px !important;
+		padding: 0 !important;
+		border: 0 !important;
+		white-space: nowrap !important;
+	}
+}
+
+/* Scroll-driven reveal; skipped without support or with reduced motion */
+@utility reveal {
+	@media (prefers-reduced-motion: no-preference) {
+		@supports ((animation-timeline: view()) and (animation-range: entry)) {
+			/* Longhands on purpose: Lightning CSS would merge them into a shorthand Chrome rejects */
+			animation-name: reveal-up;
+			animation-duration: auto;
+			animation-timing-function: linear;
+			animation-fill-mode: backwards;
+			animation-timeline: view();
+			animation-range: entry 0% entry 70%;
+		}
+	}
+}
+
+@keyframes reveal-up {
+	from {
+		opacity: 0;
+		translate: 0 2.5rem;
+	}
+}
+
+/* Staggered entry on load (hero); --i sets the delay */
+@utility rise-in {
+	@media (prefers-reduced-motion: no-preference) {
+		animation: rise-in 0.9s var(--ease-out-expo) both;
+		animation-delay: calc(var(--i, 0) * 90ms + 100ms);
+	}
+}
+
+@keyframes rise-in {
+	from {
+		opacity: 0;
+		translate: 0 1.5rem;
+	}
 }

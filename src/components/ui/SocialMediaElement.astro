@@ -1,6 +1,22 @@
 ---
+import { HiOutlineMail } from 'react-icons/hi'
+import { HiArrowUpRight } from 'react-icons/hi2'
+import { FaLinkedin, FaGithub } from 'react-icons/fa'
+
+interface Props {
+    link: string
+    text: string
+}
+
 const { link, text } = Astro.props;
 const isExternal = link.startsWith('http');
+
+const icons = {
+    email: HiOutlineMail,
+    linkedin: FaLinkedin,
+    github: FaGithub,
+}
+const Icon = icons[text.toLowerCase() as keyof typeof icons]
 ---
 <li class="connect-element">
     <a
@@ -9,43 +25,106 @@ const isExternal = link.startsWith('http');
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener" : undefined}
     >
-        <div class="connect-link-content">
-            <span> {text} </span>
-        </div>
+        <span class="connect-top" aria-hidden="true">
+            {Icon && <Icon className="connect-icon" />}
+            <HiArrowUpRight className="connect-arrow" />
+        </span>
+        <span class="connect-text">{text}</span>
     </a>
 </li>
 
 <style>
-    @reference "@styles/tailwind.css";
-
     .connect-element {
-        @apply flex-1;
-        transition: flex-grow 0.5s ease
-    }
+        display: flex;
+        flex: 1;
 
-    .connect-element:hover {
-        flex-grow: 2
-    }
+        @media (prefers-reduced-motion: no-preference) {
+            transition: flex-grow 0.5s var(--ease-out-expo);
+        }
 
-    .connect-element:first-child .connect-link {
-        @apply rounded-tl-3xl
-    }
-
-    .connect-element:last-child .connect-link {
-        @apply rounded-br-3xl
+        @media (min-width: 40rem) {
+            &:hover {
+                flex-grow: 2;
+            }
+        }
     }
 
     .connect-link {
-        @apply block text-4xl font-extrabold text-zinc-800 border-4 border-zinc-800 h-36 px-4 rounded-lg sm:rounded-t-lg transition duration-300
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2.5rem;
+        min-block-size: 9rem;
+        padding: 1.5rem;
+        border: 1px solid var(--color-border-strong);
+        border-radius: 0.75rem;
+        background-color: var(--color-surface);
+        background-image: var(--gradient-brand);
+        background-size: 100% 0%;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        color: var(--color-fg);
+        text-decoration: none;
+        transition:
+            background-size 0.5s var(--ease-out-expo),
+            border-color 0.3s ease,
+            color 0.3s ease;
+
+        &:hover {
+            border-color: var(--color-accent);
+            background-size: 100% 100%;
+            color: var(--color-on-accent);
+        }
     }
 
-    .connect-link:hover {
-        background-color: #f47226;
-        border-color: #f47226;
-        color: hsl(240, 20%, 99%);
+    /* Brand corners on the group's outer ends */
+    .connect-element:first-child .connect-link {
+        border-start-start-radius: 2rem;
     }
 
-    .connect-link-content {
-        @apply flex items-center justify-center h-full
+    .connect-element:last-child .connect-link {
+        border-end-end-radius: 2rem;
+    }
+
+    .connect-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .connect-link :global(.connect-icon) {
+        inline-size: 1.75rem;
+        block-size: 1.75rem;
+    }
+
+    .connect-link :global(.connect-arrow) {
+        inline-size: 1.5rem;
+        block-size: 1.5rem;
+        opacity: 0.6;
+        transition:
+            opacity 0.3s ease,
+            translate 0.4s var(--ease-out-expo);
+    }
+
+    .connect-link:hover :global(.connect-arrow) {
+        opacity: 1;
+
+        @media (prefers-reduced-motion: no-preference) {
+            translate: 0.25rem -0.25rem;
+        }
+    }
+
+    .connect-text {
+        font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    @media (forced-colors: active) {
+        .connect-link:hover {
+            border-color: Highlight;
+        }
     }
 </style>

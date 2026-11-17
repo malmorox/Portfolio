@@ -11,9 +11,14 @@ const socials = socialsData.socials
 </ul>
 
 <style>
-    @reference "@styles/tailwind.css";
-
     .connect-links {
-        @apply list-none p-0 flex flex-col py-8 gap-3.5 sm:flex-row sm:w-full
+        display: flex;
+        flex-direction: column;
+        gap: 0.875rem;
+        list-style: none;
+
+        @media (min-width: 40rem) {
+            flex-direction: row;
+        }
     }
 </style>

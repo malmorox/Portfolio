@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="RuneQi MD">
+  <title>RuneQi MD</title>
+  <defs>
+    <mask id="hueco" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+      <rect width="64" height="64" fill="#fff"/>
+      <path d="M24 13V51M15 42L24 51L33 42" fill="none" stroke="#000" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <path d="M24 14L44 23L24 32M36 26.6L48 51" fill="none" stroke="#F7F7F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" mask="url(#hueco)"/>
+  <path d="M24 13V51M15 42L24 51L33 42" fill="none" stroke="#38BDF8" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

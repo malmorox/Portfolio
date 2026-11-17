@@ -1,6 +1,7 @@
 ---
-import Technology from '@components/ui/Technology.astro'
+import SectionHeader from '@components/ui/SectionHeader.astro'
 import techData from '@data/technologies.json'
+import { techMap } from '@utils/iconMap'
 
 const techSkills = {
     'frontend': ['htmlcss', 'javascript', 'typescript', 'react', 'astro', 'tailwind'],
@@ -9,85 +10,266 @@ const techSkills = {
     'tools': ['apache', 'nginx', 'git', 'markdown']
 }
 
+// technologies.json ids shown with more than one techMap icon
+const iconKeys: Record<string, string[]> = {
+    htmlcss: ['html', 'css'],
+}
+
 const allTechnologies = techData.technologies
 const allCategories = techData.categories
 
-const techLogosPath = "/images/tech-logos/"
-
-function getTechnologyData(techId: string) {
-    return allTechnologies.find(t => t.technology === techId)
-}
+const skillGroups = Object.entries(techSkills).map(([category, technologies]) => ({
+    id: category,
+    label: allCategories[category as keyof typeof allCategories],
+    technologies: technologies.flatMap(techId => {
+        const tech = allTechnologies.find(t => t.technology === techId)
+        if (!tech) return []
+        const icons = (iconKeys[techId] ?? [techId]).flatMap(key => techMap[key] ?? [])
+        return [{ name: tech.name, icons }]
+    })
+}))
 ---
-<section id="skills">
-    <div class="skills-container">
-        <h2 class="skills-title"> Mis habilidades </h2>
-        <div>
-            <div class="skills-table">
-                {Object.entries(techSkills).map(([category, technologies]) => (
-                    <div class="skill-row">
-                        <div class="skill-category">
-                            <div class="skill-category-text">
-                                <h3> {allCategories[category as keyof typeof allCategories]} </h3>
-                            </div>
-                        </div>
-                        <div class="skill-technologies">
-                            {technologies.map(t => {
-                                const tech = getTechnologyData(t)
-                                return tech ? <Technology name={tech.name} logo={`${techLogosPath}${tech.logo}`} /> : null
-                            })}
-                        </div>
+<section id="skills" class="section-space" tabindex="-1" aria-labelledby="skills-title">
+    <div class="page-container">
+        <SectionHeader
+            title="Mis habilidades"
+            id="skills-title"
+        />
+
+        <div class="editor reveal">
+            <div class="editor-bar" aria-hidden="true">
+                <span class="dots"><span></span><span></span><span></span></span>
+                <span class="filename">skills.ts</span>
+            </div>
+
+            <div class="editor-body">
+                <p class="line" aria-hidden="true">
+                    <span class="kw">export const</span> <span class="var">skills</span> <span class="punc">=</span> <span class="punc">{'{'}</span>
+                </p>
+
+                {skillGroups.map(group => (
+                    <div class="line group">
+                        <h3 class="key">
+                            <span aria-hidden="true">{group.id}</span>
+                            <span class="visually-hidden">{group.label}</span>
+                        </h3>
+                        <span class="punc" aria-hidden="true">: [</span>
+                        <ul class="array">
+                            {group.technologies.map(tech => (
+                                <li class="str">
+                                    {tech.icons.map(({ icon: Icon, color }) => (
+                                        <span class="str-icon" style={`--icon-color: ${color}`} aria-hidden="true">
+                                            <Icon />
+                                        </span>
+                                    ))}
+                                    <span class="q">{tech.name}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 ))}
+
+                <p class="line" aria-hidden="true"><span class="punc">{'}'}</span></p>
+                <p class="line comment">
+                    <span aria-hidden="true">// </span>siempre aprendiendo algo nuevo<span class="cursor" aria-hidden="true"></span>
+                </p>
             </div>
         </div>
     </div>
 </section>
 
 <style>
-    @reference "@styles/tailwind.css";
-
-    #skills {
-        @apply py-20
+    .editor {
+        max-inline-size: 64rem;
+        overflow: clip;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-card-brand);
+        background-color: var(--color-bg-deep);
+        box-shadow: var(--shadow-card), 0 40px 80px -40px rgb(244 114 38 / 0.25);
     }
 
-    .skills-container {
-        @apply max-w-screen-xl mx-auto flex flex-col px-6
+    .editor-bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.875rem 1.25rem;
+        border-block-end: 1px solid var(--color-border);
+        background-color: var(--color-surface);
     }
 
-    .skills-title {
-        @apply text-5xl font-bold text-left mb-10;
-        color: rgba(244, 114, 38, 0.8);
+    .dots {
+        display: flex;
+        gap: 0.5rem;
+
+        & span {
+            inline-size: 0.75rem;
+            block-size: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--color-ink-600);
+        }
+
+        & span:first-child {
+            background-color: var(--color-accent);
+        }
     }
 
-    .skills-grid {
-        @apply grid grid-cols-1 gap-6;
+    .filename {
+        color: var(--color-fg-muted);
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
     }
 
-    .skill-row {
-        @apply grid grid-cols-[auto_1fr] items-center border-b-2 border-zinc-300;
+    .editor-body {
+        counter-reset: line;
+        display: grid;
+        gap: 0.5rem;
+        padding: clamp(1.25rem, 1rem + 1.5vw, 2rem) clamp(1rem, 0.5rem + 2vw, 2rem) clamp(1.25rem, 1rem + 1.5vw, 2rem) 0;
+        font-family: var(--font-mono);
+        font-size: clamp(0.8125rem, 0.75rem + 0.3vw, 1rem);
+        line-height: 1.7;
     }
 
-    .skill-row:last-child {
-        border-bottom: none;
+    /* Line number in the gutter (one per logical line, like word-wrap) */
+    .line {
+        counter-increment: line;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        column-gap: 1ch;
+        padding-inline-start: 5ch;
+        color: var(--color-fg-muted);
+
+        &::before {
+            content: counter(line);
+            content: counter(line) / "";
+            position: absolute;
+            inset-inline-start: 0;
+            inline-size: 3.5ch;
+            text-align: end;
+            color: var(--color-ink-500);
+        }
     }
 
-    .skill-category {
-        @apply flex items-center justify-center text-lg px-16 border-r-2 border-zinc-300 h-full
+    /* Key stays put; the array wraps beside it with a hanging indent */
+    .group {
+        flex-wrap: nowrap;
+        column-gap: 0;
+        padding-inline-start: calc(5ch + 2ch);
     }
 
-    .skill-category-text {
-        @apply text-right w-32
+    .kw {
+        color: var(--color-brand-400);
     }
 
-    .skill-category-text h3 {
-        @apply font-bold text-2xl text-zinc-300
+    .var {
+        color: var(--color-fg);
     }
 
-    .skill-technologies {
-        @apply flex flex-wrap gap-14 w-[95%] mx-8 py-5 justify-start
+    .punc {
+        color: var(--color-fg-subtle);
     }
 
-    .tech-badge {
-        @apply bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full;
+    .key {
+        color: var(--color-ink-100);
+        font-size: inherit;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: inherit;
+    }
+
+    .group > .punc {
+        margin-inline-end: 1ch;
+    }
+
+    .array {
+        flex: 1 1 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 1ch;
+        min-inline-size: 0;
+        list-style: none;
+    }
+
+    /* Inline (not flex) so the item's baseline is the text, aligned with the key */
+    .str {
+        padding-inline: 0.375rem;
+        margin-inline: -0.375rem;
+        border-radius: 0.375rem;
+        color: var(--color-sun-400);
+        white-space: nowrap;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: color-mix(in oklab, var(--color-accent) 18%, transparent);
+        }
+
+        /* Quotes, commas and brackets are decoration: hidden from screen readers */
+        & .q::before,
+        & .q::after {
+            content: "'";
+            content: "'" / "";
+        }
+
+        &::after {
+            content: ",";
+            content: "," / "";
+            color: var(--color-fg-subtle);
+        }
+
+        /* Last item closes the array */
+        &:last-child::after {
+            content: "],";
+            content: "]," / "";
+        }
+    }
+
+    .str-icon {
+        --icon-size: 1.25em;
+        display: inline-block;
+        inline-size: var(--icon-size);
+        block-size: var(--icon-size);
+        margin-inline-end: 0.75ch;
+        /* Centered on the cap height, nudged up for optical balance */
+        vertical-align: calc(0.5cap - var(--icon-size) / 2 - 0.02em);
+        color: var(--icon-color);
+
+        /* HTML + CSS pair: tighter between the two icons */
+        &:has(+ .str-icon) {
+            margin-inline-end: 0.25ch;
+        }
+
+        & :global(svg) {
+            display: block;
+            inline-size: 100%;
+            block-size: 100%;
+        }
+    }
+
+    .comment {
+        display: block;
+        margin-block-start: 0.75rem;
+        color: var(--color-fg-subtle);
+        font-style: italic;
+    }
+
+    .cursor {
+        display: inline-block;
+        inline-size: 0.6em;
+        block-size: 1.1em;
+        margin-inline-start: 0.25ch;
+        translate: 0 0.2em;
+        background-color: var(--color-accent);
+
+        /* Blinks for 5 s and stops: no pause control needed (WCAG 2.2.2) */
+        @media (prefers-reduced-motion: no-preference) {
+            animation: blink 1s steps(1) 5;
+        }
+    }
+
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
     }
 </style>

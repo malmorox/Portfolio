@@ -1,74 +1,131 @@
 ---
 import PersonalImage from "@components/PersonalImage.astro";
+import Button from "@components/ui/Button.astro";
 import { HiArrowNarrowDown } from "react-icons/hi";
 ---
-<section id="intro">
-    <div class="intro-container">
-        <header class="intro-header">
-            <div class="intro-header-text">
-                <h1 class="intro-title">
-                    <span class="title-small"> Marcos Almorox. </span>
-                    <span class="title-big"> Desarrollador junior <span class="text-gradient">full-stack</span> español </span>
-                </h1>
-                <p class="intro-text">
-                    Creo webs y apps con enfoque en rendimiento, usabilidad y diseño.
-                </p>
-                <div class="buttons-wrapper">
-                    <a href="#contact" class="btn">Ponte en contacto</a>
-                    <a href="#about" class="btn-muted">
-                        <span>Scrollea para ver más</span>
-                        <HiArrowNarrowDown className="btn-muted-icon" />
-                    </a>
-                </div>
+<section id="intro" class="hero" aria-labelledby="intro-title">
+    <div class="hero-inner page-container">
+        <div class="hero-text">
+            <h1 id="intro-title" class="hero-title">
+                <span class="title-small rise-in" style="--i: 0">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    Marcos Almorox
+                </span>
+                <span class="title-big rise-in" style="--i: 1">
+                    Desarrollador junior <span class="text-gradient">full-stack</span> español
+                </span>
+            </h1>
+            <p class="hero-lead rise-in" style="--i: 2">
+                Creo webs y apps con enfoque en rendimiento, usabilidad y diseño.
+            </p>
+            <div class="hero-actions rise-in" style="--i: 3">
+                <Button href="#contact" size="lg">Ponte en contacto</Button>
+                <Button href="#about" variant="ghost" size="lg">
+                    Scrollea para ver más
+                    <HiArrowNarrowDown aria-hidden="true" data-icon="down" />
+                </Button>
             </div>
-            <div class="intro-header-img">
-                <PersonalImage />
-            </div>
-        </header>
+        </div>
+
+        <div class="hero-media rise-in" style="--i: 2">
+            <PersonalImage />
+        </div>
     </div>
 </section>
 
 <style>
-    @reference "@styles/tailwind.css";
+    .hero {
+        position: relative;
+        isolation: isolate;
+        display: grid;
+        align-items: center;
+        min-block-size: min(calc(100svh - var(--header-height)), 56rem);
+        padding-block: clamp(2.5rem, 1.5rem + 3vw, 4rem);
 
-    .intro-container {
-        @apply max-w-screen-xl mx-auto flex flex-col px-6;
+        /* Fading decorative grid */
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(to right, var(--color-border) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--color-border) 1px, transparent 1px);
+            background-size: 4rem 4rem;
+            mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, black, transparent 75%);
+        }
+
+        /* Orange glow behind the photo */
+        &::after {
+            content: "";
+            position: absolute;
+            inset-block-start: 10%;
+            inset-inline-end: 5%;
+            z-index: -1;
+            inline-size: min(40rem, 70vw);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                color-mix(in oklab, var(--color-brand-500) 22%, transparent),
+                transparent 65%
+            );
+            filter: blur(20px);
+        }
     }
 
-    .intro-header {
-        @apply flex items-center justify-between gap-8
+    .hero-inner {
+        display: grid;
+        align-items: center;
+        gap: clamp(3rem, 2rem + 4vw, 5rem);
+
+        @media (min-width: 56rem) {
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+        }
     }
 
-    .intro-header-text {
-        @apply text-left flex-1 min-w-[300px];
-    }
-
-    .intro-title {
-        color: hsl(240, 20%, 99%);
+    .hero-title {
+        display: grid;
+        gap: 1rem;
     }
 
     .title-small {
-        @apply block text-2xl font-semibold;
-        color: hsl(0, 0%, 60%);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        color: var(--color-fg-subtle);
+        font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+        font-weight: 600;
+        letter-spacing: 0;
+    }
+
+    .status-dot {
+        inline-size: 0.625rem;
+        block-size: 0.625rem;
+        border-radius: 50%;
+        background-color: var(--color-accent);
+        box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-brand-500) 25%, transparent);
     }
 
     .title-big {
-        @apply text-7xl font-extrabold
+        color: var(--color-fg);
+        font-size: var(--text-display);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.035em;
     }
 
     .text-gradient {
-        background-image: linear-gradient(20deg, #e76a23, #fac937);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        white-space: nowrap;
         background-size: 100% 200%;
         background-position-y: 100%;
-        animation-name: pulse;
-        animation-duration: 3.3s;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
+
+        @media (prefers-reduced-motion: no-preference) {
+            animation: gradient-pulse 3.3s ease-in-out infinite;
+        }
     }
 
-    @keyframes pulse {
+    @keyframes gradient-pulse {
         0%,
         100% {
             background-position-y: 0%;
@@ -78,50 +135,28 @@ import { HiArrowNarrowDown } from "react-icons/hi";
         }
     }
 
-    .intro-text {
-        @apply text-xl py-5;
-        max-width: 310px;
-        color: hsl(240, 20%, 99%);
+    .hero-lead {
+        max-inline-size: 30ch;
+        margin-block-start: 1.75rem;
+        color: var(--color-fg-muted);
+        font-size: var(--text-lead);
+        line-height: 1.4;
     }
 
-    .buttons-wrapper {
-        @apply flex items-center my-7 text-xl;
-        gap: 3rem;
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem 1.5rem;
+        margin-block-start: 2.5rem;
     }
 
-    .buttons-wrapper .btn {
-        @apply text-xl px-6 py-4 rounded-lg rounded-tr-3xl font-bold;
-        background-color: #f47226;
-        color: hsl(240, 20%, 99%);
-        transition: 0.3s transform ease, 0.3s background-color ease;
-    }
+    .hero-media {
+        justify-self: center;
+        inline-size: min(100%, 26rem);
 
-    .buttons-wrapper .btn:hover {
-        background-color: #8f451a;
-        outline: 4px solid #f47226;
-        outline-offset: -4px;
-        transform: scale3d(1.1, 1.1, 1);
-    }
-
-    .buttons-wrapper .btn-muted {
-        @apply flex items-center gap-1.5;
-        color: hsl(0, 0%, 60%);
-        transition: 0.3s color ease;
-    }
-
-    .buttons-wrapper .btn-muted:hover {
-        @apply text-zinc-400
-    }
-
-    .btn-muted-icon {
-        transition: 0.3s transform ease;
-    }
-
-    .buttons-wrapper .btn-muted:hover .btn-muted-icon {
-        transform: translateY(0.25rem);
-    }
-
-    .intro-header-img {
-        @apply flex justify-end flex-1 min-w-[300px];
+        @media (min-width: 56rem) {
+            justify-self: end;
+        }
     }
 </style>

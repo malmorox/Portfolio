@@ -1,50 +1,71 @@
 ---
+import SectionHeader from '@components/ui/SectionHeader.astro'
 import ProjectCard from '@components/ui/ProjectCard.astro'
 import projectsData from '@data/projects.json'
 
-const projects = projectsData.projects.slice(0, 4);
+interface Project {
+    name: string
+    description: string
+    img_logo: string
+    img_preview: string
+    technologies: string[]
+    /** Main destination: deployed site, store or repository */
+    link: string
+    /** Optional repository when `link` is a deployed site or a store */
+    repo?: string
+}
+
+const projects: Project[] = projectsData.projects.slice(0, 4);
 
 const projectsImagesPath = "/images/projects/"
 const logoPath = `${projectsImagesPath}logo/`
 const previewPath = `${projectsImagesPath}preview/`
+
+/* Project images that exist in /public (resolved at build time) */
+const existingImages = new Set(
+    Object.keys(import.meta.glob('/public/images/projects/**/*.*', { query: '?url' }))
+        .map((path) => path.replace(/^\/public/, ''))
+)
+
+/** Public path only if the file exists */
+function publicAsset(path: string): string | undefined {
+    return existingImages.has(path) ? path : undefined
+}
 ---
-<section id="projects">
-    <div class="projects-container">
-        <h2 class="projects-title"> Proyectos destacados </h2>
-        <div class="works">
-        {
-            projects.map((project) => (
-                <ProjectCard
-                    name={project.name}
-                    description={project.description}
-                    imgLogo={`${logoPath}${project.img_logo}`}
-                    imgPreview={`${previewPath}${project.img_preview}`}
-                    technologies={project.technologies}
-                    link={project.link}
-                />
-            ))
-        }
-        </div>
+<section id="projects" class="section-space" tabindex="-1" aria-labelledby="projects-title">
+    <div class="page-container">
+        <SectionHeader
+            title="Proyectos destacados"
+            id="projects-title"
+        />
+
+        <ul class="works">
+            {projects.map((project) => (
+                <li class="reveal">
+                    <ProjectCard
+                        name={project.name}
+                        description={project.description}
+                        imgLogo={publicAsset(`${logoPath}${project.img_logo}`)}
+                        imgPreview={publicAsset(`${previewPath}${project.img_preview}`)}
+                        technologies={project.technologies}
+                        link={project.link}
+                        repo={project.repo}
+                    />
+                </li>
+            ))}
+        </ul>
     </div>
 </section>
 
 <style>
-    @reference "@styles/tailwind.css";
-
-    #projects {
-        @apply pt-20 pb-28
-    }
-
-    .projects-container {
-        @apply max-w-screen-xl mx-auto flex flex-col px-6
-    }
-
-    .projects-title {
-        @apply text-5xl font-bold text-left mb-10;
-        color: rgba(244, 114, 38, 0.8);
-    }
-
     .works {
-        @apply grid grid-cols-2 gap-7
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr));
+        gap: 1.5rem;
+        list-style: none;
+
+        & > li {
+            display: grid;
+        }
     }
 </style>

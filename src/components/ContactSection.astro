@@ -1,68 +1,114 @@
 ---
-
+import SectionHeader from '@components/ui/SectionHeader.astro'
+import Button from '@components/ui/Button.astro'
+import {
+    HiExclamationCircle,
+    HiCheckCircle,
+    HiPaperAirplane,
+} from 'react-icons/hi'
 ---
-<section id="contact">
-    <div class="contact-container">
-        <div class="contact-text-wrapper">
-            <h2 class="contact-title"> Contacta conmigo </h2>
-            <p class="contact-text">
-                ¿Quieres contratarme, contarme sobre tus 
-                (futuros) proyectos o tienes alguna pregunta para mí?
-            </p>
-            <p class="contact-text">
-                Si lo prefieres, también puedes enviarme un email a <br />
+<section id="contact" class="section-space" tabindex="-1" aria-labelledby="contact-title">
+    <div class="contact-container page-container">
+        <div class="contact-intro">
+            <SectionHeader title="Contacta conmigo" id="contact-title">
+                <p>
+                    ¿Quieres contratarme, contarme sobre tus
+                    (futuros) proyectos o tienes alguna pregunta para mí?
+                </p>
+            </SectionHeader>
+
+            <div class="contact-email reveal">
+                <p>Si lo prefieres, también puedes enviarme un email a</p>
                 <a
                     href="mailto:marcos.almorox@gmail.com?subject=Contacto desde marcosalmorox.es"
-                    class="contact-text-link"
+                    class="contact-email-link"
                 >
                     marcos.almorox@gmail.com
                 </a>
-            </p>
+            </div>
         </div>
+
         <form
             name="contact"
             method="POST"
-            class="contact-form"
+            class="contact-form reveal"
             id="contact-form"
+            aria-labelledby="contact-title"
         >
             <div class="form-field">
-                <label for="contact-identifier">Tu nombre (o empresa)</label>
+                <label for="contact-identifier">
+                    Tu nombre (o empresa) <span class="field-optional">(opcional)</span>
+                </label>
                 <input
                     type="text"
                     class="form-field-input"
                     id="contact-identifier"
                     name="identifier"
-                    autocomplete="off"
+                    autocomplete="name"
                     minlength="2"
+                    enterkeyhint="next"
+                    data-error="identifier-error"
                 />
+                <p id="identifier-error" class="error-msg">
+                    <HiExclamationCircle role="img" aria-label="Error" />
+                    Escribe al menos 2 caracteres.
+                </p>
             </div>
+
             <div class="form-field">
-                <label for="contact-email">Tu correo electrónico</label>
+                <label for="contact-email">
+                    Tu correo electrónico <span class="field-required" aria-hidden="true">*</span>
+                </label>
                 <input
                     type="email"
                     class="form-field-input"
                     id="contact-email"
                     name="email"
-                    autocomplete="off"
+                    autocomplete="email"
+                    autocorrect="off"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    enterkeyhint="next"
                     required
+                    data-error="email-error"
                 />
+                <p id="email-error" class="error-msg">
+                    <HiExclamationCircle role="img" aria-label="Error" />
+                    Introduce un email con el formato tu@empresa.com.
+                </p>
             </div>
-            <div class="form-field" id="form-textarea">
-                <label for="contact-email">Mensaje:</label>
+
+            <div class="form-field">
+                <label for="contact-message">
+                    Mensaje <span class="field-required" aria-hidden="true">*</span>
+                </label>
                 <textarea
                     class="form-field-input"
                     id="contact-message"
                     name="message"
                     placeholder="Cuéntame sobre las vacantes en tu empresa o sobre tu(s) proyecto(s)."
-                    autocomplete="off"
                     minlength="6"
                     maxlength="10000"
-                    required></textarea>
+                    required
+                    data-error="message-error"
+                ></textarea>
+                <p id="message-error" class="error-msg">
+                    <HiExclamationCircle role="img" aria-label="Error" />
+                    Escribe un mensaje de al menos 6 caracteres.
+                </p>
             </div>
-            <div class="form-field">
-                <button class="form-button" type="submit">
-                    Enviar mensaje
-                </button>
+
+            <div class="form-footer">
+                <Button type="submit" size="lg" class="form-button">
+                    <span class="form-button-label">Enviar mensaje</span>
+                    <HiPaperAirplane aria-hidden="true" data-icon="send" className="form-button-icon" />
+                </Button>
+
+                <p class="form-status" role="status" data-state="idle">
+                    <HiCheckCircle aria-hidden="true" className="status-icon status-icon-success" />
+                    <HiExclamationCircle aria-hidden="true" className="status-icon status-icon-error" />
+                    <span class="form-status-text"></span>
+                </p>
             </div>
         </form>
     </div>
@@ -71,123 +117,275 @@
 <script>
     import { sendEmail } from "@utils/sendEmail";
 
+    type Field = HTMLInputElement | HTMLTextAreaElement;
+
     const form = document.getElementById("contact-form") as HTMLFormElement;
+    const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const submitLabel = form.querySelector<HTMLElement>(".form-button-label")!;
+    const status = form.querySelector<HTMLElement>(".form-status")!;
+    const statusText = form.querySelector<HTMLElement>(".form-status-text")!;
+
+    const isField = (el: EventTarget | null): el is Field =>
+        el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement;
+
+    /* ---------- Accessible errors synced with :user-invalid ---------- */
+
+    // Link the error in aria-describedby only while shown
+    const linkError = (field: Field, shown: boolean) => {
+        const errorId = field.dataset.error;
+        if (!errorId) return;
+        const ids = (field.getAttribute("aria-describedby") ?? "")
+            .split(/\s+/)
+            .filter((id) => id && id !== errorId);
+        if (shown) ids.push(errorId);
+        if (ids.length) field.setAttribute("aria-describedby", ids.join(" "));
+        else field.removeAttribute("aria-describedby");
+    };
+
+    // Single polite live region announces errors on blur
+    const announcer = document.createElement("div");
+    announcer.setAttribute("aria-live", "polite");
+    announcer.className = "visually-hidden";
+    document.body.append(announcer);
+    let announceTimer: number | undefined;
+
+    const announceError = (field: Field) => {
+        const error = document.getElementById(field.dataset.error ?? "");
+        if (!error) return;
+        const label = field.labels?.[0]?.firstChild?.textContent?.trim() ?? "";
+        window.clearTimeout(announceTimer);
+        announcer.textContent = "";
+        announceTimer = window.setTimeout(() => {
+            announcer.textContent = `${label}: Error: ${error.textContent?.trim()}`;
+        }, 500);
+    };
+
+    const announced = new WeakSet<Field>();
+
+    const syncAria = (field: Field, announce = false) => {
+        const invalid = field.matches(":user-invalid");
+        field.setAttribute("aria-invalid", String(invalid));
+        linkError(field, invalid);
+        if (invalid && announce && !announced.has(field)) {
+            announceError(field);
+            announced.add(field);
+        } else if (!invalid) {
+            announced.delete(field);
+        }
+    };
+
+    form.querySelectorAll<Field>("input, textarea").forEach((field) => syncAria(field));
+
+    form.addEventListener("blur", (e) => isField(e.target) && syncAria(e.target, true), true);
+    form.addEventListener("input", (e) => isField(e.target) && syncAria(e.target));
+    // Failed submit: focus the first invalid field and read its error
+    form.addEventListener("invalid", (e) => {
+        if (!isField(e.target)) return;
+        announced.add(e.target);
+        syncAria(e.target);
+    }, true);
+    form.addEventListener("reset", () => {
+        window.setTimeout(() => form.querySelectorAll<Field>("input, textarea").forEach((f) => syncAria(f)));
+    });
+
+    /* ---------- Submit ---------- */
+
+    const setStatus = (state: "idle" | "success" | "error", message = "") => {
+        status.dataset.state = state;
+        statusText.textContent = message;
+    };
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const name = (document.getElementById("contact-identifier") as HTMLInputElement).value.trim();
-        const email = (document.getElementById("contact-email") as HTMLInputElement).value.trim();
-        const message = (document.getElementById("contact-message") as HTMLTextAreaElement).value.trim();
+        const name = (form.elements.namedItem("identifier") as HTMLInputElement).value.trim();
+        const emailField = form.elements.namedItem("email") as HTMLInputElement;
+        const messageField = form.elements.namedItem("message") as HTMLTextAreaElement;
+        const email = emailField.value.trim();
+        const message = messageField.value.trim();
 
-        if (!email || !message) return;
+        if (!email || !message) {
+            setStatus("error", "Completa tu email y el mensaje antes de enviarlo.");
+            (email ? messageField : emailField).focus();
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitLabel.textContent = "Enviando…";
+        setStatus("idle");
 
         const result = await sendEmail({ name, email, message });
 
+        submitButton.disabled = false;
+        submitLabel.textContent = "Enviar mensaje";
+
         if (result.success) {
-            console.log("✅ Mensaje enviado correctamente:", { name, email, message });
             form.reset();
+            setStatus("success", `${result.message} Te responderé lo antes posible.`);
         } else {
-            console.error("❌ Error al enviar el mensaje:", result.message);
+            setStatus("error", result.message);
         }
     });
 </script>
 
 <style>
-    @reference "@styles/tailwind.css";
-
-    #contact {
-        @apply pt-20 pb-28
-    }
-
     .contact-container {
-        @apply max-w-screen-xl mx-auto flex flex-row px-6 gap-10;
+        display: grid;
+        gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+        align-items: start;
+
+        @media (min-width: 60rem) {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        }
     }
 
-    .contact-title {
-        @apply text-6xl font-semibold text-left mt-5 mb-8;
-        color: hsl(240, 20%, 99%)
+    /* ---------- Text column ---------- */
+    .contact-email {
+        display: grid;
+        gap: 0.75rem;
+        color: var(--color-fg-muted);
+        font-size: 1.125rem;
     }
 
-    .contact-text-wrapper {
-        @apply flex flex-col flex-1;
-        gap: .25rem;
-    }
-
-    .contact-text {
-        @apply text-lg text-left text-zinc-400 my-4
-    }
-
-    .contact-text:last-child {
-        @apply mt-8;
-        color: hsl(240, 20%, 99%)
-    }
-
-    .contact-text-link {
-        @apply text-2xl font-semibold;
-        color: hsl(240, 20%, 99%);
+    .contact-email-link {
+        justify-self: start;
+        color: var(--color-fg);
+        font-size: clamp(1.25rem, 1rem + 1.2vw, 1.875rem);
+        font-weight: 700;
+        overflow-wrap: anywhere;
         text-decoration: underline;
-        text-decoration-thickness: 5px;
-        text-underline-offset: 0.4rem;
-        transition: 0.2s color ease;
+        text-decoration-color: var(--color-accent);
+        text-decoration-thickness: 3px;
+        text-underline-offset: 0.35em;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: var(--color-accent-text);
+        }
     }
 
-    .contact-text-link:hover {
-        color: #f48d26;
+    /* ---------- Form ---------- */
+    .contact-form {
+        display: grid;
+        gap: 1.5rem;
+        padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-card-brand);
+        background-color: var(--color-surface);
+        box-shadow: var(--shadow-card);
     }
 
-    .contact-form  {
-        @apply flex flex-col w-5/12
-    }
-
-    .contact-form label {
-        @apply flex pt-1 pb-2 text-zinc-500
-    }
-
-    #contact-identifier,
-    #contact-email,
-    #contact-message {
-        @apply w-full border border-gray-300 rounded-lg mb-4;
-        background-color: hsl(0, 0%, 16%);
-        border: solid 2px hsl(240, 20%, 99%);
-        padding: 1rem;
-        color: hsl(240, 20%, 99%);
-    }
-
-    #contact-identifier:focus,
-    #contact-email:focus,
-    #contact-message:focus {
-        border-color: #f48d26;
-        outline: 1.75px solid #f48d26;
-    }
-
-    #contact-message {
-        @apply rounded-br-3xl;
-        min-height: 140px;
-        max-height: 400px;  
-        resize: vertical;
-        overflow-y: auto;
-    }
-    
     .form-field {
-        @apply m-0
+        display: grid;
+        gap: 0.5rem;
+
+        & label {
+            color: var(--color-fg);
+            font-weight: 600;
+        }
     }
 
-    .form-field input {
-        margin: 0;
+    .field-optional {
+        color: var(--color-fg-subtle);
+        font-weight: 400;
     }
 
-    .form-button {
-        @apply text-xl px-6 py-4 rounded-lg rounded-tr-3xl font-bold;
-        background-color: #f47226;
-        color: hsl(240, 20%, 99%);
-        transition: 0.3s transform ease, 0.3s background-color ease;
+    .field-required {
+        color: var(--color-accent-text);
     }
-    
-    .form-button:hover {
-        background-color: #8f451a;
-        outline: 4px solid #f47226;
-        outline-offset: -4px;
-        transform: scale3d(1.1, 1.1, 1);
+
+    .form-field-input {
+        inline-size: 100%;
+        min-block-size: 3rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid var(--color-border-control);
+        border-radius: 0.75rem;
+        background-color: var(--color-bg);
+        color: var(--color-fg);
+        font: inherit;
+        font-size: max(1rem, 1em);
+        transition:
+            border-color 0.2s ease,
+            background-color 0.2s ease;
+
+        &:hover {
+            border-color: var(--color-ink-300);
+        }
+
+        &:focus-visible {
+            border-color: var(--color-accent);
+            outline: 2px solid var(--color-accent);
+            outline-offset: 1px;
+        }
+
+        &:user-invalid {
+            border-color: var(--color-danger);
+            background-color: color-mix(in oklab, var(--color-danger) 8%, var(--color-bg));
+        }
+    }
+
+    textarea.form-field-input {
+        field-sizing: content;
+        min-block-size: 9rem;
+        max-block-size: 25rem;
+        resize: vertical;
+    }
+
+    .error-msg {
+        display: none;
+        align-items: center;
+        gap: 0.375rem;
+        color: var(--color-danger);
+        font-size: 0.9375rem;
+
+        & :global(svg) {
+            flex-shrink: 0;
+            inline-size: 1.125rem;
+            block-size: 1.125rem;
+        }
+    }
+
+    .form-field-input:user-invalid + .error-msg {
+        display: flex;
+    }
+
+    .form-footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem 1.5rem;
+    }
+
+    .form-footer :global(.form-button-icon) {
+        rotate: 45deg;
+    }
+
+    /* ---------- Submit status ---------- */
+    .form-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+
+        /* Always in the DOM (even empty) so the live region announces */
+        &[data-state="success"] {
+            color: var(--color-success);
+        }
+
+        &[data-state="error"] {
+            color: var(--color-danger);
+        }
+    }
+
+    .form-status :global(.status-icon) {
+        display: none;
+        flex-shrink: 0;
+        inline-size: 1.25rem;
+        block-size: 1.25rem;
+    }
+
+    .form-status[data-state="success"] :global(.status-icon-success),
+    .form-status[data-state="error"] :global(.status-icon-error) {
+        display: block;
     }
 </style>

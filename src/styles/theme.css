@@ -1,0 +1,126 @@
+/*
+  Theme: single source of colors, type, radii, shadows and easings.
+  Components use var(--token), never literal values.
+  `static` emits every variable to :root for use in <style> blocks.
+*/
+
+@theme static {
+	/* ---------- 1. Base palette ---------- */
+
+	/* Brand orange (logo is brand-500) */
+	--color-brand-50: #fff4ec;
+	--color-brand-100: #ffe4cf;
+	--color-brand-200: #fec59d;
+	--color-brand-300: #fba663;
+	--color-brand-400: #f48d26;
+	--color-brand-500: #f47226;
+	--color-brand-600: #e76a23;
+	--color-brand-700: #c2541a;
+	--color-brand-800: #8f451a;
+	--color-brand-900: #5e2d12;
+
+	/* Warm yellow for the gradient */
+	--color-sun-400: #fac937;
+
+	/* Neutrals (dark greys) */
+	--color-ink-50: #fcfcfd;
+	--color-ink-100: #ededed;
+	--color-ink-200: #d4d4d4;
+	--color-ink-300: #b4b4b4;
+	--color-ink-400: #999999;
+	--color-ink-500: #7a7a7a;
+	--color-ink-600: #404040;
+	--color-ink-700: #303030;
+	--color-ink-800: #292929;
+	--color-ink-900: #1f1f1f;
+	--color-ink-950: #161616;
+
+	/* States */
+	--color-danger: #f87171;
+	--color-success: #4ade80;
+
+	/* ---------- 2. Semantic tokens ---------- */
+
+	/* Backgrounds */
+	--color-bg: var(--color-ink-900);
+	--color-bg-deep: var(--color-ink-950);
+	--color-surface: var(--color-ink-800);
+	--color-surface-raised: var(--color-ink-700);
+
+	/* Text */
+	--color-fg: var(--color-ink-50);
+	--color-fg-muted: var(--color-ink-300);
+	--color-fg-subtle: var(--color-ink-400);
+
+	/* Borders: decorative and controls (≥3:1 contrast) */
+	--color-border: rgb(255 255 255 / 0.08);
+	--color-border-strong: rgb(255 255 255 / 0.16);
+	--color-border-control: var(--color-ink-500);
+
+	/* Accent */
+	--color-accent: var(--color-brand-500);
+	--color-accent-hover: var(--color-brand-400);
+	--color-accent-text: var(--color-brand-400);
+	/* Text on orange: dark, since white on #f47226 is only 2.9:1 */
+	--color-on-accent: var(--color-ink-950);
+
+	/* ---------- 3. Typography ---------- */
+
+	--font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+
+	/* Fluid scale: min · preferred · max (max ≤ 2.5× min for zoom) */
+	--text-display: clamp(2.5rem, 1.4rem + 4.6vw, 5.25rem);
+	--text-title: clamp(2rem, 1.5rem + 2.2vw, 3.5rem);
+	--text-lead: clamp(1.25rem, 1.05rem + 0.9vw, 1.875rem);
+
+	/* ---------- Radii ---------- */
+
+	/* Rounder top-right corner, echoing the logo */
+	--radius-brand: 0.5rem 1.5rem 0.5rem 0.5rem;
+	--radius-card: 1.25rem;
+	--radius-card-brand: 1.25rem 2.5rem 1.25rem 1.25rem;
+
+	/* ---------- Shadows ---------- */
+
+	--shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 20px 40px -24px rgb(0 0 0 / 0.6);
+	--shadow-glow: 0 10px 30px -10px rgb(244 114 38 / 0.55);
+
+	/* ---------- Motion ---------- */
+
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+	/* Soft bounce for scaling (buttons) */
+	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	/* ---------- Layout ---------- */
+
+	--container-page: 76rem;
+}
+
+:root {
+	/* Brand gradient (orange → yellow) */
+	--gradient-brand: linear-gradient(
+		20deg,
+		var(--color-brand-600),
+		var(--color-brand-500) 40%,
+		var(--color-sun-400)
+	);
+
+	/* Page spacing */
+	--gutter: clamp(1.25rem, 0.75rem + 2.5vw, 2.5rem);
+	--section-space: clamp(4.5rem, 3rem + 5vw, 7.5rem);
+	--header-height: 4.5rem;
+
+	/* Dark-only site: dark native controls and scrollbars */
+	color-scheme: dark;
+}
+
+/* Windows high contrast: use system colors */
+@media (forced-colors: active) {
+	:root {
+		--color-border: CanvasText;
+		--color-border-strong: CanvasText;
+		--color-border-control: CanvasText;
+	}
+}

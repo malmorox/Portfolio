@@ -1,105 +1,86 @@
 {
     "technologies": [
-        { 
-            "technology": "htmlcss", 
-            "name": "HTML & CSS",
-            "logo": "htmlcss-logo.png" 
-        },
-        { 
-            "technology": "javascript", 
-            "name": "JavaScript",
-            "logo": "js-logo.png" 
-        },
-        { 
-            "technology": "typescript", 
-            "name": "TypeScript",
-            "logo": "ts-logo.png" 
-        },
-        { 
-            "technology": "tailwind", 
-            "name": "Tailwind CSS",
-            "logo": "tailwind-logo.png" 
-        },
-        { 
-            "technology": "astro", 
-            "name": "Astro",
-            "logo": "astro-logo.png" 
-        },
-        { 
-            "technology": "react", 
-            "name": "React",
-            "logo": "react-logo.png" 
-        },
-        { 
-            "technology": "node", 
-            "name": "Node.js",
-            "logo": "nodejs-logo.png" 
-        },
-        { 
-            "technology": "php", 
-            "name": "PHP",
-            "logo": "php-logo.png" 
+        {
+            "technology": "htmlcss",
+            "name": "HTML & CSS"
         },
         {
-            "technology": "java", 
-            "name": "Java",
-            "logo": "java-logo.png"
+            "technology": "javascript",
+            "name": "JavaScript"
         },
         {
-            "technology": "kotlin", 
-            "name": "Kotlin",
-            "logo": "kotlin-logo.png"
+            "technology": "typescript",
+            "name": "TypeScript"
         },
         {
-            "technology": "python", 
-            "name": "Python",
-            "logo": "python-logo.png"
+            "technology": "tailwind",
+            "name": "Tailwind CSS"
         },
         {
-            "technology": "csharp", 
-            "name": "C#",
-            "logo": "csharp-logo.png"
+            "technology": "astro",
+            "name": "Astro"
         },
         {
-            "technology": "mysql", 
-            "name": "MySQL",
-            "logo": "mysql-logo.png"
+            "technology": "react",
+            "name": "React"
         },
         {
-            "technology": "postgresql", 
-            "name": "PostgreSQL",
-            "logo": "postgresql-logo.png"
+            "technology": "node",
+            "name": "Node.js"
         },
         {
-            "technology": "git", 
-            "name": "Git",
-            "logo": "git-logo.png"
+            "technology": "php",
+            "name": "PHP"
         },
         {
-            "technology": "apache", 
-            "name": "Apache",
-            "logo": "apache-logo.png"
+            "technology": "java",
+            "name": "Java"
         },
         {
-            "technology": "nginx", 
-            "name": "Nginx",
-            "logo": "nginx-logo.png"
+            "technology": "kotlin",
+            "name": "Kotlin"
         },
         {
-            "technology": "docker", 
-            "name": "Docker",
-            "logo": "docker-logo.png"
+            "technology": "python",
+            "name": "Python"
         },
         {
-            "technology": "markdown", 
-            "name": "Markdown",
-            "logo": "markdown-logo.png"
+            "technology": "csharp",
+            "name": "C#"
+        },
+        {
+            "technology": "mysql",
+            "name": "MySQL"
+        },
+        {
+            "technology": "postgresql",
+            "name": "PostgreSQL"
+        },
+        {
+            "technology": "git",
+            "name": "Git"
+        },
+        {
+            "technology": "apache",
+            "name": "Apache"
+        },
+        {
+            "technology": "nginx",
+            "name": "Nginx"
+        },
+        {
+            "technology": "docker",
+            "name": "Docker"
+        },
+        {
+            "technology": "markdown",
+            "name": "Markdown"
         }
     ],
     "categories": {
         "frontend": "Frontend",
         "backend": "Backend",
-        "database": "Database",
-        "tools": "Tools"
+        "database": "Bases de datos",
+        "tools": "Herramientas"
     }
 }

@@ -1,0 +1,42 @@
+---
+interface Props {
+	/** Visible title (h2) */
+	title: string
+	/** h2 id, for the section's aria-labelledby */
+	id: string
+	align?: 'start' | 'center'
+}
+
+const { title, id, align = 'start' } = Astro.props
+---
+<header class:list={['section-header', 'reveal', `align-${align}`]}>
+	<h2 id={id} class="title">{title}</h2>
+	<slot />
+</header>
+
+<style>
+	.section-header {
+		display: grid;
+		gap: 1rem;
+		margin-block-end: clamp(2.5rem, 2rem + 2vw, 4rem);
+		max-inline-size: 48rem;
+
+		&.align-center {
+			margin-inline: auto;
+			justify-items: center;
+			text-align: center;
+		}
+	}
+
+	.title {
+		font-size: var(--text-title);
+		font-weight: 800;
+		color: var(--color-fg);
+	}
+
+	.section-header :global(p) {
+		max-inline-size: 60ch;
+		color: var(--color-fg-muted);
+		font-size: 1.125rem;
+	}
+</style>

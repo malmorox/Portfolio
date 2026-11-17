@@ -1,0 +1,189 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+/**
+ * primary   → main action: inverts to brown with an orange ring
+ * gradient  → highlight (CV in nav): gradient slides to yellow
+ * secondary → outline
+ * ghost     → text only
+ */
+type Variant = 'primary' | 'gradient' | 'secondary' | 'ghost'
+type Size = 'md' | 'lg'
+
+type Props = {
+	variant?: Variant
+	size?: Size
+	href?: string
+	class?: string
+} & Omit<HTMLAttributes<'a'> & HTMLAttributes<'button'>, 'class'>
+
+const {
+	variant = 'primary',
+	size = 'md',
+	href,
+	class: className,
+	...rest
+} = Astro.props
+
+const Tag = href ? 'a' : 'button'
+---
+<Tag
+	href={href}
+	class:list={['btn', `btn-${variant}`, `btn-${size}`, className]}
+	{...rest}
+>
+	<slot />
+</Tag>
+
+<style>
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		min-block-size: 2.75rem;
+		padding: 0.625rem 1.25rem;
+		border: 1px solid transparent;
+		border-radius: var(--radius-brand);
+		font-weight: 700;
+		line-height: 1.2;
+		white-space: nowrap;
+		text-decoration: none;
+		transition:
+			background-position 0.5s var(--ease-out-expo),
+			background-color 0.2s ease,
+			border-color 0.2s ease,
+			color 0.2s ease,
+			box-shadow 0.3s ease,
+			translate 0.3s var(--ease-out-expo),
+			scale 0.4s var(--ease-spring);
+
+		& :global(svg) {
+			flex-shrink: 0;
+			inline-size: 1.25em;
+			block-size: 1.25em;
+			transition: translate 0.3s var(--ease-out-expo);
+		}
+
+		&:disabled {
+			opacity: 0.6;
+			cursor: progress;
+		}
+	}
+
+	.btn-lg {
+		min-block-size: 3.25rem;
+		padding: 0.875rem 1.625rem;
+		font-size: 1.0625rem;
+	}
+
+	/* Shared rest look: brand gradient */
+	.btn-primary,
+	.btn-gradient {
+		background-color: var(--color-accent);
+		background-image: linear-gradient(
+			to bottom,
+			var(--color-brand-500),
+			var(--color-brand-600) 50%,
+			var(--color-sun-400)
+		);
+		background-size: 100% 200%;
+		background-position: top;
+		/* Start under the border, avoids a yellow line on top */
+		background-origin: border-box;
+		color: var(--color-on-accent);
+	}
+
+	/* Hover: a brown layer fades in (gradients can't transition) */
+	.btn-primary {
+		position: relative;
+		isolation: isolate;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: -1px;
+			z-index: -1;
+			border-radius: inherit;
+			background-color: var(--color-brand-800);
+			box-shadow: inset 0 0 0 2px var(--color-accent);
+			opacity: 0;
+			transition:
+				opacity 0.25s ease,
+				background-color 0.2s ease;
+		}
+
+		&:hover:not(:disabled) {
+			color: var(--color-fg);
+			box-shadow: var(--shadow-glow);
+
+			&::before {
+				opacity: 1;
+			}
+
+			@media (prefers-reduced-motion: no-preference) {
+				scale: 1.05;
+			}
+		}
+
+		&:active:not(:disabled) {
+			&::before {
+				background-color: var(--color-brand-900);
+			}
+
+			@media (prefers-reduced-motion: no-preference) {
+				scale: 0.98;
+			}
+		}
+	}
+
+	/* Gradient slides towards yellow */
+	.btn-gradient {
+		&:hover:not(:disabled) {
+			background-position: bottom;
+			box-shadow: var(--shadow-glow);
+
+			@media (prefers-reduced-motion: no-preference) {
+				translate: 0 -2px;
+			}
+		}
+	}
+
+	.btn-secondary {
+		border-color: var(--color-border-strong);
+		background-color: rgb(255 255 255 / 0.03);
+		color: var(--color-fg);
+
+		&:hover:not(:disabled) {
+			border-color: var(--color-accent);
+			color: var(--color-accent-text);
+		}
+	}
+
+	.btn-ghost {
+		padding-inline: 0.25rem;
+		color: var(--color-fg-muted);
+
+		&:hover:not(:disabled) {
+			color: var(--color-fg);
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.btn:hover :global([data-icon="down"]) {
+			translate: 0 0.2rem;
+		}
+
+		.btn:hover :global([data-icon="external"]),
+		.btn:hover:not(:disabled) :global([data-icon="send"]) {
+			translate: 0.15rem -0.15rem;
+		}
+	}
+
+	/* Forced colors drop the gradient: show the border */
+	@media (forced-colors: active) {
+		.btn {
+			border-color: ButtonText;
+		}
+	}
+</style>

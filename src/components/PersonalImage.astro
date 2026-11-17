@@ -1,28 +1,57 @@
 ---
-import imageBaseUrl from '@assets/images/profile-photo.jpg';
+import { Image } from 'astro:assets';
+import photo from '@assets/images/profile-photo.jpg';
 ---
 
-<div class="personal-image-wrapper">
-    <img
-        src={imageBaseUrl.src}
-        alt="Marcos Almorox"
-        class="personal-image"
-    />
-</div>
+<figure class="portrait">
+    <div class="portrait-frame">
+        <Image
+            src={photo}
+            alt="Marcos Almorox"
+            widths={[360, 540, 720, 960]}
+            sizes="(min-width: 56rem) 26rem, min(100vw, 26rem)"
+            loading="eager"
+            fetchpriority="high"
+            class="portrait-image"
+        />
+    </div>
+</figure>
 
 <style>
-    @reference "@styles/tailwind.css";
+    .portrait {
+        position: relative;
+        margin: 0;
 
-    .personal-image-wrapper {
-        @apply my-12 ml-24 flex items-center justify-center overflow-hidden rounded-3xl;
-        height: 510px;
-        width: 420px; 
+        /* Offset brand block behind the photo */
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            border-radius: var(--radius-card-brand);
+            background-image: var(--gradient-brand);
+            translate: 1rem 1rem;
+            rotate: 3deg;
+            opacity: 0.9;
+        }
     }
 
-    .personal-image {
-        height: 100%;
-        width: auto;
+    .portrait-frame {
+        overflow: hidden;
+        aspect-ratio: 4 / 5;
+        border: 1px solid var(--color-border-strong);
+        border-radius: var(--radius-card-brand);
+        background-color: var(--color-surface);
+        box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.9);
+    }
+
+    .portrait-image {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
         object-fit: cover;
-        transform: scale(1.3);
+        object-position: 50% 30%;
+        scale: 1.2;
+        transform-origin: 50% 35%;
     }
 </style>

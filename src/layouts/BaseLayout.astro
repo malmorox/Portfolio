@@ -3,9 +3,15 @@ import Nav from "@components/Nav.astro"
 import Footer from "@components/Footer.astro"
 import "@styles/tailwind.css"
 
-const { 
+interface Props {
+	title: string
+	description?: string
+	lang?: string
+}
+
+const {
 	title,
-	description,
+	description = "",
 	lang = "es"
 } = Astro.props
 ---
@@ -14,55 +20,47 @@ const {
 <html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#1f1f1f" />
 		<meta name="generator" content={Astro.generator} />
-		<title> {title} </title>
+		<title>{title}</title>
 		<meta name="description" content={description} />
-		<meta name="author" content="Marcos Almorox">
+		<meta name="author" content="Marcos Almorox" />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="preconnect" href="https://api.fontshare.com" />
+		<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
 		<link
 			href="https://api.fontshare.com/v2/css?f[]=satoshi@1,2&display=swap"
 			rel="stylesheet"
 		/>
 	</head>
 	<body>
+		<a href="#main-content" class="skip-link">Saltar al contenido</a>
+
 		<Nav />
 
-		<div class="main-container">
-			<slot />
-		</div>
+		<slot />
 
 		<Footer />
 	</body>
 </html>
 
 <style>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: "Satoshi", sans-serif;
-		background: rgb(31, 31, 31);
-		background-size: 224px;
-		scroll-behavior: smooth;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+	.skip-link {
+		position: fixed;
+		inset-block-start: 0.75rem;
+		inset-inline-start: 0.75rem;
+		z-index: 100;
+		padding: 0.75rem 1.25rem;
+		border-radius: var(--radius-brand);
+		background-color: var(--color-accent);
+		color: var(--color-on-accent);
+		font-weight: 700;
+		translate: 0 -200%;
+
+		&:focus-visible {
+			translate: 0 0;
+		}
 	}
 </style>
