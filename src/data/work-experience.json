@@ -5,7 +5,7 @@
         "logo": "bechiara-logo.png",
         "url": "https://bechiara.com/",
         "current": false,
-        "logo_height": 28
+        "logo_height": 20
     },
     {
         "name": "AllCloud Consulting",
@@ -19,7 +19,7 @@
         "logo": "radmas-logo.png",
         "url": "https://radmas.com",
         "current": true,
-        "logo_height": 40
+        "logo_height": 29
     }
     ]
 }

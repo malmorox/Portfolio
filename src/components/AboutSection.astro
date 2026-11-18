@@ -1,5 +1,4 @@
 ---
-import SectionHeader from '@components/ui/SectionHeader.astro'
 import workExperienceData from '@data/work-experience.json';
 import { HiArrowUpRight } from 'react-icons/hi2';
 
@@ -9,22 +8,20 @@ const companyLogosPath = "/images/work-experience/"
 ---
 <section id="about" class="section-space" tabindex="-1" aria-labelledby="about-title">
     <div class="page-container">
-        <SectionHeader
-            title="Robusto por dentro, agradable por fuera."
-            id="about-title"
-        />
+        <!-- No visible title: the lead paragraph opens the section. Keeps the h1 → h2 → h3 outline -->
+        <h2 id="about-title" class="visually-hidden">Sobre mí</h2>
 
         <div class="about-grid">
             <div class="about-text reveal">
                 <p class="about-text-main">
-                    ¡Hola! Soy Marcos, <strong>técnico en Desarrollo de Aplicaciones Web</strong>{" "}
-                    y <strong>técnico en Desarrollo de Aplicaciones Multiplataforma</strong>.
+                    ¡Hola! Soy Marcos, <strong>técnico</strong> en <strong>Desarrollo de Aplicaciones Web</strong>{" "}
+                    y <strong>Multiplataforma</strong>.
                     Creo aplicaciones <em>modernas, escalables</em> y con una
                     excelente <em>experiencia de usuario</em>.
                 </p>
                 <p class="about-text-sub">
                     Me preocupo por escribir código limpio y bien estructurado, construyendo soluciones
-                    que sean robustas por dentro y agradables por fuera.
+                    sólidas, fáciles de mantener y pensadas para quien las usa.
                 </p>
             </div>
 
@@ -93,7 +90,13 @@ const companyLogosPath = "/images/work-experience/"
 
     /* ---------- Experience ---------- */
     .work-experience {
-        padding: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+        --card-padding: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+        /* How far the hover background bleeds past the logo row */
+        --row-bleed: 0.75rem;
+
+        padding: var(--card-padding);
+        /* Same gap below the last hover background as on its sides */
+        padding-block-end: calc(var(--card-padding) - var(--row-bleed));
         border: 1px solid var(--color-border);
         border-radius: var(--radius-card-brand);
         background-color: var(--color-surface);
@@ -124,8 +127,8 @@ const companyLogosPath = "/images/work-experience/"
         justify-content: space-between;
         gap: 1rem;
         min-block-size: 4.5rem;
-        padding-inline: 0.75rem;
-        margin-inline: -0.75rem;
+        padding-inline: var(--row-bleed);
+        margin-inline: calc(var(--row-bleed) * -1);
         border-radius: 0.75rem;
         transition: background-color 0.2s ease;
 
