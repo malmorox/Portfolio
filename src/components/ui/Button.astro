@@ -2,7 +2,7 @@
 import type { HTMLAttributes } from 'astro/types'
 
 /**
- * primary   → main action: inverts to brown with an orange ring
+ * primary   → main action: inverts to warm black with an orange ring
  * gradient  → highlight (CV in nav): gradient slides to yellow
  * secondary → outline
  * ghost     → text only
@@ -94,7 +94,7 @@ const Tag = href ? 'a' : 'button'
 		color: var(--color-on-accent);
 	}
 
-	/* Hover: a brown layer fades in (gradients can't transition) */
+	/* Hover: a warm black layer fades in (gradients can't transition) */
 	.btn-primary {
 		position: relative;
 		isolation: isolate;
@@ -105,7 +105,7 @@ const Tag = href ? 'a' : 'button'
 			inset: -1px;
 			z-index: -1;
 			border-radius: inherit;
-			background-color: var(--color-brand-800);
+			background-color: color-mix(in oklab, var(--color-brand-500) 14%, var(--color-ink-950));
 			box-shadow: inset 0 0 0 2px var(--color-accent);
 			opacity: 0;
 			transition:
@@ -128,7 +128,7 @@ const Tag = href ? 'a' : 'button'
 
 		&:active:not(:disabled) {
 			&::before {
-				background-color: var(--color-brand-900);
+				background-color: color-mix(in oklab, var(--color-brand-500) 24%, var(--color-ink-950));
 			}
 
 			@media (prefers-reduced-motion: no-preference) {
