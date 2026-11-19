@@ -168,6 +168,13 @@ const sitemap = [
         filter: brightness(0) invert(1);
     }
 
+    /* Long label: wrap instead of pushing the footer past 320px */
+    .footer-bar :global(.cv-link) {
+        white-space: normal;
+        text-align: center;
+        text-wrap: balance;
+    }
+
     .footer-bottom {
         color: var(--color-fg-subtle);
         font-size: 0.875rem;
