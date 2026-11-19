@@ -116,34 +116,62 @@ const links = [
         }
     })
 
-    /* ---------- Scrollspy ---------- */
+    /* ---------- Scrollspy ----------
+       IntersectionObserver instead of native scroll-target-group: a native
+       marker group always keeps one link active, but in the hero (#intro,
+       not in the nav) none should be */
     const links = [...menu.querySelectorAll<HTMLAnchorElement>('a.nav-link')]
 
-    const nativeScrollSpy = CSS.supports('scroll-target-group: auto')
+    const linkFor = (hash: string) => links.find((link) => link.hash === hash) ?? null
 
     const setCurrent = (current: Element | null) => {
-        links.forEach((link) => {
-            const active = link === current
-            // Native :target-current handles styling: only sync ARIA
-            if (!nativeScrollSpy) link.classList.toggle('target-current', active)
-            link.setAttribute('aria-current', String(active))
-        })
+        links.forEach((link) => link.setAttribute('aria-current', String(link === current)))
     }
 
-    if (nativeScrollSpy) {
-        const sync = () => setCurrent(menu.querySelector('a:target-current'))
-        sync()
-        document.addEventListener('scrollend', sync)
-    } else {
-        const observer = new IntersectionObserver((entries) => {
-            for (const entry of entries) {
-                if (!entry.isIntersecting) continue
-                setCurrent(links.find((link) => link.hash === `#${entry.target.id}`) ?? null)
-            }
-        }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 })
+    let navigating = false // anchor scroll in progress: indicator frozen
 
-        document.querySelectorAll('main > section[id]').forEach((section) => observer.observe(section))
-    }
+    const observer = new IntersectionObserver((entries) => {
+        if (navigating) return
+        for (const entry of entries) {
+            // Sections without a nav link (the hero) clear the indicator
+            if (entry.isIntersecting) setCurrent(linkFor(`#${entry.target.id}`))
+        }
+    }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 })
+
+    document.querySelectorAll('main > section[id]').forEach((section) => observer.observe(section))
+
+    /* Resolves when scrolling settles. Anchor navigation (CSS smooth scroll)
+       returns no promise, so: scrollend, plus an idle timer in case it never
+       fires (no scroll needed, or no scrollend support) */
+    const waitForScrollEnd = () => new Promise<void>((resolve) => {
+        let timer = 0
+        const finish = () => {
+            clearTimeout(timer)
+            removeEventListener('scrollend', finish)
+            removeEventListener('scroll', onScroll)
+            resolve()
+        }
+        const onScroll = () => {
+            clearTimeout(timer)
+            timer = window.setTimeout(finish, 150)
+        }
+        addEventListener('scrollend', finish, { once: true })
+        addEventListener('scroll', onScroll, { passive: true })
+        timer = window.setTimeout(finish, 150)
+    })
+
+    /* Jumping to a section: show its link right away and freeze the indicator
+       so it doesn't flick through every section the smooth scroll passes */
+    document.addEventListener('click', async (event) => {
+        const anchor = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]')
+        const target = anchor && linkFor(anchor.hash)
+        if (!target) return
+
+        navigating = true
+        setCurrent(target)
+        await waitForScrollEnd()
+        navigating = false
+    })
 </script>
 
 <style>
@@ -334,7 +362,8 @@ const links = [
             color: var(--color-fg);
         }
 
-        &:is(:target-current, .target-current) {
+        /* Styled from the ARIA state so visuals and semantics never diverge */
+        &[aria-current="true"] {
             color: var(--color-fg);
 
             & span::after {
@@ -379,11 +408,6 @@ const links = [
                 inline-size: auto;
             }
         }
-    }
-
-    /* Native scrollspy (:target-current) */
-    .site-menu {
-        scroll-target-group: auto;
     }
 
     @media (forced-colors: active) {
